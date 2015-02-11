@@ -30,15 +30,22 @@
 #define NUM_COMNMAND_LINE_ARGUMENTS 2
 #define DISPLAY_WINDOW_NAME "Camera Image"
 
+// declare function prototypes
+bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut);
+
 /*******************************************************************************************************************//**
  * @BRIEF Process a single image frame
  * @PARAM[in] imageIn the input image frame
+ * @PARAM[out] imageOut the processed image frame
  * @RETURN true if frame was processed successfully
  * @AUTHOR Christopher D. McMurrough
  **********************************************************************************************************************/
-bool processFrame(const cv::Mat &imageIn)
+bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut)
 {
-    // process the image frame
+	// copy the input image frame to the ouput image
+	imageIn.copyTo(imageOut);
+
+    // return true on success
     return true;
 }
 
@@ -96,13 +103,14 @@ int main(int argc, char **argv)
         // get the start time
         double startTicks = static_cast<double>(cv::getTickCount());
 
-        // attempt to acquire an image frame
-        cv::Mat captureFrame;
+        // attempt to acquire and process an image frame
+		cv::Mat captureFrame;
+		cv::Mat processedFrame;
         bool captureSuccess = capture.read(captureFrame);
         if(captureSuccess)
         {
             // process the image frame
-            processFrame(captureFrame);
+			processFrame(captureFrame, processedFrame);
 
             // increment the frame counter
             frameCount++;
@@ -115,7 +123,7 @@ int main(int argc, char **argv)
         // update the GUI window if necessary
         if(showFrames && captureSuccess)
         {
-            cv::imshow(DISPLAY_WINDOW_NAME, captureFrame);
+            cv::imshow(DISPLAY_WINDOW_NAME, processedFrame);
 
             // check for program termination
             if(cv::waitKey(1) == 'q')
