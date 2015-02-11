@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 
 # configure OpenCV
 IF(WIN32)
-	# set the opencv directories manually
-	message("Windows platform detected, setting OpenCV configuration manually...")
+    # set the opencv directories manually
+    message("Windows platform detected, setting OpenCV configuration manually...")
     set(OPENCV_BUILD_DIR "C:/OpenCV/build/x64/vc12")
     set(OPENCV_INCLUDE_DIRS "C:/OpenCV/build/include;C:/OpenCV/build/include/opencv;C:/OpenCV/build/include/opencv2")
     set(OPENCV_LIB_DIRS "C:/OpenCV/build/x64/vc12/lib")
