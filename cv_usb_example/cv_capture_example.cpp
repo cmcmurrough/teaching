@@ -42,8 +42,8 @@ bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut);
  **********************************************************************************************************************/
 bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut)
 {
-	// copy the input image frame to the ouput image
-	imageIn.copyTo(imageOut);
+    // copy the input image frame to the ouput image
+    imageIn.copyTo(imageOut);
 
     // return true on success
     return true;
@@ -104,13 +104,13 @@ int main(int argc, char **argv)
         double startTicks = static_cast<double>(cv::getTickCount());
 
         // attempt to acquire and process an image frame
-		cv::Mat captureFrame;
-		cv::Mat processedFrame;
+	cv::Mat captureFrame;
+	cv::Mat processedFrame;
         bool captureSuccess = capture.read(captureFrame);
         if(captureSuccess)
         {
             // process the image frame
-			processFrame(captureFrame, processedFrame);
+	    processFrame(captureFrame, processedFrame);
 
             // increment the frame counter
             frameCount++;
