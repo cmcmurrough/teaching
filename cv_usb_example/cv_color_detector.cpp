@@ -69,25 +69,25 @@ bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut)
 	switch(color)
 	{
 		case COLOR_RED:
-			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 0, 255));
+			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 0, 255), 3);
 			break;
 		case COLOR_GREEN:
-			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 255, 0));
+			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 255, 0), 3);
 			break;
 		case COLOR_BLUE:
-			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(255, 0, 0));
+			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(255, 0, 0), 3);
 			break;
 		case COLOR_YELLOW:
-			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 255, 255));
+			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 255, 255), 3);
 			break;
 		case COLOR_ORANGE:
-			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 128, 255));
+			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 128, 255), 3);
 			break;
 		case COLOR_WHITE:
-			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(255, 255, 255));
+			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(255, 255, 255), 3);
 			break;
 		default:
-			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 0, 0));
+			cv::rectangle(imageOut, boundingRectangle, cv::Scalar(0, 0, 0), 3);
 			break;
 	}
 
