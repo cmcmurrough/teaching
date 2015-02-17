@@ -15,7 +15,7 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/*******************************************************************************************************************//**
+/***********************************************************************************************************************
  * @FILE cv_capture_example.cpp
  * @BRIEF C++ example for acquiring and processing image frames with OpenCV
  * @AUTHOR Christopher D. McMurrough
@@ -33,7 +33,7 @@
 // declare function prototypes
 bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut);
 
-/*******************************************************************************************************************//**
+/***********************************************************************************************************************
  * @BRIEF Process a single image frame
  * @PARAM[in] imageIn the input image frame
  * @PARAM[out] imageOut the processed image frame

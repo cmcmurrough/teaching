@@ -22,7 +22,9 @@ ELSE(WIN32)
     find_package (OpenCV REQUIRED)
 ENDIF(WIN32)
 
-
-# CREATE EXECUTABLE
+# create create individual projects
 add_executable (cv_capture_example cv_capture_example.cpp)
 target_link_libraries(cv_capture_example ${OpenCV_LIBS})
+
+add_executable (cv_color_detector cv_color_detector.cpp)
+target_link_libraries(cv_color_detector ${OpenCV_LIBS})
