@@ -19,7 +19,7 @@
  * @FILE serial_communication_variable.ino
  * @BRIEF An example Arduino sketch showing USB-serial communications with the Teensy microcontroller
  *
- * This program provides an example of USB-serial communications with the Teensy 2.0 microcontroller. The communication 
+ * This program provides an example of USB-serial communications with the Teensy 3.1 microcontroller. The communication 
  * is based on variable width byte packets containing an error checksum. The packet structure is defined as follows:
  *
  * packet[0] = PACKET_START_BYTE (0xAA)
@@ -34,7 +34,7 @@
  **********************************************************************************************************************/
 
 // define GPIO pins
-const int LED_PIN = 11;
+const int LED_PIN = 13;
 const int LED_ON = HIGH;
 const int LED_OFF = LOW;
 
