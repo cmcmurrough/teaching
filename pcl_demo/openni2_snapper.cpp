@@ -46,12 +46,12 @@ private:
 
 public:
 
-	/***********************************************************************************************************************
-	 * @BRIEF Class constructor
-	 * @PARAM[in] cloudRenderSetting sets the cloud visualization mode (render_off:0, render_on:1)
-	 * @PARAM[in] cloudSaveSetting sets the disk save mode for cloud data (saves_off:0, saves_on:1)
-	 * @AUTHOR Christopher D. McMurrough
-	 **********************************************************************************************************************/
+    /***********************************************************************************************************************
+     * @BRIEF Class constructor
+     * @PARAM[in] cloudRenderSetting sets the cloud visualization mode (render_off:0, render_on:1)
+     * @PARAM[in] cloudSaveSetting sets the disk save mode for cloud data (saves_off:0, saves_on:1)
+     * @AUTHOR Christopher D. McMurrough
+     **********************************************************************************************************************/
     OpenNI2Processor(int cloudRenderSetting, int cloudSaveSetting) : m_viewer("Rendering Window")
     {
         // store the render and save settings
@@ -62,14 +62,14 @@ public:
         if(m_cloudRenderSetting == 0)
         {
             m_viewer.~CloudViewer();
-			std::printf("Running with visualization OFF... \n");
+            std::printf("Running with visualization OFF... \n");
         }
     }
 
-	/***********************************************************************************************************************
-	 * @BRIEF Starts data acquisition and handling
-	 * @AUTHOR Christopher D. McMurrough
-	 **********************************************************************************************************************/
+    /***********************************************************************************************************************
+     * @BRIEF Starts data acquisition and handling
+     * @AUTHOR Christopher D. McMurrough
+     **********************************************************************************************************************/
     void run()
     {
         // create a new grabber for OpenNI2 devices
@@ -84,8 +84,8 @@ public:
         // start receiving point clouds
         interface->start();
 
-		// start the timer
-		m_stopWatch.reset();
+        // start the timer
+        m_stopWatch.reset();
 
         // wait until user quits program
         while (!m_viewer.wasStopped())
@@ -97,19 +97,19 @@ public:
         interface->stop();
     }
 
-	/***********************************************************************************************************************
-	 * @BRIEF Callback function for received cloud data
-	 * @PARAM[in] cloudIn the raw cloud data received by the OpenNI2 device
-	 * @AUTHOR Christopher D. McMurrough
-	 **********************************************************************************************************************/
-	void cloudCallback(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr &cloudIn)
+    /***********************************************************************************************************************
+     * @BRIEF Callback function for received cloud data
+     * @PARAM[in] cloudIn the raw cloud data received by the OpenNI2 device
+     * @AUTHOR Christopher D. McMurrough
+     **********************************************************************************************************************/
+    void cloudCallback(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr &cloudIn)
     {
         // get the elapsed time since the last callback
         double elapsedTime = m_stopWatch.getTimeSeconds();
-		m_stopWatch.reset();
-		std::printf("Seconds elapsed since last cloud callback: %f \n", elapsedTime);
+        m_stopWatch.reset();
+        std::printf("Seconds elapsed since last cloud callback: %f \n", elapsedTime);
         
-		// store the cloud save count
+        // store the cloud save count
         static int saveCount = 0;
 
         // render cloud if necessary
@@ -125,8 +125,8 @@ public:
             string str;
             ss << saveCount << ".pcd";
             str = ss.str();
-			pcl::io::savePCDFile<pcl::PointXYZRGBA> (str.c_str(), *cloudIn, true);
-			std::printf("cloud saved to %s\n", str.c_str());
+            pcl::io::savePCDFile<pcl::PointXYZRGBA> (str.c_str(), *cloudIn, true);
+            std::printf("cloud saved to %s\n", str.c_str());
             saveCount++;
         }
     }
@@ -141,26 +141,26 @@ public:
  **********************************************************************************************************************/
 int main (int argc, char** argv)
 {
-	// store the run time settings
-	int cloudRenderSetting;
-	int cloudSaveSetting;
+    // store the run time settings
+    int cloudRenderSetting;
+    int cloudSaveSetting;
 
-	// parse and validate the command line arguments
+    // parse and validate the command line arguments
     if(argc == 1)
     {
-		// assign default settings if no arguments were given
+        // assign default settings if no arguments were given
         cloudRenderSetting = 1;
         cloudSaveSetting = 0;
     }
     else if(argc != NUM_COMMAND_ARGS + 1)
     {
-		// return if we do not have the proper amount of arguments
+        // return if we do not have the proper amount of arguments
         std::printf("USAGE: %s <cloud_render_setting> <cloud_save_setting> \n", argv[0]);
         return 0;
     }
     else
     {
-		// parse the command line arguments
+        // parse the command line arguments
         cloudRenderSetting = atoi(argv[1]);
         cloudSaveSetting = atoi(argv[2]);
     }
