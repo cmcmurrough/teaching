@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teensy_serial_demo", "teensy_serial_demo\teensy_serial_demo.csproj", "{A06D460C-EA1B-4453-8FFD-BE7F2AE4E7F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teensy_servo_demo", "teensy_servo_demo\teensy_servo_demo.csproj", "{9FA42E2C-777E-4B83-976F-204335D2FE58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{A06D460C-EA1B-4453-8FFD-BE7F2AE4E7F8}.Debug|x86.Build.0 = Debug|x86
 		{A06D460C-EA1B-4453-8FFD-BE7F2AE4E7F8}.Release|x86.ActiveCfg = Release|x86
 		{A06D460C-EA1B-4453-8FFD-BE7F2AE4E7F8}.Release|x86.Build.0 = Release|x86
+		{9FA42E2C-777E-4B83-976F-204335D2FE58}.Debug|x86.ActiveCfg = Debug|x86
+		{9FA42E2C-777E-4B83-976F-204335D2FE58}.Debug|x86.Build.0 = Debug|x86
+		{9FA42E2C-777E-4B83-976F-204335D2FE58}.Release|x86.ActiveCfg = Release|x86
+		{9FA42E2C-777E-4B83-976F-204335D2FE58}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

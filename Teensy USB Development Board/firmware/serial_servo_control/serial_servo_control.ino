@@ -16,8 +16,8 @@
 //
 
 /***********************************************************************************************************************
- * @FILE serial_communication_variable.ino
- * @BRIEF An example Arduino sketch showing USB-serial communications with the Teensy microcontroller
+ * @FILE serial_servo_control.ino
+ * @BRIEF An example Arduino sketch showing USB-serial communications with the Teensy microcontroller for servo control
  *
  * This program provides an example of USB-serial communications with the Teensy 3.1 microcontroller. The communication 
  * is based on variable width byte packets containing an error checksum. The packet structure is defined as follows:
@@ -30,13 +30,20 @@
  * The checksum is computed as the XOR chain of each byte in the packet before the checksum:
  * packet[0] XOR packet[1] XOR ... XOR packet[PACKET_SIZE - 2]
  *
+ * The program handles the following special packets:
+ * 1. Servo control [0xAA][5][0x05][servo][checksum]
+ *
  * @AUTHOR Christopher D. McMurrough
  **********************************************************************************************************************/
+
+// inlcude necessary header files
+#include <Servo.h>
 
 // define GPIO pins
 const int LED_PIN = 13;
 const int LED_ON = HIGH;
 const int LED_OFF = LOW;
+const int SERVO_PIN = 5;
 
 // define serial communication parameters
 const unsigned long BAUD_RATE = 9600;
@@ -47,6 +54,14 @@ const unsigned int PACKET_OVERHEAD_BYTES = 3;
 const unsigned int PACKET_MIN_BYTES = PACKET_OVERHEAD_BYTES + 1;
 const unsigned int PACKET_MAX_BYTES = 255;
 
+// define special packets
+const byte MOTOR_PACKET_DESCRIPTOR = 0x05;
+const unsigned int MOTOR_PACKET_LENGTH = 5;
+
+// define the servo object and position variable
+Servo Servo_1; 
+int ServoPos_1 = 90;
+
 /***********************************************************************************************************************
  * @BRIEF perform initial setup of the microcontroller
  * @AUTHOR Christoper D. McMurrough
@@ -55,6 +70,10 @@ void setup()
 {
   // initialize the IO pins
   pinMode(LED_PIN, OUTPUT);
+
+  // initialze the servo
+  Servo_1.attach(SERVO_PIN);
+  Servo_1.write(ServoPos_1);
 
   // initialize the serial port
   Serial.begin(BAUD_RATE);
@@ -227,6 +246,13 @@ void loop()
 
           // echo back the packet payload
           sendPacket(packetSize - PACKET_OVERHEAD_BYTES, buffer + 2);
+
+          // handle any special packets
+          if(buffer[2] == MOTOR_PACKET_DESCRIPTOR && packetSize == MOTOR_PACKET_LENGTH)
+          {
+            ServoPos_1 = buffer[3];
+            Servo_1.write(ServoPos_1);
+          }
         }
 
         // reset the count
