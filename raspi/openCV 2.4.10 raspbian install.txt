@@ -28,7 +28,7 @@ cd build
 sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D WITH_TBB=ON -D BUILD_TBB=ON -D WITH_QT=OFF -D WITH_OPENGL=ON -D WITH_V4L=ON -D ENABLE_VFPV3=ON -DENABLE_NEON=ON ..
 
 # BUILD AND INSTALL OPENCV
-sudo make
+sudo make -j4
 sudo make install
 
 # steps below may be unnecessary
