@@ -16,7 +16,7 @@
 //
 
 /***********************************************************************************************************************
- * @FILE serial_servo_control.ino
+ * @FILE serial_stepper_control.ino
  * @BRIEF An example Arduino sketch showing USB-serial communications with the Teensy microcontroller for servo control
  *
  * This program provides an example of USB-serial communications with the Teensy 3.1 microcontroller. The communication 
