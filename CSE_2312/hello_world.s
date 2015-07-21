@@ -1,6 +1,10 @@
 /******************************************************************************
 * @FILE hello_world.s
-* @BRIEF Simple example of printing text to console
+* @BRIEF Hello world console print example
+*
+* Simple example of printing text to console using ARM assembly on Raspbian
+* Example based on "Raspberry Pi Assembly Language Raspbian" by Bruce Smith
+*
 * @AUTHOR Christopher D. McMurrough
 ******************************************************************************/
 
