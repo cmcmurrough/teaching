@@ -11,11 +11,11 @@
 	.global  _start
     
 _start:
-	MOV R7, #4	        @ write syscall, 4
- 	MOV R0, #1	        @ output stream to monitor, 1
-	MOV R2, #13	        @ print string length
+	MOV R7, #4          @ write syscall, 4
+ 	MOV R0, #1          @ output stream to monitor, 1
+	MOV R2, #13         @ print string length
 	LDR R1,=hello_str   @ string at label hello_str:
-	SWI 0	            @ execute syscall
+	SWI 0               @ execute syscall
 	B   _exit           @ branch to exit procedure
     
 _exit:   
