@@ -14,7 +14,7 @@ _start:
     MOV R1, #100        @ define function argument 1
     MOV R2, #20         @ define function argument 1
     MOV R3, #3          @ define function argument 1
-	BL  _hello          @ branch to hello procedure with return
+	BL  _add            @ branch to hello procedure with return
     MOV R1, R0          @ copy return value to R1
     BL _print_val       @ print value stored in R1
 	B   _exit           @ branch to exit procedure with no return
@@ -46,7 +46,7 @@ _print_val:
 	MOV R7, #4          @ write syscall, 4
  	MOV R0, #1          @ output stream to monitor, 1
 	MOV R2, #6          @ print string length
-	LDR R1,=result_str   @ string at label hello_str:
+	LDR R1,=result_str  @ string at label hello_str:
 	SWI 0               @ execute syscall
     MOV PC, LR          @ return
     
