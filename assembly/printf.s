@@ -7,9 +7,10 @@
 * @AUTHOR Christopher D. McMurrough
 ******************************************************************************/
 
-	.global  _start
+    .global main
+	.func main
     
-_start:
+main:
 	BL  _print          @ branch to print procedure with return
 	B   _exit           @ branch to exit procedure with no return
     
