@@ -16,7 +16,7 @@ _start:
 _exit:   
 	MOV R7, #4          @ write syscall, 4
  	MOV R0, #1          @ output stream to monitor, 1
-	MOV R2, #19         @ print string length
+	MOV R2, #21         @ print string length
 	LDR R1,=exit_str    @ string at label exit_str:
 	SWI 0               @ execute syscall
 	
@@ -35,4 +35,4 @@ _hello:
 hello_str:
 .ascii "Hello from procedure call!\n"
 exit_str:
-.ascii "Program terminated\n"
+.ascii "Terminating program.\n"
