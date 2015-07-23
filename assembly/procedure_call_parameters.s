@@ -33,7 +33,7 @@ _add:
 	MOV R7, #4          @ write syscall, 4
  	MOV R0, #1          @ output stream to monitor, 1
 	MOV R2, #18         @ print string length
-	LDR R1,=hello_str   @ string at label hello_str:
+	LDR R1,=add_str   @ string at label hello_str:
 	SWI 0               @ execute syscall
     
     MOV R0, R1          @ copy input register R1 to return register R0
@@ -46,7 +46,7 @@ _print_val:
 	MOV R7, #4          @ write syscall, 4
  	MOV R0, #1          @ output stream to monitor, 1
 	MOV R2, #6          @ print string length
-	LDR R1,=hello_str   @ string at label hello_str:
+	LDR R1,=result_str   @ string at label hello_str:
 	SWI 0               @ execute syscall
     MOV PC, LR          @ return
     
