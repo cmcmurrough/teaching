@@ -6,31 +6,31 @@
 *
 * @AUTHOR Christopher D. McMurrough
 ******************************************************************************/
-
+ 
     .global main
-	.func main
-    
+    .func main
+   
 main:
-	BL  _print          @ branch to print procedure with return
-	B   _exit           @ branch to exit procedure with no return
-    
-_exit:   
-	MOV R7, #4          @ write syscall, 4
- 	MOV R0, #1          @ output stream to monitor, 1
-	MOV R2, #21         @ print string length
-	LDR R1,=exit_str    @ string at label exit_str:
-	SWI 0               @ execute syscall
-	MOV R7, #1          @ terminate syscall, 1
-	SWI 0               @ execute syscall
-	
+    BL  _print          @ branch to print procedure with return
+    B   _exit           @ branch to exit procedure with no return
+   
+_exit:  
+    MOV R7, #4          @ write syscall, 4
+    MOV R0, #1          @ output stream to monitor, 1
+    MOV R2, #21         @ print string length
+    LDR R1,=exit_str    @ string at label exit_str:
+    SWI 0               @ execute syscall
+    MOV R7, #1          @ terminate syscall, 1
+    SWI 0               @ execute syscall
+       
 _print:
-	LDR R0,=exit_str    @ R0 contains formatted string address
+    LDR R0,=print_str   @ R0 contains formatted string address
     MOV R1, #100        @ printf argument 1
     MOV R2, #200        @ printf argument 2
     MOV R3, #300        @ printf argument 3
     BL printf           @ call printf
-	MOV PC, LR          @ return
-
+    MOV PC, LR          @ return
+ 
 .data
 print_str:
 .ascii "Printing 3 numbers: %d %d %d \n"
