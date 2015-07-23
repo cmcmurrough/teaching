@@ -16,7 +16,7 @@ _start:
 _exit:   
 	MOV R7, #4          @ write syscall, 4
  	MOV R0, #1          @ output stream to monitor, 1
-	MOV R2, #13         @ print string length
+	MOV R2, #19         @ print string length
 	LDR R1,=exit_str    @ string at label exit_str:
 	SWI 0               @ execute syscall
 	
