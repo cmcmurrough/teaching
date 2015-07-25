@@ -11,6 +11,7 @@
     .func main
    
 main:
+    PUSH {LR}           @ push return address to stack
     BL  _print          @ branch to print procedure with return
     B   _exit           @ branch to exit procedure with no return
    
@@ -20,8 +21,9 @@ _exit:
     MOV R2, #21         @ print string length
     LDR R1,=exit_str    @ string at label exit_str:
     SWI 0               @ execute syscall
-    MOV R7, #1          @ terminate syscall, 1
-    SWI 0               @ execute syscall
+    @MOV R7, #1         @ terminate syscall, 1
+    @SWI 0              @ execute syscall
+    POP {PC}            @ pop return address from stack back to PC
        
 _print:
     LDR R0,=print_str   @ R0 contains formatted string address
