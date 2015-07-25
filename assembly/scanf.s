@@ -54,6 +54,6 @@ _scanf:
 .data
 number:         .word       0
 format_str:     .asciz      "%d"
-prompt_str:	    .asciz      "Type a number and press enter: "
+prompt_str:     .asciz      "Type a number and press enter: "
 printf_str:     .asciz      "The number entered was: %d\n"
 exit_str:       .ascii      "Terminating program.\n"
