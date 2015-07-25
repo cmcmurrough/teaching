@@ -1,6 +1,6 @@
 /******************************************************************************
 * @FILE printf.s
-* @BRIEF simlpe printf example
+* @BRIEF simple printf example
 *
 * Simple example of invoking printf to print a formatted string
 *
