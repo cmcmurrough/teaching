@@ -11,8 +11,8 @@
     .func main
    
 main:
-    BL  _prompt             @ branch to scan procedure with return
-    BL  _scanf              @ branch to scan procedure with return
+    BL  _prompt             @ branch to prompt procedure with return
+    BL  _scanf              @ branch to scanf procedure with return
     MOV R1, R0              @ move return value R0 to argument register R1
     BL  _printf             @ branch to print procedure with return
     B   _exit               @ branch to exit procedure with no return
