@@ -5,6 +5,8 @@
 * Simple example of invoking scanf to retrieve a char from keyboard input, and
 * testing to see if it is equal to a given value
 *
+* NOTE: EXAMPLE NOT CURRENTLY FUNCTIONAL
+*
 * @AUTHOR Christopher D. McMurrough
 ******************************************************************************/
  
@@ -46,8 +48,7 @@ _getchar:
     MOV PC, R4              @ return
  
 _compare:
-    MOV R2, #64
-    CMP R1, R2
+    CMP R1, #64             @ WARNING: THIS DOESN'T WORK ON CHAR VALUES YET...
     BEQ _correct            @ branch to equal handler
     BNE _incorrect          @ branch to not equal handler
     MOV PC, R4
@@ -65,8 +66,8 @@ _incorrect:
     MOV PC, R5              @ return
  
 .data
-format_str:     .asciz      "%d"
+format_str:     .asciz      "%c"
 prompt_str:     .ascii      "Enter the @ character: "
 equal_str:      .asciz      "CORRECT \n"
-nequal_str:     .asciz      "INCORRECT: %d \n"
+nequal_str:     .asciz      "INCORRECT: %c \n"
 exit_str:       .ascii      "Terminating program.\n"
