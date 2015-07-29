@@ -1,11 +1,9 @@
 /******************************************************************************
 * @FILE compare_char.s
-* @BRIEF simple scanf and compare
+* @BRIEF simple get keyboard character and compare
 *
-* Simple example of invoking scanf to retrieve a char from keyboard input, and
-* testing to see if it is equal to a given value
-*
-* NOTE: EXAMPLE NOT CURRENTLY FUNCTIONAL
+* Simple example of invoking syscall to retrieve a char from keyboard input,
+* and testing to see if it is equal to a given value
 *
 * @AUTHOR Christopher D. McMurrough
 ******************************************************************************/
@@ -38,17 +36,17 @@ _prompt:
     MOV PC, LR              @ return
    
 _getchar:
-    MOV R4, LR              @ store LR since scanf call overwrites
-    SUB SP, SP, #4          @ make room on stack
-    LDR R0, =format_str     @ R0 contains address of format string
-    MOV R1, SP              @ move SP to R1 to store entry on stack
-    BL scanf                @ call scanf
-    LDR R0, [SP]            @ load value at SP into R0
-    ADD SP, SP, #4          @ restore the stack pointer
-    MOV PC, R4              @ return
+    MOV R7, #3              @ write syscall, 3
+    MOV R0, #0              @ input stream from monitor, 0
+    MOV R2, #1              @ read a single character
+    LDR R1, =read_char      @ store the character in data memory
+    SWI 0                   @ execute the system call
+    LDR R0, [R1]            @ move the character to the return register
+    AND R0, #0xFF           @ mask out all but the lowest 8 bits
+    MOV PC, LR              @ return
  
 _compare:
-    CMP R1, #64             @ WARNING: THIS DOESN'T WORK ON CHAR VALUES YET...
+    CMP R1, #'@'            @ compare against the constant char '@'
     BEQ _correct            @ branch to equal handler
     BNE _incorrect          @ branch to not equal handler
     MOV PC, R4
@@ -66,7 +64,7 @@ _incorrect:
     MOV PC, R5              @ return
  
 .data
-format_str:     .asciz      "%c"
+read_char:      .ascii      " "
 prompt_str:     .ascii      "Enter the @ character: "
 equal_str:      .asciz      "CORRECT \n"
 nequal_str:     .asciz      "INCORRECT: %c \n"
