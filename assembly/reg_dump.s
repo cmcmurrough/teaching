@@ -157,6 +157,6 @@ _reg_dump:
  
 .data
 debug_str:
-.asciz "R%-2d   0x%08X  %010d \n"
+.asciz "R%-2d   0x%08X  %011d \n"
 exit_str:
 .ascii "Terminating program.\n"
