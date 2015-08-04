@@ -12,16 +12,18 @@
    
 main:
     MOV R0, #0          @ set a constant value for printing
-    MOV R1, #100        @ set a constant value for printing
-    MOV R2, #200        @ set a constant value for printing
-    MOV R3, #300        @ set a constant value for printing
-    MOV R4, #400        @ set a constant value for printing
-    MOV R5, #500        @ set a constant value for printing
-    MOV R6, #600        @ set a constant value for printing
-    MOV R7, #700        @ set a constant value for printing
-    MOV R8, #800        @ set a constant value for printing
-    MOV R9, #900        @ set a constant value for printing
-    MOV R10, #1000      @ set a constant value for printing
+    MOV R1, #10         @ set a constant value for printing
+    MOV R2, #20         @ set a constant value for printing
+    MOV R3, #30         @ set a constant value for printing
+    MOV R4, #40         @ set a constant value for printing
+    MOV R5, #50         @ set a constant value for printing
+    MOV R6, #60         @ set a constant value for printing
+    MOV R7, #70         @ set a constant value for printing
+    MOV R8, #80         @ set a constant value for printing
+    MOV R9, #90         @ set a constant value for printing
+    MOV R10, #100       @ set a constant value for printing
+    MOV R11, #110       @ set a constant value for printing
+    MOV R12, #120       @ set a constant value for printing
     BL  _reg_dump       @ print register contents
     B   _exit           @ branch to exit procedure with no return
    
