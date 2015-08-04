@@ -21,9 +21,6 @@ main:
     MOV R8, #800        @ set a constant value for printing
     MOV R9, #900        @ set a constant value for printing
     MOV R10, #1000      @ set a constant value for printing
-    MOV R11, #1100      @ set a constant value for printing
-    MOV R12, #1200      @ set a constant value for printing
-    MOV R13, #1300      @ set a constant value for printing
     BL  _reg_dump       @ print register contents
     B   _exit           @ branch to exit procedure with no return
    
