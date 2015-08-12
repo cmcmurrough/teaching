@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E7EC4555-F8BA-4724-8190-6850789365C1}</ProjectGuid>
+    <ProjectGuid>{6B6A2E90-E247-4682-9A5A-8202C97DA0A9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>teensy_serial_demo</RootNamespace>

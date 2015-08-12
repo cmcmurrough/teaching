@@ -186,5 +186,84 @@ namespace teensy_serial_demo
             // display the packet string
             textBox2.Text = s2;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // get the stepper motion parameters
+            byte stepID = Convert.ToByte(Math.Abs(numericUpDown2.Value));
+            byte[] stepAcceleration = BitConverter.GetBytes(Convert.ToInt32(numericUpDown3.Value));
+            byte[] stepVelocity = BitConverter.GetBytes(Convert.ToInt32(numericUpDown4.Value));
+            byte[] stepPosition = BitConverter.GetBytes(Convert.ToInt32(numericUpDown5.Value));
+
+            // create the packet payload (MSB first for multiple byte values)
+            const byte stepperPacketDescriptor = 0x0B;
+            byte[] payloadBuffer = { stepperPacketDescriptor, stepID, 
+                                       stepAcceleration[3], stepAcceleration[2], stepAcceleration[1], stepAcceleration[0], 
+                                       stepVelocity[3], stepVelocity[2], stepVelocity[1], stepVelocity[0], 
+                                       stepPosition[3], stepPosition[2], stepPosition[1], stepPosition[0] };
+            int payloadLength = 14;
+
+            // create the packet buffer
+            int packetLength = payloadBuffer.Length + 3;
+            byte[] packetBuffer = new byte[packetLength];
+            packetBuffer[0] = 0xAA;
+            packetBuffer[1] = Convert.ToByte(packetLength);
+            byte checkSum = Convert.ToByte(packetBuffer[0] ^ packetBuffer[1]);
+            for (int i = 0; i < payloadLength; i++)
+            {
+                checkSum = Convert.ToByte(checkSum ^ payloadBuffer[i]);
+                packetBuffer[i + 2] = payloadBuffer[i];
+            }
+            packetBuffer[packetLength - 1] = checkSum;
+
+            // create the packet buffer string
+            string s2 = "";
+            for (int i = 0; i < packetLength; i++)
+            {
+                s2 += packetBuffer[i].ToString();
+                if (i < packetLength - 1)
+                {
+                    s2 += " ";
+                }
+            }
+
+            // display the packet string
+            textBox2.Text = s2;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            // create the packet payload (MSB first for multiple byte values)
+            const byte executeDeferredDescriptor = 0x0C;
+            byte[] payloadBuffer = { executeDeferredDescriptor };
+            int payloadLength = 1;
+
+            // create the packet buffer
+            int packetLength = payloadBuffer.Length + 3;
+            byte[] packetBuffer = new byte[packetLength];
+            packetBuffer[0] = 0xAA;
+            packetBuffer[1] = Convert.ToByte(packetLength);
+            byte checkSum = Convert.ToByte(packetBuffer[0] ^ packetBuffer[1]);
+            for (int i = 0; i < payloadLength; i++)
+            {
+                checkSum = Convert.ToByte(checkSum ^ payloadBuffer[i]);
+                packetBuffer[i + 2] = payloadBuffer[i];
+            }
+            packetBuffer[packetLength - 1] = checkSum;
+
+            // create the packet buffer string
+            string s2 = "";
+            for (int i = 0; i < packetLength; i++)
+            {
+                s2 += packetBuffer[i].ToString();
+                if (i < packetLength - 1)
+                {
+                    s2 += " ";
+                }
+            }
+
+            // display the packet string
+            textBox2.Text = s2;
+        }
     }
 }

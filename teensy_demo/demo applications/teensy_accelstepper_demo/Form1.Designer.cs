@@ -60,6 +60,8 @@
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -281,17 +283,17 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(282, 416);
+            this.button4.Location = new System.Drawing.Point(282, 364);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(270, 23);
             this.button4.TabIndex = 26;
-            this.button4.Text = "Make stepper packet";
+            this.button4.Text = "Make step immediate packet";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(282, 393);
+            this.numericUpDown2.Location = new System.Drawing.Point(282, 341);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             255,
             0,
@@ -304,7 +306,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(279, 377);
+            this.label8.Location = new System.Drawing.Point(279, 325);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 13);
             this.label8.TabIndex = 16;
@@ -313,7 +315,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(348, 377);
+            this.label7.Location = new System.Drawing.Point(348, 325);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(66, 13);
             this.label7.TabIndex = 30;
@@ -321,7 +323,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(351, 393);
+            this.numericUpDown3.Location = new System.Drawing.Point(351, 341);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -339,7 +341,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(417, 377);
+            this.label9.Location = new System.Drawing.Point(417, 325);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
             this.label9.TabIndex = 32;
@@ -347,7 +349,7 @@
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(420, 393);
+            this.numericUpDown4.Location = new System.Drawing.Point(420, 341);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -365,7 +367,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(486, 377);
+            this.label10.Location = new System.Drawing.Point(486, 325);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 34;
@@ -373,7 +375,7 @@
             // 
             // numericUpDown5
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(489, 393);
+            this.numericUpDown5.Location = new System.Drawing.Point(489, 341);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -388,11 +390,33 @@
             this.numericUpDown5.Size = new System.Drawing.Size(63, 20);
             this.numericUpDown5.TabIndex = 35;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(282, 393);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(270, 23);
+            this.button6.TabIndex = 36;
+            this.button6.Text = "Make step deferred packet";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(282, 422);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(270, 23);
+            this.button7.TabIndex = 37;
+            this.button7.Text = "Make execute deferred packet";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 467);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.numericUpDown5);
             this.Controls.Add(this.label9);
@@ -457,6 +481,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }
 
