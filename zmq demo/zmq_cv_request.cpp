@@ -16,7 +16,7 @@
 //
 
 /*******************************************************************************************************************//**
-* @file zmq_image_request.cpp
+* @file zmq_cv_request.cpp
 * @brief C++ example for receiving OpenCV image frames via a zmq request / response scheme.
 * @author Christopher D. McMurrough
 ***********************************************************************************************************************/

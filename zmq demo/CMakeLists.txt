@@ -44,8 +44,8 @@ ELSE(WIN32)
 ENDIF(WIN32)
 
 # create create individual projects
-add_executable (zmq_image_request zmq_image_request.cpp)
+add_executable (zmq_cv_request zmq_cv_request.cpp)
 target_link_libraries(zmq_image_request ${ZeroMQ_LIBS} ${OpenCV_LIBS})
 
-add_executable (zmq_image_server zmq_image_server.cpp)
+add_executable (zmq_cv_server zmq_cv_server.cpp)
 target_link_libraries(zmq_image_server ${ZeroMQ_LIBS} ${OpenCV_LIBS})
