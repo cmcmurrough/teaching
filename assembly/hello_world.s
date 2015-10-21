@@ -24,5 +24,5 @@ _exit:
 
 .data
 hello_str:
-.ascii "Hello World!\n"
+.ascii "Hello All!!\n"
 
