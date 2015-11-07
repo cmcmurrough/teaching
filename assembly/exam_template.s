@@ -1,5 +1,5 @@
 /******************************************************************************
-* @FILE exam_template.s
+* @FILE exam_template.ss
 * @BRIEF code template for CSE 2312 final exam
 *
 * Program prompts the user for 10 postive integers, then computes and prints 
