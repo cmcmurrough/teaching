@@ -43,7 +43,7 @@ ELSE(WIN32)
     find_package (OpenCV REQUIRED)
 ENDIF(WIN32)
 
-# create create individual projects
+# create individual projects
 add_executable (zmq_cv_request zmq_cv_request.cpp)
 target_link_libraries(zmq_cv_request ${ZeroMQ_LIBS} ${OpenCV_LIBS})
 
