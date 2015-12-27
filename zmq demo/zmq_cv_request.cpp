@@ -24,7 +24,7 @@
 #include <string>
 #include <iostream>
 #include <zmq.hpp>
-#include <opencv/highgui.h>
+#include "opencv2/opencv.hpp"
 
 // configuration parameters
 #define NUM_COMNMAND_LINE_ARGUMENTS 1

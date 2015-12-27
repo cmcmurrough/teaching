@@ -24,7 +24,7 @@
 // include necessary dependencies
 #include <iostream>
 #include <cstdio>
-#include <opencv/highgui.h>
+#include "opencv2/opencv.hpp"
 #include <zmq.hpp>
 
 // configuration parameters

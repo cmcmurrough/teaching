@@ -5,38 +5,48 @@ cmake_minimum_required(VERSION 2.8)
 IF(WIN32)
     # set the zeromq directories manually
     message("Windows platform detected, setting ZeroMQ configuration manually...")
-    set(ZEROMQ_BUILD_DIR "C:/Program Files/ZeroMQ 4.0.4/bin")
-    set(ZEROMQ_INCLUDE_DIRS "C:/Program Files/ZeroMQ 4.0.4/include")
-    set(ZEROMQ_LIB_DIRS "C:/Program Files/ZeroMQ 4.0.4/lib")
+    set(ZeroMQ_ROOT_DIR "C:/Program Files/ZeroMQ 4.0.4")
+    set(ZeroMQ_INCLUDE_DIR ${ZeroMQ_ROOT_DIR}/include)
+    set(ZeroMQ_LIB_DIR ${ZeroMQ_ROOT_DIR}/lib)
 
-    # find all of the subdirectories in ZEROMQV_LIB_DIRS to include
-    include_directories(${ZEROMQ_BUILD_DIR})
-    include_directories(${ZEROMQ_INCLUDE_DIRS})
-    link_directories(${ZEROMQ_LIB_DIRS})
+    # set the include and link directories
+    include_directories(${ZeroMQ_INCLUDE_DIR})
+    link_directories(${ZeroMQ_LIB_DIR})
     
-    # find all of the libs in ZEROMQ_LIB_DIRS
-    file(GLOB ZeroMQ_LIBS RELATIVE ${ZEROMQ_LIB_DIRS} ${ZEROMQ_LIB_DIRS}/*.lib)
+    # find all of the libs in ZEROMQ_LIB_DIR
+    file(GLOB ZeroMQ_LIBS RELATIVE ${ZeroMQ_LIB_DIR} ${ZeroMQ_LIB_DIR}/*.lib)
     message("Found ZeroMQ libs...")
     message(${ZeroMQ_LIBS})
 ELSE(WIN32)
-    find_package (ZeroMQ REQUIRED)
+    #find_package (ZeroMQ REQUIRED)
+	#set(ZeroMQ_LIBS ${ZeroMQ_LIBRARIES})
+ 
+    # set the zeromq directories
+    message("Linux platform detected, setting ZeroMQ configuration manually...")
+    find_path(ZeroMQ_ROOT_DIR NAMES include/zmq.h)
+    find_library(ZeroMQ_LIBS NAMES zmq libzmq HINTS ${ZeroMQ_ROOT_DIR}/lib)
+    find_path(ZeroMQ_INCLUDE_DIR NAMES zmq.h HINTS ${ZeroMQ_ROOT_DIR}/include)
+    
+    # set the include and link directories
+    include_directories(${ZeroMQ_INCLUDE_DIR})
+    link_directories(${ZeroMQ_LIB_DIR})
 ENDIF(WIN32)
 
 # configure OpenCV
 IF(WIN32)
     # set the opencv directories manually
     message("Windows platform detected, setting OpenCV configuration manually...")
-    set(OPENCV_BUILD_DIR "C:/OpenCV/build/x64/vc12")
-    set(OPENCV_INCLUDE_DIRS "C:/OpenCV/build/include;C:/OpenCV/build/include/opencv;C:/OpenCV/build/include/opencv2")
-    set(OPENCV_LIB_DIRS "C:/OpenCV/build/x64/vc12/lib")
+    set(OPENCV_ROOT_DIR "C:/OpenCV")
+	set(OPENCV_BUILD_DIR ${OPENCV_ROOT_DIR}/build/x64/vc12)
+    set(OPENCV_INCLUDE_DIRS ${OPENCV_ROOT_DIR}/build/include; ${OPENCV_ROOT_DIR}/build/include/opencv; ${OPENCV_ROOT_DIR}/build/include/opencv2)
+    set(OPENCV_LIB_DIRS ${OPENCV_BUILD_DIR}/lib)
 
-    # find all of the subdirectories in OPENCV_LIB_DIRS to include
-    include_directories(${OPENCV_BUILD_DIR})
+    # set the include and link directories
     include_directories(${OPENCV_INCLUDE_DIRS})
     link_directories(${OPENCV_LIB_DIRS})
     
     # find all of the libs in OPENCV_LIB_DIRS
-    file(GLOB OpenCV_LIBS RELATIVE ${OPENCV_LIB_DIRS} ${OPENCV_LIB_DIRS}/*2410.lib)
+    file(GLOB OpenCV_LIBS RELATIVE ${OPENCV_LIB_DIRS} ${OPENCV_LIB_DIRS}/*.lib)
     message("Found OpenCV libs...")
     message(${OpenCV_LIBS})
 ELSE(WIN32)
