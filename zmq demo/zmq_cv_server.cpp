@@ -146,7 +146,7 @@ int main(int argc, char **argv)
         }
 
         // attempt to receive a message from the socket without blocking
-        int requestSize = zmq_recv(socket, &msg, 0, ZMQ_NOBLOCK);
+        int requestSize = zmq_recv(socket, &msg, ZMQ_NOBLOCK);
         if(requestSize < 0)
         {
             // ignore error if no message was available
@@ -163,8 +163,11 @@ int main(int argc, char **argv)
             // send response message if we have a successful capture
             if(captureSuccess)
             {
+		zmq_msg_t msg2;
                 size_t frameSize = captureFrame.step[0] * captureFrame.rows;
-                zmq_send(socket, captureFrame.data, frameSize, 0);
+                //zmq_msg_t imageMessage;cannot convert ‘uchar* {aka unsigned char*}’ to ‘zmq_msg_t*’
+                //zmq_send(socket, captureFrame.data, frameSize, 0);
+                zmq_send(socket, (zmq_msg_t*)captureFrame.data, 0);
             }
         }
 
