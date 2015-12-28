@@ -22,7 +22,6 @@
 ***********************************************************************************************************************/
 
 // include necessary dependencies
-#include <iostream>
 #include <cstdio>
 #include "opencv2/opencv.hpp"
 #include <zmq.hpp>
@@ -138,42 +137,24 @@ int main(int argc, char **argv)
             }
         }
 
-        // check for image requests
-        zmq_msg_t msg;
-        if(zmq_msg_init(&msg) != 0)
-        {
-            std::printf("WARNING: ZMQ error (%d) while creating message... \n", zmq_errno());
-        }
+		// create the message containers
+		zmq::message_t request;
+		zmq::message_t response;
 
-        // attempt to receive a message from the socket without blocking
-        int requestSize = zmq_recv(socket, &msg, ZMQ_NOBLOCK);
-        if(requestSize < 0)
-        {
-            // ignore error if no message was available
-            if(zmq_errno() != EAGAIN)
-            {
-                std::printf("WARNING: ZMQ error (%d) while receiving message... \n", zmq_errno());
-            }
-        }
-        else
-        {
+		// poll to see if a message has arrived
+		if (socket.recv(&request, ZMQ_DONTWAIT))
+		{
             // parse the request message
             std::printf("Received request... \n");
 
             // send response message if we have a successful capture
             if(captureSuccess)
             {
-		zmq_msg_t msg2;
                 size_t frameSize = captureFrame.step[0] * captureFrame.rows;
-                //zmq_msg_t imageMessage;cannot convert ‘uchar* {aka unsigned char*}’ to ‘zmq_msg_t*’
-                //zmq_send(socket, captureFrame.data, frameSize, 0);
-                zmq_send(socket, (zmq_msg_t*)captureFrame.data, 0);
+				socket.send((zmq_msg_t*)captureFrame.data, frameSize, 0);
             }
         }
 
-        // release the request message
-        zmq_msg_close(&msg);
- 
         // compute the frame processing time
         double endTicks = static_cast<double>(cv::getTickCount());
         double elapsedTime = (endTicks - startTicks) / cv::getTickFrequency();

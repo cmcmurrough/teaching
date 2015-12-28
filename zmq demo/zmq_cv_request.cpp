@@ -22,7 +22,7 @@
 ***********************************************************************************************************************/
 
 #include <string>
-#include <iostream>
+#include <cstdio>
 #include <zmq.hpp>
 #include "opencv2/opencv.hpp"
 
@@ -59,8 +59,8 @@ int main(int argc, char **argv)
     zmq::socket_t socket(context, ZMQ_REQ);
 
     // connect to the image server
-    std::cout << "Connecting to server..." << std::endl;
-    socket.connect ("tcp://localhost:5555");
+	std::printf("Connecting to server... \n");
+	socket.connect ("tcp://localhost:5555");
 
     // create a request object
     zmq::message_t request(5);
@@ -71,14 +71,14 @@ int main(int argc, char **argv)
     while(requestFrames)
     {
         // send the request
-        std::cout << "Sending request..." << std::endl;
+		std::printf("Sending request... \n");
         socket.send(request);
 
         // get the reply
         zmq::message_t reply;
         socket.recv(&reply);
         std::vector<uchar> buffer;
-        std::cout << "Received reply: " << reply.size() << " bytes" << std::endl;
+		std::printf("Received reply: %d bytes \n", reply.size());
 
         // store the reply data into an image structure
         cv::Mat image(480, 640, CV_8UC3, reply.data());
