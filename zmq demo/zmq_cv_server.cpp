@@ -151,7 +151,7 @@ int main(int argc, char **argv)
             if(captureSuccess)
             {
                 size_t frameSize = captureFrame.step[0] * captureFrame.rows;
-				socket.send((zmq_msg_t*)captureFrame.data, frameSize, 0);
+				socket.send((zmq_msg_t*)captureFrame.data, frameSize);
             }
         }
 

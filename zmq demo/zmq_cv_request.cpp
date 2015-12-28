@@ -78,7 +78,7 @@ int main(int argc, char **argv)
         zmq::message_t reply;
         socket.recv(&reply);
         std::vector<uchar> buffer;
-		std::printf("Received reply: %d bytes \n", reply.size());
+		std::printf("Received reply: %d bytes \n", static_cast<int>(reply.size()));
 
         // store the reply data into an image structure
         cv::Mat image(480, 640, CV_8UC3, reply.data());
