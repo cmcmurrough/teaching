@@ -137,28 +137,20 @@ int main(int argc, char **argv)
             }
         }
 
-		// create the message containers
+		// create the message container
 		zmq::message_t request;
-		//zmq::message_t response;
-
 
 		// poll to see if a message has arrived
 		if (socket.recv(&request, ZMQ_DONTWAIT))
 		{
-            // parse the request message
+            // process the request message
             std::printf("Received request... \n");
 
             // send response message if we have a successful capture
             if(captureSuccess)
             {
                 size_t frameSize = captureFrame.step[0] * captureFrame.rows;
-
-				//zmq::message_t response(captureFrame.data, frameSize);
-				//socket.send((zmq_msg_t*)captureFrame.data, frameSize);
-				//socket.send((zmq::message_t*)captureFrame.data, frameSize);
-				socket.send((void*)captureFrame.data, frameSize);
-				//inline size_t send(const void *buf_, size_t len_, int flags_ = 0)
-				//socket.send(response);
+				socket.send((void*) captureFrame.data, frameSize);
             }
         }
 
