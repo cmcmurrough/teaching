@@ -139,7 +139,7 @@ int main(int argc, char **argv)
 
 		// create the message containers
 		zmq::message_t request;
-		zmq::message_t response;
+		//zmq::message_t response;
 
 		// poll to see if a message has arrived
 		if (socket.recv(&request, ZMQ_DONTWAIT))
@@ -151,7 +151,8 @@ int main(int argc, char **argv)
             if(captureSuccess)
             {
                 size_t frameSize = captureFrame.step[0] * captureFrame.rows;
-				socket.send((zmq_msg_t*)captureFrame.data, frameSize);
+				//socket.send((zmq_msg_t*)captureFrame.data, frameSize);
+				socket.send((zmq::message_t*)captureFrame.data, frameSize);
             }
         }
 
