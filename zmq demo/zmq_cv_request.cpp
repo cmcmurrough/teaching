@@ -90,7 +90,7 @@ int main(int argc, char **argv)
         }
 
         // check for program termination
-        if(cv::waitKey(1) == 'q')
+        if(((char)) cv::waitKey(1)) == 'q')
         {
             requestFrames = false;
         }

@@ -157,7 +157,7 @@ int main(int argc, char **argv)
         // compute the frame processing time
         double endTicks = static_cast<double>(cv::getTickCount());
         double elapsedTime = (endTicks - startTicks) / cv::getTickFrequency();
-        //std::printf("Frame processing time: %f \n", elapsedTime);
+        std::printf("Frame processing time: %f \n", elapsedTime);
     }
 
     // release program resources before returning
