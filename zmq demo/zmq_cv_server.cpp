@@ -22,9 +22,8 @@
 ***********************************************************************************************************************/
 
 // include necessary dependencies
-#include <iostream>
 #include <cstdio>
-#include <opencv/highgui.h>
+#include "opencv2/opencv.hpp"
 #include <zmq.hpp>
 
 // configuration parameters
@@ -138,43 +137,27 @@ int main(int argc, char **argv)
             }
         }
 
-        // check for image requests
-        zmq_msg_t msg;
-        if(zmq_msg_init(&msg) != 0)
-        {
-            std::printf("WARNING: ZMQ error (%d) while creating message... \n", zmq_errno());
-        }
+		// create the message container
+		zmq::message_t request;
 
-        // attempt to receive a message from the socket without blocking
-        int requestSize = zmq_recv(socket, &msg, 0, ZMQ_NOBLOCK);
-        if(requestSize < 0)
-        {
-            // ignore error if no message was available
-            if(zmq_errno() != EAGAIN)
-            {
-                std::printf("WARNING: ZMQ error (%d) while receiving message... \n", zmq_errno());
-            }
-        }
-        else
-        {
-            // parse the request message
+		// poll to see if a message has arrived
+		if (socket.recv(&request, ZMQ_DONTWAIT))
+		{
+            // process the request message
             std::printf("Received request... \n");
 
             // send response message if we have a successful capture
             if(captureSuccess)
             {
                 size_t frameSize = captureFrame.step[0] * captureFrame.rows;
-                zmq_send(socket, captureFrame.data, frameSize, 0);
+				socket.send((void*) captureFrame.data, frameSize);
             }
         }
 
-        // release the request message
-        zmq_msg_close(&msg);
- 
         // compute the frame processing time
         double endTicks = static_cast<double>(cv::getTickCount());
         double elapsedTime = (endTicks - startTicks) / cv::getTickFrequency();
-        //std::printf("Frame processing time: %f \n", elapsedTime);
+        std::printf("Frame processing time: %f \n", elapsedTime);
     }
 
     // release program resources before returning
