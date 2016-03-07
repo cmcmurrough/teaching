@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teensy_stepper_demo", "teen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teensy_accelstepper_demo", "teensy_accelstepper_demo\teensy_accelstepper_demo.csproj", "{6B6A2E90-E247-4682-9A5A-8202C97DA0A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teensy_hbridge_demo", "teensy_hbridge_demo\teensy_hbridge_demo.csproj", "{44D95BF2-DB19-4359-ADF2-63355970C975}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -33,6 +35,10 @@ Global
 		{6B6A2E90-E247-4682-9A5A-8202C97DA0A9}.Debug|x86.Build.0 = Debug|x86
 		{6B6A2E90-E247-4682-9A5A-8202C97DA0A9}.Release|x86.ActiveCfg = Release|x86
 		{6B6A2E90-E247-4682-9A5A-8202C97DA0A9}.Release|x86.Build.0 = Release|x86
+		{44D95BF2-DB19-4359-ADF2-63355970C975}.Debug|x86.ActiveCfg = Debug|x86
+		{44D95BF2-DB19-4359-ADF2-63355970C975}.Debug|x86.Build.0 = Debug|x86
+		{44D95BF2-DB19-4359-ADF2-63355970C975}.Release|x86.ActiveCfg = Release|x86
+		{44D95BF2-DB19-4359-ADF2-63355970C975}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
