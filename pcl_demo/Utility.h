@@ -1,10 +1,10 @@
 /***********************************************************************************************************************
- * @FILE Utility.h
- * @BRIEF Header of Utility class
+ * @file Utility.h
+ * @brief Header of Utility class
  *
  * This class contains commonly used utility functions and helper classes
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 
 #ifndef UTILITY_H
@@ -17,12 +17,12 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 
 /***********************************************************************************************************************
- * @CLASS Chronograph
- * @BRIEF Class containing an implementation of a simple timer
+ * @class Chronograph
+ * @brief Class containing an implementation of a simple timer
  *
  * This class implements a simple timer using boost::chrono
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 class Chronograph
 {
@@ -92,15 +92,15 @@ private:
 };
 
 /***********************************************************************************************************************
- * @CLASS Utility
+ * @class Utility
  *
- * @BRIEF Class containing utility functions
+ * @brief Class containing utility functions
  *
  * This class contains several commonly used utility functions. In functions dealing with 3D data, a version optimized
  * for vectorization is provided for speed along with a more general version operating on individual point components.
  * Vector4f is the 3D point structure of choice since Vector3f is not a multiple of 16 bytes (see Eigen documentation)
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 class Utility
 {

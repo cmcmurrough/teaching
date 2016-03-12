@@ -1,11 +1,11 @@
 /***********************************************************************************************************************
- * @FILE openni2_snapper.cpp
- * @BRIEF Template for acquiring PCL point clouds from an OpenNI2 device
+ * @file openni2_snapper.cpp
+ * @brief Template for acquiring PCL point clouds from an OpenNI2 device
  *
  * Template for acquiring PCL point clouds from an OpenNI2 device. Incoming data streams from an OpenNI2 compliant 
  * device are acquired and converted to PCL point clouds, which are then visualized in real time.
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 
 #include <iostream>
@@ -26,9 +26,9 @@
 using namespace std;
 
 /***********************************************************************************************************************
- * @CLASS OpenNI2Processor
- * @BRIEF Class containing data acquisition mechanics for OpenNI2 devices
- * @AUTHOR Christopher D. McMurrough
+ * @class OpenNI2Processor
+ * @brief Class containing data acquisition mechanics for OpenNI2 devices
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 class OpenNI2Processor
 {
@@ -47,10 +47,10 @@ private:
 public:
 
     /***********************************************************************************************************************
-     * @BRIEF Class constructor
-     * @PARAM[in] cloudRenderSetting sets the cloud visualization mode (render_off:0, render_on:1)
-     * @PARAM[in] cloudSaveSetting sets the disk save mode for cloud data (saves_off:0, saves_on:1)
-     * @AUTHOR Christopher D. McMurrough
+     * @brief Class constructor
+     * @param[in] cloudRenderSetting sets the cloud visualization mode (render_off:0, render_on:1)
+     * @param[in] cloudSaveSetting sets the disk save mode for cloud data (saves_off:0, saves_on:1)
+     * @author Christopher D. McMurrough
      **********************************************************************************************************************/
     OpenNI2Processor(int cloudRenderSetting, int cloudSaveSetting) : m_viewer("Rendering Window")
     {
@@ -67,8 +67,8 @@ public:
     }
 
     /***********************************************************************************************************************
-     * @BRIEF Starts data acquisition and handling
-     * @AUTHOR Christopher D. McMurrough
+     * @brief Starts data acquisition and handling
+     * @author Christopher D. McMurrough
      **********************************************************************************************************************/
     void run()
     {
@@ -98,9 +98,9 @@ public:
     }
 
     /***********************************************************************************************************************
-     * @BRIEF Callback function for received cloud data
-     * @PARAM[in] cloudIn the raw cloud data received by the OpenNI2 device
-     * @AUTHOR Christopher D. McMurrough
+     * @brief Callback function for received cloud data
+     * @param[in] cloudIn the raw cloud data received by the OpenNI2 device
+     * @author Christopher D. McMurrough
      **********************************************************************************************************************/
     void cloudCallback(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr &cloudIn)
     {
@@ -133,11 +133,11 @@ public:
 };
 
 /***********************************************************************************************************************
- * @BRIEF program entry point
- * @PARAM[in] argc number of command line arguments
- * @PARAM[in] argv string array of command line arguments
- * @RETURNS return code (0 for normal termination)
- * @AUTHOR Christopher D. McMurrough
+ * @brief program entry point
+ * @param[in] argc number of command line arguments
+ * @param[in] argv string array of command line arguments
+ * @returnS return code (0 for normal termination)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 int main (int argc, char** argv)
 {

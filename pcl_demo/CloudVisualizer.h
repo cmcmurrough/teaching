@@ -1,10 +1,10 @@
 /*******************************************************************************************************************//**
- * @FILE CloudVisualizer.h
- * @BRIEF Header file for the CloudVisualizer class
+ * @file CloudVisualizer.h
+ * @brief Header file for the CloudVisualizer class
  *
  * This class provides a wrapper for PCL visualization functions
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 
 #ifndef CLOUDVISUALIZER_H
@@ -18,14 +18,14 @@
 using namespace std;
 
 /*******************************************************************************************************************//**
- * @CLASS CloudVisualizer
+ * @class CloudVisualizer
  *
- * @BRIEF Class containing conventient wrapper functions for performing common tasks with PCL point clouds
+ * @brief Class containing conventient wrapper functions for performing common tasks with PCL point clouds
  *
  * This class wraps several functions from pcl:visualization:PCLVisualizer for rendering point clouds and other 3D
  * annotations, such as shapes and text.
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 class CloudVisualizer
 {

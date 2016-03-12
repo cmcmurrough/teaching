@@ -16,9 +16,9 @@
 //
 
 /*******************************************************************************************************************//**
- * @FILE cv_color_detector.cpp
- * @BRIEF C++ example for identifying colors in a region of interest
- * @AUTHOR Christopher D. McMurrough
+ * @file cv_color_detector.cpp
+ * @brief C++ example for identifying colors in a region of interest
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 
 // include necessary dependencies
@@ -44,11 +44,11 @@ char labelColor(const cv::Mat &imageIn);
 double normSqr(double x1, double y1, double z1, double x2, double y2, double z2);
 
 /*******************************************************************************************************************//**
- * @BRIEF Process a single image frame
- * @PARAM[in] imageIn the input image frame
- * @PARAM[out] imageOut the processed image frame
- * @RETURN true if frame was processed successfully
- * @AUTHOR Christopher D. McMurrough
+ * @brief Process a single image frame
+ * @param[in] imageIn the input image frame
+ * @param[out] imageOut the processed image frame
+ * @return true if frame was processed successfully
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut)
 {
@@ -95,10 +95,10 @@ bool processFrame(const cv::Mat &imageIn, cv::Mat &imageOut)
 }
 
 /*******************************************************************************************************************//**
-* @BRIEF Process a single image frame
-* @PARAM[in] imageIn the input image region of interest
-* @RETURN the label char describing the ROI color
-* @AUTHOR Christopher D. McMurrough
+* @brief Process a single image frame
+* @param[in] imageIn the input image region of interest
+* @return the label char describing the ROI color
+* @author Christopher D. McMurrough
  **********************************************************************************************************************/
 char labelColor(const cv::Mat &imageIn)
 {
@@ -189,15 +189,15 @@ char labelColor(const cv::Mat &imageIn)
 }
 
 /*******************************************************************************************************************//**
-* @BRIEF computes the squared norm of two 3-tuples
-* @PARAM[in] x1 x coordinate of the first point
-* @PARAM[in] y1 y coordinate of the first point
-* @PARAM[in] z1 z coordinate of the first point
-* @PARAM[in] x2 x coordinate of the second point
-* @PARAM[in] y2 y coordinate of the second point
-* @PARAM[in] z2 z coordinate of the second point
-* @RETURNS the squared norm of the two tuples
-* @AUTHOR Christoper D. McMurrough
+* @brief computes the squared norm of two 3-tuples
+* @param[in] x1 x coordinate of the first point
+* @param[in] y1 y coordinate of the first point
+* @param[in] z1 z coordinate of the first point
+* @param[in] x2 x coordinate of the second point
+* @param[in] y2 y coordinate of the second point
+* @param[in] z2 z coordinate of the second point
+* @returnS the squared norm of the two tuples
+* @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double normSqr(double x1, double y1, double z1, double x2, double y2, double z2)
 {
@@ -205,11 +205,11 @@ double normSqr(double x1, double y1, double z1, double x2, double y2, double z2)
 }
 
 /*******************************************************************************************************************//**
- * @BRIEF program entry point
- * @PARAM[in] argc number of command line arguments
- * @PARAM[in] argv string array of command line arguments
- * @RETURN return code (0 for normal termination)
- * @AUTHOR Christoper D. McMurrough
+ * @brief program entry point
+ * @param[in] argc number of command line arguments
+ * @param[in] argv string array of command line arguments
+ * @return return code (0 for normal termination)
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 int main(int argc, char **argv)
 {

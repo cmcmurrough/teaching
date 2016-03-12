@@ -1,10 +1,10 @@
 /***********************************************************************************************************************
- * @FILE CloudVisualizer.h
- * @BRIEF Implementation of the CloudVisualizer class
+ * @file CloudVisualizer.h
+ * @brief Implementation of the CloudVisualizer class
  *
  * This class provides a wrapper for PCL visualization functions
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 
 #include "CloudVisualizer.h"
@@ -17,12 +17,12 @@
 using namespace std;
 
 /***********************************************************************************************************************
- * @BRIEF Class constructor
+ * @brief Class constructor
  *
  * Initializes the CloudVisualizer class by creating a rendering window with the given name
  *
- * @PARAM[in] windowName name of the rendering window (default: "")
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] windowName name of the rendering window (default: "")
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 CloudVisualizer::CloudVisualizer(const string &windowName)
 {
@@ -32,12 +32,12 @@ CloudVisualizer::CloudVisualizer(const string &windowName)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Perform one interation of rendering
+ * @brief Perform one interation of rendering
  *
  * Performs a single iteration of rendering and event checking with a maximum execution time
  *
- * @PARAM[in] maxTime the time allowed for rendering and event handling, in ms
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] maxTime the time allowed for rendering and event handling, in ms
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::spin(int maxTimeMs)
 {
@@ -45,12 +45,12 @@ void CloudVisualizer::spin(int maxTimeMs)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Check to see if the visualization window is running
+ * @brief Check to see if the visualization window is running
  *
  * Polls the state of the visualization
  *
  * @return true if the window is running
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 bool CloudVisualizer::isRunning()
 {
@@ -58,13 +58,13 @@ bool CloudVisualizer::isRunning()
 }
 
 /***********************************************************************************************************************
- * @BRIEF Register a UI window point picking callback
+ * @brief Register a UI window point picking callback
  *
  * binds a callback function to a raised point picking event
  *
- * @PARAM[in] callback reference to the callback handling function
- * @PARAM[in] cloud pointer to the rendered cloud that causes the callback
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] callback reference to the callback handling function
+ * @param[in] cloud pointer to the rendered cloud that causes the callback
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::registerPointPickingCallback(void (*callback) (const pcl::visualization::PointPickingEvent&, void*), pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud)
 {
@@ -72,12 +72,12 @@ void CloudVisualizer::registerPointPickingCallback(void (*callback) (const pcl::
 }
 
 /***********************************************************************************************************************
- * @BRIEF Register a UI window keyboard callback
+ * @brief Register a UI window keyboard callback
  *
  * binds a callback function to a raised keyboard event
  *
- * @PARAM[in] callback reference to the callback handling function
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] callback reference to the callback handling function
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::registerKeyboardCallback(void (*callback) (const pcl::visualization::KeyboardEvent&, void*))
 {
@@ -85,15 +85,15 @@ void CloudVisualizer::registerKeyboardCallback(void (*callback) (const pcl::visu
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a cloud to the rendering window
+ * @brief Add a cloud to the rendering window
  *
  * Adds a point cloud to the rendering window. The size, id, and view port can optionally be set.
  *
- * @PARAM[in] cloud the point cloud to be added to the
- * @PARAM[in] pointSize the display size of the individual cloud points (default: 1.0)
- * @PARAM[in] id the unique identifier of the input cloud (default: "cloud")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] cloud the point cloud to be added to the
+ * @param[in] pointSize the display size of the individual cloud points (default: 1.0)
+ * @param[in] id the unique identifier of the input cloud (default: "cloud")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addCloud(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr &cloud, double pointSize, const string &id, int viewPort)
 {
@@ -104,13 +104,13 @@ void CloudVisualizer::addCloud(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPt
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a cloud to the rendering window
+ * @brief Add a cloud to the rendering window
  *
  * Updates the data of a given rendered point cloud
  *
- * @PARAM[in] cloud the point cloud to be added to the
- * @PARAM[in] id the unique identifier of the input cloud (default: "cloud")
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] cloud the point cloud to be added to the
+ * @param[in] id the unique identifier of the input cloud (default: "cloud")
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::updateCloud(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr &cloud, const string &id)
 {
@@ -118,16 +118,16 @@ void CloudVisualizer::updateCloud(const pcl::PointCloud<pcl::PointXYZRGBA>::Cons
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a coordinate frame to the display
+ * @brief Add a coordinate frame to the display
  *
  * Adds a coordinate frame to the rendering window. position, orientation, and scale can be configured.
  *
- * @PARAM[in] position the translation of the frame relative to the origin
- * @PARAM[in] orientation the quaternion orientation of the frame relative to the origin
- * @PARAM[in] scale the size of the coordinate frame axes (default: 1.0)
- * @PARAM[in] id the unique identifier of the coordinate frame (default: "frame")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] position the translation of the frame relative to the origin
+ * @param[in] orientation the quaternion orientation of the frame relative to the origin
+ * @param[in] scale the size of the coordinate frame axes (default: 1.0)
+ * @param[in] id the unique identifier of the coordinate frame (default: "frame")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addCoordinateFrame(const Eigen::Vector4f &position, const Eigen::Quaternionf &orientation, double scale, const string &id, int viewPort)
 {
@@ -139,21 +139,21 @@ void CloudVisualizer::addCoordinateFrame(const Eigen::Vector4f &position, const 
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a coordinate frame to the display
+ * @brief Add a coordinate frame to the display
  *
  * Adds a coordinate frame to the rendering window. position, orientation, and scale can be configured.
  *
- * @PARAM[in] x the x coordinate of the frame origin
- * @PARAM[in] y the y coordinate of the frame origin
- * @PARAM[in] z the z coordinate of the frame origin
- * @PARAM[in] roll the roll coordinate of the frame origin
- * @PARAM[in] pitch the pitch coordinate of the frame origin
- * @PARAM[in] yaw the yaw coordinate of the frame origin
- * @PARAM[in] pointSize the display size of the individual cloud points (default: 1.0)
- * @PARAM[in] scale the size of the coordinate frame axes (default: 1.0)
- * @PARAM[in] id the unique identifier of the coordinate frame (default: "frame")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] x the x coordinate of the frame origin
+ * @param[in] y the y coordinate of the frame origin
+ * @param[in] z the z coordinate of the frame origin
+ * @param[in] roll the roll coordinate of the frame origin
+ * @param[in] pitch the pitch coordinate of the frame origin
+ * @param[in] yaw the yaw coordinate of the frame origin
+ * @param[in] pointSize the display size of the individual cloud points (default: 1.0)
+ * @param[in] scale the size of the coordinate frame axes (default: 1.0)
+ * @param[in] id the unique identifier of the coordinate frame (default: "frame")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addCoordinateFrame(double x, double y, double z, double roll, double pitch, double yaw, double scale, const string &id, int viewPort)
 {
@@ -165,21 +165,21 @@ void CloudVisualizer::addCoordinateFrame(double x, double y, double z, double ro
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a line to the display
- * @PARAM[in] x1 the x coordinate of the origin point
- * @PARAM[in] y1 the y coordinate of the origin point
- * @PARAM[in] z1 the z coordinate of the origin point
- * @PARAM[in] x2 the x coordinate of the direction point
- * @PARAM[in] y2 the y coordinate of the direction point
- * @PARAM[in] z2 the z coordinate of the direction point
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered line (default: 1.0)
- * @PARAM[in] lineWidth width of the rendered line (default: 1.0)
- * @PARAM[in] id the unique identifier of the line (default: "line")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @brief Add a line to the display
+ * @param[in] x1 the x coordinate of the origin point
+ * @param[in] y1 the y coordinate of the origin point
+ * @param[in] z1 the z coordinate of the origin point
+ * @param[in] x2 the x coordinate of the direction point
+ * @param[in] y2 the y coordinate of the direction point
+ * @param[in] z2 the z coordinate of the direction point
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered line (default: 1.0)
+ * @param[in] lineWidth width of the rendered line (default: 1.0)
+ * @param[in] id the unique identifier of the line (default: "line")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addLine(double x1, double y1, double z1, double x2, double y2, double z2, double r, double g, double b, double opacity, double lineWidth, const string &id, int viewPort)
 {
@@ -194,20 +194,20 @@ void CloudVisualizer::addLine(double x1, double y1, double z1, double x2, double
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a polygon to the display
+ * @brief Add a polygon to the display
  *
  * Adds a polygon to the rendering window by connecting the vertices in order
  *
- * @PARAM[in] vertices pointer to the cloud containing polygon vertices
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered line (default: 1.0)
- * @PARAM[in] lineWidth width of the rendered line (default: 1.0)
- * @PARAM[in] drawSolid renders the polygon as a solid (default: false)
- * @PARAM[in] id the unique identifier of the line (default: "polygon")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] vertices pointer to the cloud containing polygon vertices
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered line (default: 1.0)
+ * @param[in] lineWidth width of the rendered line (default: 1.0)
+ * @param[in] drawSolid renders the polygon as a solid (default: false)
+ * @param[in] id the unique identifier of the line (default: "polygon")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addPolygon(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr &vertices, double r, double g, double b, double opacity, double lineWidth, bool drawSolid, const string &id, int viewPort)
 {
@@ -228,28 +228,28 @@ void CloudVisualizer::addPolygon(const pcl::PointCloud<pcl::PointXYZRGBA>::Const
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a box to the rendering window
+ * @brief Add a box to the rendering window
  *
  * Adds a box frame to the rendering window with configurable position, orientation, dimensions, and color
  *
- * @PARAM[in] x the x coordinate of the box center
- * @PARAM[in] x the y coordinate of the box center
- * @PARAM[in] x the z coordinate of the box center
- * @PARAM[in] roll the roll coordinate of the box
- * @PARAM[in] pitch the pitch coordinate of the box
- * @PARAM[in] yaw the yaw coordinate of the box
- * @PARAM[in] width the width dimension of the box
- * @PARAM[in] height the height dimension of the box
- * @PARAM[in] depth the depth dimension of the box
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] frameSize the size of the box frame (default: 1.0)
- * @PARAM[in] drawSolid renders the cube as a solid (default: false)
- * @PARAM[in] id the unique identifier of the rendered box (default: "box")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] x the x coordinate of the box center
+ * @param[in] x the y coordinate of the box center
+ * @param[in] x the z coordinate of the box center
+ * @param[in] roll the roll coordinate of the box
+ * @param[in] pitch the pitch coordinate of the box
+ * @param[in] yaw the yaw coordinate of the box
+ * @param[in] width the width dimension of the box
+ * @param[in] height the height dimension of the box
+ * @param[in] depth the depth dimension of the box
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] frameSize the size of the box frame (default: 1.0)
+ * @param[in] drawSolid renders the cube as a solid (default: false)
+ * @param[in] id the unique identifier of the rendered box (default: "box")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addBox(double x, double y, double z, double roll, double pitch, double yaw, double width, double height, double depth, double r, double g, double b, double opacity, double frameSize, bool drawSolid, const string &id, int viewPort)
 {
@@ -273,24 +273,24 @@ void CloudVisualizer::addBox(double x, double y, double z, double roll, double p
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a cuboid to the rendering window
+ * @brief Add a cuboid to the rendering window
  *
  * Adds a cuboid to the rendering window with configurable position, orientation, dimensions, and color
  *
- * @PARAM[in] position the translation of the frame relative to the origin
- * @PARAM[in] orientation the quaternion orientation of the frame relative to the origin
- * @PARAM[in] width the width dimension of the box
- * @PARAM[in] height the height dimension of the box
- * @PARAM[in] depth the depth dimension of the box
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] frameSize the size of the box frame (default: 1.0)
- * @PARAM[in] drawSolid renders the cube as a solid (default: false)
- * @PARAM[in] id the unique identifier of the rendered box (default: "box")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] position the translation of the frame relative to the origin
+ * @param[in] orientation the quaternion orientation of the frame relative to the origin
+ * @param[in] width the width dimension of the box
+ * @param[in] height the height dimension of the box
+ * @param[in] depth the depth dimension of the box
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] frameSize the size of the box frame (default: 1.0)
+ * @param[in] drawSolid renders the cube as a solid (default: false)
+ * @param[in] id the unique identifier of the rendered box (default: "box")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addBox(const Eigen::Vector3f &position, const Eigen::Quaternionf &orientation, double width, double height, double depth, double r, double g, double b, double opacity, double frameSize, bool drawSolid, const string &id, int viewPort)
 {
@@ -306,21 +306,21 @@ void CloudVisualizer::addBox(const Eigen::Vector3f &position, const Eigen::Quate
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a sphere to the rendering window
+ * @brief Add a sphere to the rendering window
  *
  * Adds a sphere to the rendering window with configurable position, radius, and color
  *
- * @PARAM[in] x the x coordinate of the sphere center
- * @PARAM[in] x the y coordinate of the sphere center
- * @PARAM[in] x the z coordinate of the sphere center
- * @PARAM[in] radius the radius of the sphere
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered sphere (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered sphere (default: "sphere")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] x the x coordinate of the sphere center
+ * @param[in] x the y coordinate of the sphere center
+ * @param[in] x the z coordinate of the sphere center
+ * @param[in] radius the radius of the sphere
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered sphere (default: 1.0)
+ * @param[in] id the unique identifier of the rendered sphere (default: "sphere")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addSphere(double x, double y, double z, double radius, double r, double g, double b, double opacity, const string &id, int viewPort)
 {
@@ -329,19 +329,19 @@ void CloudVisualizer::addSphere(double x, double y, double z, double radius, dou
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a sphere to the rendering window
+ * @brief Add a sphere to the rendering window
  *
  * Adds a sphere to the rendering window with configurable position, radius, and color
  *
- * @PARAM[in] position the translation of the frame relative to the origin
- * @PARAM[in] radius the radius of the sphere
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered sphere (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered sphere (default: "sphere")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] position the translation of the frame relative to the origin
+ * @param[in] radius the radius of the sphere
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered sphere (default: 1.0)
+ * @param[in] id the unique identifier of the rendered sphere (default: "sphere")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addSphere(const Eigen::Vector3f &position, double radius, double r, double g, double b, double opacity, const string &id, int viewPort)
 {
@@ -352,26 +352,26 @@ void CloudVisualizer::addSphere(const Eigen::Vector3f &position, double radius, 
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a cuboid to the rendering window
+ * @brief Add a cuboid to the rendering window
  *
  * Adds a cuboid to the rendering window with configurable position, orientation, dimensions, and color
  *
- * @PARAM[in] cornerFTL the front top left corner of the cuboid
- * @PARAM[in] cornerFTR the front top right corner of the cuboid
- * @PARAM[in] cornerFBL the front bottom left corner of the cuboid
- * @PARAM[in] cornerFBR the front bottom right corner of the cuboid
- * @PARAM[in] cornerBTL the back top left corner of the cuboid
- * @PARAM[in] cornerBTR the back top right corner of the cuboid
- * @PARAM[in] cornerBBL the back bottom left corner of the cuboid
- * @PARAM[in] cornerBBR the back bottom right corner of the cuboid
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] frameSize the size of the box frame (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered box (default: "box")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] cornerFTL the front top left corner of the cuboid
+ * @param[in] cornerFTR the front top right corner of the cuboid
+ * @param[in] cornerFBL the front bottom left corner of the cuboid
+ * @param[in] cornerFBR the front bottom right corner of the cuboid
+ * @param[in] cornerBTL the back top left corner of the cuboid
+ * @param[in] cornerBTR the back top right corner of the cuboid
+ * @param[in] cornerBBL the back bottom left corner of the cuboid
+ * @param[in] cornerBBR the back bottom right corner of the cuboid
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] frameSize the size of the box frame (default: 1.0)
+ * @param[in] id the unique identifier of the rendered box (default: "box")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addCuboid(const Eigen::Vector4f &cornerFTL, const Eigen::Vector4f &cornerFTR, const Eigen::Vector4f &cornerFBL, const Eigen::Vector4f &cornerFBR, const Eigen::Vector4f &cornerBTL, const Eigen::Vector4f &cornerBTR, const Eigen::Vector4f &cornerBBL, const Eigen::Vector4f &cornerBBR, double r, double g, double b, double opacity, double frameSize, const string &id, int viewPort)
 {
@@ -420,18 +420,18 @@ void CloudVisualizer::addCuboid(const Eigen::Vector4f &cornerFTL, const Eigen::V
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a plane to the viewer
+ * @brief Add a plane to the viewer
  *
  * Adds a plane specified by the input coefficients to the viewer window
  *
- * @PARAM[in] plane the planar coefficients of the target plane in the form Ax+By+Cz+D=0
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered plane (default: "plane")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] plane the planar coefficients of the target plane in the form Ax+By+Cz+D=0
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] id the unique identifier of the rendered plane (default: "plane")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addPlane(const Eigen::Vector4f &plane, double r, double g, double b, double opacity, const string &id, int viewPort)
 {
@@ -449,19 +449,19 @@ void CloudVisualizer::addPlane(const Eigen::Vector4f &plane, double r, double g,
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add an occupancy grid to the viewer
+ * @brief Add an occupancy grid to the viewer
  *
  * Adds an occupancy grid represented by the input octree structure
  *
- * @PARAM[in] octree the input octree structure
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] frameSize the size of the box frame (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered box (default: "box")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] octree the input octree structure
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] frameSize the size of the box frame (default: 1.0)
+ * @param[in] id the unique identifier of the rendered box (default: "box")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addOccupancyGrid(const pcl::octree::OctreePointCloud<pcl::PointXYZRGBA> &octree, double r, double g, double b, double opacity, double frameSize, const string &id, int viewPort)
 {
@@ -479,19 +479,19 @@ void CloudVisualizer::addOccupancyGrid(const pcl::octree::OctreePointCloud<pcl::
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add an occupancy grid to the viewer
+ * @brief Add an occupancy grid to the viewer
  *
  * Adds an occupancy grid represented by the input octree structure
  *
- * @PARAM[in] octree pointer to the input octree structure
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] frameSize the size of the box frame (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered box (default: "box")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] octree pointer to the input octree structure
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] frameSize the size of the box frame (default: 1.0)
+ * @param[in] id the unique identifier of the rendered box (default: "box")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addOccupancyGrid(const pcl::octree::OctreePointCloud<pcl::PointXYZRGBA>::ConstPtr octree, double r, double g, double b, double opacity, double frameSize, const string &id, int viewPort)
 {
@@ -509,19 +509,19 @@ void CloudVisualizer::addOccupancyGrid(const pcl::octree::OctreePointCloud<pcl::
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add an occupancy grid to the viewer, represented by centroid spheres 
+ * @brief Add an occupancy grid to the viewer, represented by centroid spheres 
  *
  * Adds an occupancy grid represented by the input octree structure
  *
- * @PARAM[in] octree the input octree structure
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] frameSize the size of the box frame (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered box (default: "centroid")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] octree the input octree structure
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] frameSize the size of the box frame (default: 1.0)
+ * @param[in] id the unique identifier of the rendered box (default: "centroid")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addOccupancyGridSpheres(const pcl::octree::OctreePointCloud<pcl::PointXYZRGBA> &octree, double r, double g, double b, double opacity, const string &id, int viewPort)
 {
@@ -539,15 +539,15 @@ void CloudVisualizer::addOccupancyGridSpheres(const pcl::octree::OctreePointClou
 }
 
 /***********************************************************************************************************************
- * @BRIEF Add a polygon mesh to the viewer
- * @PARAM[in] mesh the polygon mesh to visualize
- * @PARAM[in] r the red color component (default: 255.0)
- * @PARAM[in] g the green color component (default: 255.0)
- * @PARAM[in] b the blue color component (default: 255.0)
- * @PARAM[in] opacity the opacity of the rendered box frame (default: 1.0)
- * @PARAM[in] id the unique identifier of the rendered mesh (default: "mesh")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @brief Add a polygon mesh to the viewer
+ * @param[in] mesh the polygon mesh to visualize
+ * @param[in] r the red color component (default: 255.0)
+ * @param[in] g the green color component (default: 255.0)
+ * @param[in] b the blue color component (default: 255.0)
+ * @param[in] opacity the opacity of the rendered box frame (default: 1.0)
+ * @param[in] id the unique identifier of the rendered mesh (default: "mesh")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::addPolygonMesh(const pcl::PolygonMesh::ConstPtr &mesh, double r, double g, double b, double opacity, const string &id, int viewPort)
 {
@@ -557,10 +557,10 @@ void CloudVisualizer::addPolygonMesh(const pcl::PolygonMesh::ConstPtr &mesh, dou
 }
 
 /***********************************************************************************************************************
- * @BRIEF Remove a polygon mesh from the viewer
- * @PARAM[in] id the unique identifier of the rendered mesh (default: "mesh")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @brief Remove a polygon mesh from the viewer
+ * @param[in] id the unique identifier of the rendered mesh (default: "mesh")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::removePolygonMesh(const string &id, int viewPort)
 {
@@ -569,13 +569,13 @@ void CloudVisualizer::removePolygonMesh(const string &id, int viewPort)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Remove a cloud from the viewer
+ * @brief Remove a cloud from the viewer
  *
  * Remove a point cloud on the screen from the given viewport
  *
- * @PARAM[in] id the name of the point cloud to remove (default: "cloud")
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] id the name of the point cloud to remove (default: "cloud")
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::removePointCloud(const string &id, int viewPort)
 {
@@ -583,12 +583,12 @@ void CloudVisualizer::removePointCloud(const string &id, int viewPort)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Remove clouds from viewer
+ * @brief Remove clouds from viewer
  *
  * Remove all point cloud data on screen from the given viewport.
  *
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::removeAllClouds(int viewPort)
 {
@@ -596,12 +596,12 @@ void CloudVisualizer::removeAllClouds(int viewPort)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Remove shapes from viewer
+ * @brief Remove shapes from viewer
  *
  * Remove all 3D shape data on screen from the given viewport.
  *
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::removeAllShapes(int viewPort)
 {
@@ -609,13 +609,13 @@ void CloudVisualizer::removeAllShapes(int viewPort)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Remove a shape from viewer
+ * @brief Remove a shape from viewer
  *
  * Remove a 3D shape on screen from the given viewport.
  *
- * @PARAM[in] name the name of the point cloud to remove
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] name the name of the point cloud to remove
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::removeShape(const string &id, int viewPort)
 {
@@ -623,13 +623,13 @@ void CloudVisualizer::removeShape(const string &id, int viewPort)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Remove a coordinate system from viewer
+ * @brief Remove a coordinate system from viewer
  *
  * Remove a 3D coordinate system from the given viewport.
  *
- * @PARAM[in] name the name of the point cloud to remove (default: frame)
- * @PARAM[in] viewPort the viewPort id if using multiple viewports (default: 0)
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] name the name of the point cloud to remove (default: frame)
+ * @param[in] viewPort the viewPort id if using multiple viewports (default: 0)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::removeCoordinateFrame(const string &id, int viewPort)
 {
@@ -637,12 +637,12 @@ void CloudVisualizer::removeCoordinateFrame(const string &id, int viewPort)
 }
 
 /***********************************************************************************************************************
- * @BRIEF gets the color components of an internally generated color with a given index
- * @PARAM[in] index the index of the desired color
- * @PARAM[out] r the red color compoment
- * @PARAM[out] g the green color compoment
- * @PARAM[out] b the blue color compoment
- * @AUTHOR Christoper D. McMurrough
+ * @brief gets the color components of an internally generated color with a given index
+ * @param[in] index the index of the desired color
+ * @param[out] r the red color compoment
+ * @param[out] g the green color compoment
+ * @param[out] b the blue color compoment
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 void CloudVisualizer::getColor(int index, int &r, int &g, int &b)
 {

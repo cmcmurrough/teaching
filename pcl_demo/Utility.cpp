@@ -1,10 +1,10 @@
 /***********************************************************************************************************************
- * @FILE Utility.cpp
- * @BRIEF Implementation of Utility class
+ * @file Utility.cpp
+ * @brief Implementation of Utility class
  *
  * This class contains commonly used utility functions and helper classes
  *
- * @AUTHOR Christopher D. McMurrough
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 
 #include "Utility.h"
@@ -28,14 +28,14 @@
 #endif
 
 /***********************************************************************************************************************
- * @BRIEF Creates a console for printing during execution
+ * @brief Creates a console for printing during execution
  *
  * Creates a console window and redirects stdout. Resulting std::cout will print to this console. This console can be
  * used in windows applications that do not automatically include a console, such services
  *
- * @PARAM[in] maxConsoleLines the number of lines to store in the console buffer (default:100)
- * @AUTHOR Christopher D. McMurrough
- * @NOTE code derived from http://www.halcyon.com/~ast/dload/guicon.htm
+ * @param[in] maxConsoleLines the number of lines to store in the console buffer (default:100)
+ * @author Christopher D. McMurrough
+ * @note code derived from http://www.halcyon.com/~ast/dload/guicon.htm
  **********************************************************************************************************************/
 void Utility::redirectIOToConsole(int maxConsoleLines)
 {
@@ -86,11 +86,11 @@ void Utility::redirectIOToConsole(int maxConsoleLines)
 }
 
 /***********************************************************************************************************************
- * @BRIEF prints a message to console in color
- * @PARAM[in] color color to print the message
- * @PARAM[in] msg printf formatted message string
- * @PARAM[in] ... the additional arguments passed to printf
- * @AUTHOR Christopher D. McMurrough
+ * @brief prints a message to console in color
+ * @param[in] color color to print the message
+ * @param[in] msg printf formatted message string
+ * @param[in] ... the additional arguments passed to printf
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void Utility::printColored(char color, const char* msg, ...)
 {
@@ -199,11 +199,11 @@ void Utility::printColored(char color, const char* msg, ...)
 }
 
 /***********************************************************************************************************************
- * @BRIEF saves the contents of a string buffer to the specified file
- * @PARAM[in] fileName name of the file to save
- * @PARAM[in] ss string buffer containing the file contents
- * @RETURN true if the file was saved successfully
- * @AUTHOR Christopher D. McMurrough
+ * @brief saves the contents of a string buffer to the specified file
+ * @param[in] fileName name of the file to save
+ * @param[in] ss string buffer containing the file contents
+ * @return true if the file was saved successfully
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 bool Utility::writeFile(const char* fileName, std::stringstream &ss)
 {
@@ -224,15 +224,15 @@ bool Utility::writeFile(const char* fileName, std::stringstream &ss)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Convert a roll, pitch, yaw rotation angles to quaternion
+ * @brief Convert a roll, pitch, yaw rotation angles to quaternion
  *
  * Performs the conversion to a quaternion in xyzw form, returning a Quaternionf structure
  *
- * @PARAM[in] roll the roll rotation angle (phi, about x-axis) in radians
- * @PARAM[in] pitch the pitch rotation angle (theta, about y-axis) in radians
- * @PARAM[in] yaw the yaw rotation angle (psi, about z-axis) in radians
- * @RETURN the resulting quaternion
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] roll the roll rotation angle (phi, about x-axis) in radians
+ * @param[in] pitch the pitch rotation angle (theta, about y-axis) in radians
+ * @param[in] yaw the yaw rotation angle (psi, about z-axis) in radians
+ * @return the resulting quaternion
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Quaternionf Utility::rpy2quat(double roll, double pitch, double yaw)
 {
@@ -246,18 +246,18 @@ Eigen::Quaternionf Utility::rpy2quat(double roll, double pitch, double yaw)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Convert a roll, pitch, yaw rotation to quaternion
+ * @brief Convert a roll, pitch, yaw rotation to quaternion
  *
  * Performs the conversion to a quaternion in xyzw form.
  *
- * @PARAM[in] roll the roll rotation angle (phi, about x-axis) in radians
- * @PARAM[in] pitch the pitch rotation angle (theta, about y-axis) in radians
- * @PARAM[in] yaw the yaw rotation angle (psi, about z-axis) in radians
- * @PARAM[out] qw the w component of the rotation quaternion
- * @PARAM[out] qx the x component of the rotation quaternion
- * @PARAM[out] qy the y component of the rotation quaternion
- * @PARAM[out] qz the z component of the rotation quaternion
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] roll the roll rotation angle (phi, about x-axis) in radians
+ * @param[in] pitch the pitch rotation angle (theta, about y-axis) in radians
+ * @param[in] yaw the yaw rotation angle (psi, about z-axis) in radians
+ * @param[out] qw the w component of the rotation quaternion
+ * @param[out] qx the x component of the rotation quaternion
+ * @param[out] qy the y component of the rotation quaternion
+ * @param[out] qz the z component of the rotation quaternion
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void Utility::rpy2quat(double roll, double pitch, double yaw, double &qw, double &qx, double &qy, double &qz)
 {
@@ -269,14 +269,14 @@ void Utility::rpy2quat(double roll, double pitch, double yaw, double &qw, double
 }
 
 /***********************************************************************************************************************
- * @BRIEF Convert a roll, pitch, yaw rotation to quaternion
+ * @brief Convert a roll, pitch, yaw rotation to quaternion
  *
  * Performs the conversion to a quaternion in xyzw form, returning a Quaternionf structure
  *
- * @PARAM[in] roll the roll rotation angle in radians
- * @PARAM[in] pitch the pitch rotation angle in radians
- * @RETURN the resulting quaternion
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] roll the roll rotation angle in radians
+ * @param[in] pitch the pitch rotation angle in radians
+ * @return the resulting quaternion
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Quaternionf Utility::affine2quat(const Eigen::Affine3f &transformation)
 {
@@ -287,11 +287,11 @@ Eigen::Quaternionf Utility::affine2quat(const Eigen::Affine3f &transformation)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Converts a quaternion rotation and translation vector to an affine transformation
- * @PARAM[in] position the translation vector of the transformation
- * @PARAM[in] orientation the quaterntion rotation of the transformation
- * @RETURN the affine transformation matrix
- * @AUTHOR Christopher D. McMurrough
+ * @brief Converts a quaternion rotation and translation vector to an affine transformation
+ * @param[in] position the translation vector of the transformation
+ * @param[in] orientation the quaterntion rotation of the transformation
+ * @return the affine transformation matrix
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::quat2affine(const Eigen::Vector4f &position, const Eigen::Quaternionf &orientation)
 {
@@ -319,12 +319,12 @@ Eigen::Affine3f Utility::quat2affine(const Eigen::Vector4f &position, const Eige
 }
 
 /***********************************************************************************************************************
- * @BRIEF Converts a roll, pitch, yaw rotation to a homogenous rotation matrix
- * @PARAM[in] roll the roll rotation angle in radians (rotation about x)
- * @PARAM[in] pitch the pitch rotation angle in radians (rotation about y)
- * @PARAM[in] yaw the yaw rotation angle in radians (rotation about z)
- * @RETURN the homogenous transformation matrix
- * @AUTHOR Christopher D. McMurrough
+ * @brief Converts a roll, pitch, yaw rotation to a homogenous rotation matrix
+ * @param[in] roll the roll rotation angle in radians (rotation about x)
+ * @param[in] pitch the pitch rotation angle in radians (rotation about y)
+ * @param[in] yaw the yaw rotation angle in radians (rotation about z)
+ * @return the homogenous transformation matrix
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Matrix3f Utility::rpy2mat(double roll, double pitch, double yaw)
 {
@@ -339,12 +339,12 @@ Eigen::Matrix3f Utility::rpy2mat(double roll, double pitch, double yaw)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Converts a homogenous rotation matrix to roll, pitch, yaw angles
- * @PARAM[in] rotation the input homogenous rotation matrix
- * @PARAM[out] roll the roll rotation angle in radians (rotation about x)
- * @PARAM[out] pitch the pitch rotation angle in radians (rotation about y)
- * @PARAM[out] yaw the yaw rotation angle in radians (rotation about z)
- * @AUTHOR Christopher D. McMurrough
+ * @brief Converts a homogenous rotation matrix to roll, pitch, yaw angles
+ * @param[in] rotation the input homogenous rotation matrix
+ * @param[out] roll the roll rotation angle in radians (rotation about x)
+ * @param[out] pitch the pitch rotation angle in radians (rotation about y)
+ * @param[out] yaw the yaw rotation angle in radians (rotation about z)
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 void Utility::mat2rpy(const Eigen::Matrix3f &rotation, double &roll, double &pitch, double &yaw)
 {
@@ -356,13 +356,13 @@ void Utility::mat2rpy(const Eigen::Matrix3f &rotation, double &roll, double &pit
 }
 
 /***********************************************************************************************************************
- * @BRIEF Converts a position vector and roll, pitch, yaw rotation to an affine transformation matrix
- * @PARAM[in] position the translation vector of the transformation
- * @PARAM[in] roll the roll rotation angle in radians (rotation about x)
- * @PARAM[in] pitch the pitch rotation angle in radians (rotation about y)
- * @PARAM[in] yaw the yaw rotation angle in radians (rotation about z)
- * @RETURN the affine transformation matrix
- * @AUTHOR Christopher D. McMurrough
+ * @brief Converts a position vector and roll, pitch, yaw rotation to an affine transformation matrix
+ * @param[in] position the translation vector of the transformation
+ * @param[in] roll the roll rotation angle in radians (rotation about x)
+ * @param[in] pitch the pitch rotation angle in radians (rotation about y)
+ * @param[in] yaw the yaw rotation angle in radians (rotation about z)
+ * @return the affine transformation matrix
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::xyzrpy2affine(const Eigen::Vector4f &position, double roll, double pitch, double yaw)
 {
@@ -390,15 +390,15 @@ Eigen::Affine3f Utility::xyzrpy2affine(const Eigen::Vector4f &position, double r
 }
 
 /***********************************************************************************************************************
- * @BRIEF Converts x, y, z coordinates and roll, pitch, yaw rotations to an affine transformation matrix
- * @PARAM[in] x the x coordinate of the translation
- * @PARAM[in] y the y coordinate of the translation
- * @PARAM[in] z the z coordinate of the translation
- * @PARAM[in] roll the roll rotation angle in radians (rotation about x)
- * @PARAM[in] pitch the pitch rotation angle in radians (rotation about y)
- * @PARAM[in] yaw the yaw rotation angle in radians (rotation about z)
- * @RETURN the affine transformation matrix
- * @AUTHOR Christopher D. McMurrough
+ * @brief Converts x, y, z coordinates and roll, pitch, yaw rotations to an affine transformation matrix
+ * @param[in] x the x coordinate of the translation
+ * @param[in] y the y coordinate of the translation
+ * @param[in] z the z coordinate of the translation
+ * @param[in] roll the roll rotation angle in radians (rotation about x)
+ * @param[in] pitch the pitch rotation angle in radians (rotation about y)
+ * @param[in] yaw the yaw rotation angle in radians (rotation about z)
+ * @return the affine transformation matrix
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::xyzrpy2affine(double x, double y, double z, double roll, double pitch, double yaw)
 {
@@ -426,14 +426,14 @@ Eigen::Affine3f Utility::xyzrpy2affine(double x, double y, double z, double roll
 }
 
 /***********************************************************************************************************************
- * @BRIEF Converts x, y, z coordinates x, y, z basis vectors to an affine transformation matrix
- * @PARAM[in] position the translation vector of the transformation
- * @PARAM[in] x the x axis direction vector
- * @PARAM[in] y the y axis direction vector
- * @PARAM[in] z the z axis direction vector
- * @RETURN the affine transformation matrix
- * @NOTE the x, y, and z basis vectors must be orthonormalized
- * @AUTHOR Christopher D. McMurrough
+ * @brief Converts x, y, z coordinates x, y, z basis vectors to an affine transformation matrix
+ * @param[in] position the translation vector of the transformation
+ * @param[in] x the x axis direction vector
+ * @param[in] y the y axis direction vector
+ * @param[in] z the z axis direction vector
+ * @return the affine transformation matrix
+ * @note the x, y, and z basis vectors must be orthonormalized
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::basis2affine(const Eigen::Vector4f &position, const Eigen::Vector4f &x, const Eigen::Vector4f &y, const Eigen::Vector4f &z)
 {
@@ -461,10 +461,10 @@ Eigen::Affine3f Utility::basis2affine(const Eigen::Vector4f &position, const Eig
 
 
 /***********************************************************************************************************************
- * @BRIEF Converts an Affine3f transformation matrix to a homogeneous Matrix4f
- * @PARAM[in] transformation the affine transformation matrix
- * @RETURN the homogenous transformation matrix
- * @AUTHOR Christopher D. McMurrough
+ * @brief Converts an Affine3f transformation matrix to a homogeneous Matrix4f
+ * @param[in] transformation the affine transformation matrix
+ * @return the homogenous transformation matrix
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Matrix4f Utility::affine2mat(const Eigen::Affine3f &transformation)
 {
@@ -473,14 +473,14 @@ Eigen::Matrix4f Utility::affine2mat(const Eigen::Affine3f &transformation)
 }
 
 /***********************************************************************************************************************
- * @BRIEF converts the cartesian coordinates to spherical
- * @PARAM[in] x the x coordinate
- * @PARAM[in] y the y coordinate
- * @PARAM[in] z the z coordinate
- * @PARAM[out] radius the radius in spherical coordinates
- * @PARAM[out] inclination the inclination angle (theta) in spherical coordinates
- * @PARAM[out] azimuth the azimuth angle (phi) in spherical coordinates
- * @AUTHOR Christoper D. McMurrough
+ * @brief converts the cartesian coordinates to spherical
+ * @param[in] x the x coordinate
+ * @param[in] y the y coordinate
+ * @param[in] z the z coordinate
+ * @param[out] radius the radius in spherical coordinates
+ * @param[out] inclination the inclination angle (theta) in spherical coordinates
+ * @param[out] azimuth the azimuth angle (phi) in spherical coordinates
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 void Utility::cartesian2Spherical(double x, double y, double z, double &radius, double &inclination, double &azimuth)
 {
@@ -490,10 +490,10 @@ void Utility::cartesian2Spherical(double x, double y, double z, double &radius, 
 }
 
 /***********************************************************************************************************************
- * @BRIEF Convert degress to radians
- * @PARAM[in] degrees the angle expressed in degrees
- * @RETURN the converted angle in radians
- * @AUTHOR Christopher D. McMurrough
+ * @brief Convert degress to radians
+ * @param[in] degrees the angle expressed in degrees
+ * @return the converted angle in radians
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 double Utility::deg2rad(double degrees)
 {
@@ -501,10 +501,10 @@ double Utility::deg2rad(double degrees)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Convert radians to degrees
- * @PARAM[in] radians the angle expressed in radians
- * @RETURN the converted angle in degrees
- * @AUTHOR Christopher D. McMurrough
+ * @brief Convert radians to degrees
+ * @param[in] radians the angle expressed in radians
+ * @return the converted angle in degrees
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 double Utility::rad2deg(double radians)
 {
@@ -512,10 +512,10 @@ double Utility::rad2deg(double radians)
 }
 
 /***********************************************************************************************************************
- * @BRIEF Convert a vector3f to vector4f
- * @PARAM[in] lastVal the value to truncate to vec (default:0)
- * @RETURN the vector4f representation of vec
- * @AUTHOR Christopher D. McMurrough
+ * @brief Convert a vector3f to vector4f
+ * @param[in] lastVal the value to truncate to vec (default:0)
+ * @return the vector4f representation of vec
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 Eigen::Vector4f Utility::toVec4(Eigen::Vector3f &vec, float lastVal)
 {
@@ -523,14 +523,14 @@ Eigen::Vector4f Utility::toVec4(Eigen::Vector3f &vec, float lastVal)
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a line in 3D
- * @PARAM[in] p position of the point
- * @PARAM[in] line_p1 position of the first point
- * @PARAM[in] line_p2 position of the second point
- * @RETURN minimum distance of the point to the line
- * @AUTHOR Christoper D. McMurrough
- * @NOTE line_pt and line_dir define the infinitely long long in 3D space (they do not define a line segment)
- * @WARNING p[3], line_pt[3], and line_dir[3] should be equal to 0
+ * @brief computes the distance of a point to a line in 3D
+ * @param[in] p position of the point
+ * @param[in] line_p1 position of the first point
+ * @param[in] line_p2 position of the second point
+ * @return minimum distance of the point to the line
+ * @author Christoper D. McMurrough
+ * @note line_pt and line_dir define the infinitely long long in 3D space (they do not define a line segment)
+ * @warning p[3], line_pt[3], and line_dir[3] should be equal to 0
  **********************************************************************************************************************/
 double Utility::pointToLineDistance(const Eigen::Vector4f &p, const Eigen::Vector4f &line_p1, const Eigen::Vector4f &line_p2)
 {
@@ -541,19 +541,19 @@ double Utility::pointToLineDistance(const Eigen::Vector4f &p, const Eigen::Vecto
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a line in 3D
- * @PARAM[in] px x coordinate of the point
- * @PARAM[in] py y coordinate of the point
- * @PARAM[in] pz z coordinate of the point
- * @PARAM[in] line_p1x x coordinate of the first line point
- * @PARAM[in] line_p1y y coordinate of the first line point
- * @PARAM[in] line_p1z z coordinate of the first line point
- * @PARAM[in] line_p2x x coordinate of the second line point
- * @PARAM[in] line_p2y y coordinate of the second line point
- * @PARAM[in] line_p2z z coordinate of the second line point
- * @RETURN minimum distance of the point to the line
- * @AUTHOR Christoper D. McMurrough
- * @NOTE line_pt and line_dir define the infinitely long long in 3D space (they do not define a line segment)
+ * @brief computes the distance of a point to a line in 3D
+ * @param[in] px x coordinate of the point
+ * @param[in] py y coordinate of the point
+ * @param[in] pz z coordinate of the point
+ * @param[in] line_p1x x coordinate of the first line point
+ * @param[in] line_p1y y coordinate of the first line point
+ * @param[in] line_p1z z coordinate of the first line point
+ * @param[in] line_p2x x coordinate of the second line point
+ * @param[in] line_p2y y coordinate of the second line point
+ * @param[in] line_p2z z coordinate of the second line point
+ * @return minimum distance of the point to the line
+ * @author Christoper D. McMurrough
+ * @note line_pt and line_dir define the infinitely long long in 3D space (they do not define a line segment)
  **********************************************************************************************************************/
 double Utility::pointToLineDistance(double px, double py, double pz, double line_p1x, double line_p1y, double line_p1z, double line_p2x, double line_p2y, double line_p2z)
 {
@@ -568,15 +568,15 @@ double Utility::pointToLineDistance(double px, double py, double pz, double line
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a line segment in 3D
- * @PARAM[in] p position of the point
- * @PARAM[in] line_p1 position of the first point
- * @PARAM[in] line_p2 position of the second point
- * @RETURN minimum distance of the point to the line segment
- * @AUTHOR Christoper D. McMurrough
- * @WARNING p[3], line_pt[3], and line_dir[3] should be equal to 0
- * @NOTE code derrived from http://geomalgorithms.com/a02-_lines.html
- * @TODO verify that this works in all cases
+ * @brief computes the distance of a point to a line segment in 3D
+ * @param[in] p position of the point
+ * @param[in] line_p1 position of the first point
+ * @param[in] line_p2 position of the second point
+ * @return minimum distance of the point to the line segment
+ * @author Christoper D. McMurrough
+ * @warning p[3], line_pt[3], and line_dir[3] should be equal to 0
+ * @note code derrived from http://geomalgorithms.com/a02-_lines.html
+ * @todo verify that this works in all cases
  **********************************************************************************************************************/
 double Utility::pointToLineSegmentDistance(const Eigen::Vector4f &p, const Eigen::Vector4f &line_p1, const Eigen::Vector4f &line_p2)
 {
@@ -599,20 +599,20 @@ double Utility::pointToLineSegmentDistance(const Eigen::Vector4f &p, const Eigen
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a line segment in 3D
- * @PARAM[in] px x coordinate of the point
- * @PARAM[in] py y coordinate of the point
- * @PARAM[in] pz z coordinate of the point
- * @PARAM[in] line_p1x x coordinate of the first line point
- * @PARAM[in] line_p1y y coordinate of the first line point
- * @PARAM[in] line_p1z z coordinate of the first line point
- * @PARAM[in] line_p2x x coordinate of the second line point
- * @PARAM[in] line_p2y y coordinate of the second line point
- * @PARAM[in] line_p2z z coordinate of the second line point
- * @RETURN minimum distance of the point to the line segment
- * @AUTHOR Christoper D. McMurrough
- * @NOTE code derrived from http://geomalgorithms.com/a02-_lines.html
- * @TODO verify that this works in all cases
+ * @brief computes the distance of a point to a line segment in 3D
+ * @param[in] px x coordinate of the point
+ * @param[in] py y coordinate of the point
+ * @param[in] pz z coordinate of the point
+ * @param[in] line_p1x x coordinate of the first line point
+ * @param[in] line_p1y y coordinate of the first line point
+ * @param[in] line_p1z z coordinate of the first line point
+ * @param[in] line_p2x x coordinate of the second line point
+ * @param[in] line_p2y y coordinate of the second line point
+ * @param[in] line_p2z z coordinate of the second line point
+ * @return minimum distance of the point to the line segment
+ * @author Christoper D. McMurrough
+ * @note code derrived from http://geomalgorithms.com/a02-_lines.html
+ * @todo verify that this works in all cases
  **********************************************************************************************************************/
 double Utility::pointToLineSegmentDistance(double px, double py, double pz, double line_p1x, double line_p1y, double line_p1z, double line_p2x, double line_p2y, double line_p2z)
 {
@@ -624,15 +624,15 @@ double Utility::pointToLineSegmentDistance(double px, double py, double pz, doub
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a ray in 3D
- * @PARAM[in] p position of the point
- * @PARAM[in] origin position of the ray origin
- * @PARAM[in] dir direction of the ray
- * @RETURN minimum distance of the point to the ray
- * @AUTHOR Christoper D. McMurrough
- * @WARNING p[3], origin[3], and dir[3] should be equal to 0
- * @NOTE code derrived from http://geomalgorithms.com/a02-_lines.html
- * @TODO verify that this works in all cases
+ * @brief computes the distance of a point to a ray in 3D
+ * @param[in] p position of the point
+ * @param[in] origin position of the ray origin
+ * @param[in] dir direction of the ray
+ * @return minimum distance of the point to the ray
+ * @author Christoper D. McMurrough
+ * @warning p[3], origin[3], and dir[3] should be equal to 0
+ * @note code derrived from http://geomalgorithms.com/a02-_lines.html
+ * @todo verify that this works in all cases
  **********************************************************************************************************************/
 double Utility::pointToRayDistance(const Eigen::Vector4f &p, const Eigen::Vector4f &origin, const Eigen::Vector4f &dir)
 {
@@ -651,20 +651,20 @@ double Utility::pointToRayDistance(const Eigen::Vector4f &p, const Eigen::Vector
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a line segment in 3D
- * @PARAM[in] px x coordinate of the point
- * @PARAM[in] py y coordinate of the point
- * @PARAM[in] pz z coordinate of the point
- * @PARAM[in] origin_x x coordinate of the ray origin
- * @PARAM[in] origin_y y coordinate of the ray origin
- * @PARAM[in] origin_z z coordinate of the ray origin
- * @PARAM[in] dir_x x coordinate of the ray direction
- * @PARAM[in] dir_y y coordinate of the ray direction
- * @PARAM[in] dir_z z coordinate of the ray direction
- * @RETURN minimum distance of the point to the line segment
- * @AUTHOR Christoper D. McMurrough
- * @NOTE code derrived from http://geomalgorithms.com/a02-_lines.html
- * @TODO verify that this works in all cases
+ * @brief computes the distance of a point to a line segment in 3D
+ * @param[in] px x coordinate of the point
+ * @param[in] py y coordinate of the point
+ * @param[in] pz z coordinate of the point
+ * @param[in] origin_x x coordinate of the ray origin
+ * @param[in] origin_y y coordinate of the ray origin
+ * @param[in] origin_z z coordinate of the ray origin
+ * @param[in] dir_x x coordinate of the ray direction
+ * @param[in] dir_y y coordinate of the ray direction
+ * @param[in] dir_z z coordinate of the ray direction
+ * @return minimum distance of the point to the line segment
+ * @author Christoper D. McMurrough
+ * @note code derrived from http://geomalgorithms.com/a02-_lines.html
+ * @todo verify that this works in all cases
  **********************************************************************************************************************/
 double Utility::pointToRayDistance(double px, double py, double pz, double origin_x, double origin_y, double origin_z, double dir_x, double dir_y, double dir_z)
 {
@@ -676,11 +676,11 @@ double Utility::pointToRayDistance(double px, double py, double pz, double origi
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a plane in 3D
- * @PARAM[in] p position of the point
- * @PARAM[in] plane the coefficients of the plane in the form ax+by+cz+d=0
- * @RETURN minimum distance of the point to the line
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the distance of a point to a plane in 3D
+ * @param[in] p position of the point
+ * @param[in] plane the coefficients of the plane in the form ax+by+cz+d=0
+ * @return minimum distance of the point to the line
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::pointToPlaneDistance(const Eigen::Vector4f &p, const Eigen::Vector4f &plane)
 {
@@ -692,16 +692,16 @@ double Utility::pointToPlaneDistance(const Eigen::Vector4f &p, const Eigen::Vect
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance of a point to a line in 3D
- * @PARAM[in] px x coordinate of the point
- * @PARAM[in] py y coordinate of the point
- * @PARAM[in] pz z coordinate of the point
- * @PARAM[in] a the a coefficient of the plane in the form ax+by+cz+d=0
- * @PARAM[in] b the b coefficient of the plane in the form ax+by+cz+d=0
- * @PARAM[in] c the c coefficient of the plane in the form ax+by+cz+d=0
- * @PARAM[in] d the d coefficient of the plane in the form ax+by+cz+d=0
- * @RETURN minimum distance of the point to the plane
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the distance of a point to a line in 3D
+ * @param[in] px x coordinate of the point
+ * @param[in] py y coordinate of the point
+ * @param[in] pz z coordinate of the point
+ * @param[in] a the a coefficient of the plane in the form ax+by+cz+d=0
+ * @param[in] b the b coefficient of the plane in the form ax+by+cz+d=0
+ * @param[in] c the c coefficient of the plane in the form ax+by+cz+d=0
+ * @param[in] d the d coefficient of the plane in the form ax+by+cz+d=0
+ * @return minimum distance of the point to the plane
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::pointToPlaneDistance(double px, double py, double pz, double a, double b, double c, double d)
 {
@@ -711,12 +711,12 @@ double Utility::pointToPlaneDistance(double px, double py, double pz, double a, 
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the distance along a ray to a plane
- * @PARAM[in] origin the ray origin point
- * @PARAM[in] direction the direction vector of the ray
- * @PARAM[in] plane the coefficients of the plane in the form ax+by+cz+d=0
- * @RETURN the distance along the ray to the plane
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the distance along a ray to a plane
+ * @param[in] origin the ray origin point
+ * @param[in] direction the direction vector of the ray
+ * @param[in] plane the coefficients of the plane in the form ax+by+cz+d=0
+ * @return the distance along the ray to the plane
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::rayToPlaneDistance(const Eigen::Vector4f &origin, const Eigen::Vector4f &direction, const Eigen::Vector4f &plane)
 {
@@ -728,12 +728,12 @@ double Utility::rayToPlaneDistance(const Eigen::Vector4f &origin, const Eigen::V
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the euclidean distance between two points
- * @PARAM[in] p1 position of the first point
- * @PARAM[in] p2 position of the second point
- * @RETURN euclidean distance separating the two points
- * @AUTHOR Christoper D. McMurrough
- * @WARNING p1[3] and p2[3] should be equal to 0
+ * @brief computes the euclidean distance between two points
+ * @param[in] p1 position of the first point
+ * @param[in] p2 position of the second point
+ * @return euclidean distance separating the two points
+ * @author Christoper D. McMurrough
+ * @warning p1[3] and p2[3] should be equal to 0
  **********************************************************************************************************************/
 double Utility::euclideanDistance(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2)
 {
@@ -743,15 +743,15 @@ double Utility::euclideanDistance(const Eigen::Vector4f &p1, const Eigen::Vector
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the euclidean distance between two points
- * @PARAM[in] p1x x coordinate of the first point
- * @PARAM[in] p1y y coordinate of the first point
- * @PARAM[in] p1z z coordinate of the first point
- * @PARAM[in] p2x x coordinate of the second point
- * @PARAM[in] p2y y coordinate of the second point
- * @PARAM[in] p2z z coordinate of the second point
- * @RETURN euclidean distance separating the two points
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the euclidean distance between two points
+ * @param[in] p1x x coordinate of the first point
+ * @param[in] p1y y coordinate of the first point
+ * @param[in] p1z z coordinate of the first point
+ * @param[in] p2x x coordinate of the second point
+ * @param[in] p2y y coordinate of the second point
+ * @param[in] p2z z coordinate of the second point
+ * @return euclidean distance separating the two points
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::euclideanDistance(double p1x, double p1y, double p1z, double p2x, double p2y, double p2z)
 {
@@ -760,13 +760,13 @@ double Utility::euclideanDistance(double p1x, double p1y, double p1z, double p2x
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes a point lying on the line defined by line_pt and line_dir a given distance from line_pt
- * @PARAM[in] line_p1 the first point on the line
- * @PARAM[in] line_p2 the second point on the line
- * @PARAM[in] distance between line_p1 and p
- * @PARAM[out] p resulting point on the line a distance of d from line_p1
- * @AUTHOR Christoper D. McMurrough
- * @WARNING line_pt[3] and line_dir[3] should be equal to 0
+ * @brief computes a point lying on the line defined by line_pt and line_dir a given distance from line_pt
+ * @param[in] line_p1 the first point on the line
+ * @param[in] line_p2 the second point on the line
+ * @param[in] distance between line_p1 and p
+ * @param[out] p resulting point on the line a distance of d from line_p1
+ * @author Christoper D. McMurrough
+ * @warning line_pt[3] and line_dir[3] should be equal to 0
  **********************************************************************************************************************/
 void Utility::pointAlongLine(const Eigen::Vector4f &line_p1, const Eigen::Vector4f &line_p2, double d, Eigen::Vector4f &p)
 {
@@ -775,13 +775,13 @@ void Utility::pointAlongLine(const Eigen::Vector4f &line_p1, const Eigen::Vector
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes a point lying on the ray defined by an origin point and direction vector
- * @PARAM[in] origin the origin of the ray
- * @PARAM[in] direction the direction vector of the ray
- * @PARAM[in] distance between line_p1 and p
- * @PARAM[out] p resulting point lying on the ray a distance of d from the origin
- * @AUTHOR Christoper D. McMurrough
- * @WARNING origin[3] and direction[3] should be equal to 0
+ * @brief computes a point lying on the ray defined by an origin point and direction vector
+ * @param[in] origin the origin of the ray
+ * @param[in] direction the direction vector of the ray
+ * @param[in] distance between line_p1 and p
+ * @param[out] p resulting point lying on the ray a distance of d from the origin
+ * @author Christoper D. McMurrough
+ * @warning origin[3] and direction[3] should be equal to 0
  **********************************************************************************************************************/
 void Utility::pointAlongRay(const Eigen::Vector4f &origin, const Eigen::Vector4f &direction, double d, Eigen::Vector4f &p)
 {
@@ -789,18 +789,18 @@ void Utility::pointAlongRay(const Eigen::Vector4f &origin, const Eigen::Vector4f
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes a point lying on the line defined by lp and ld with a given distance from l1
- * @PARAM[in] line_p1x x coordinate of the first line point
- * @PARAM[in] line_p1y y coordinate of the first line point
- * @PARAM[in] line_p1z z coordinate of the first line point
- * @PARAM[in] line_p2x x coordinate of the second line point
- * @PARAM[in] line_p2y y coordinate of the second line point
- * @PARAM[in] line_p2z z coordinate of the second line point
- * @PARAM[in] distance between lp and p
- * @PARAM[out] px resulting x coordinate of point on the line a distance of d from lp
- * @PARAM[out] py resulting y coordinate of point on the line a distance of d from lp
- * @PARAM[out] pz resulting z coordinate of point on the line a distance of d from lp
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes a point lying on the line defined by lp and ld with a given distance from l1
+ * @param[in] line_p1x x coordinate of the first line point
+ * @param[in] line_p1y y coordinate of the first line point
+ * @param[in] line_p1z z coordinate of the first line point
+ * @param[in] line_p2x x coordinate of the second line point
+ * @param[in] line_p2y y coordinate of the second line point
+ * @param[in] line_p2z z coordinate of the second line point
+ * @param[in] distance between lp and p
+ * @param[out] px resulting x coordinate of point on the line a distance of d from lp
+ * @param[out] py resulting y coordinate of point on the line a distance of d from lp
+ * @param[out] pz resulting z coordinate of point on the line a distance of d from lp
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 void Utility::pointAlongLine(double line_p1x, double line_p1y, double line_p1z, double line_p2x, double line_p2y, double line_p2z, double d, double &px, double &py, double &pz)
 {
@@ -815,17 +815,17 @@ void Utility::pointAlongLine(double line_p1x, double line_p1y, double line_p1z, 
 }
 
 /***********************************************************************************************************************
- * @BRIEF distance of point to a tetragon edge in 3D
+ * @brief distance of point to a tetragon edge in 3D
  *
  * computes the minimum distance of a given point to one of the edges formed by the vertices, assigned clockwise
  *
- * @PARAM[in] p query point
- * @PARAM[in] v1 the first vertex
- * @PARAM[in] v2 the first vertex
- * @PARAM[in] v3 the first vertex
- * @PARAM[in] v4 the first vertex
- * @RETURN[in] minimum distance of the point to one of the edges
- * @AUTHOR Christoper D. McMurrough
+ * @param[in] p query point
+ * @param[in] v1 the first vertex
+ * @param[in] v2 the first vertex
+ * @param[in] v3 the first vertex
+ * @param[in] v4 the first vertex
+ * @return[in] minimum distance of the point to one of the edges
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::distanceToTetragon(const Eigen::Vector4f &p, const Eigen::Vector4f &v1, const Eigen::Vector4f &v2, const Eigen::Vector4f &v3, const Eigen::Vector4f &v4)
 {
@@ -840,19 +840,19 @@ double Utility::distanceToTetragon(const Eigen::Vector4f &p, const Eigen::Vector
 }
 
 /***********************************************************************************************************************
- * @BRIEF compute the intersection point between two lines
+ * @brief compute the intersection point between two lines
  *
  * Computes the intersection point between two lines. If the lines are skew, the closest point between the lines is
  * given. In either case, the minimum distance between the lines is returned.
  *
- * @PARAM[in] line1_p1 the first point on the first line
- * @PARAM[in] line1_p2 the second point on the first line
- * @PARAM[in] line2_p1 the first point on the second line
- * @PARAM[in] line2_p2 the second point on the second line
- * @PARAM[out] intersection the closest point between the two lines
- * @RETURN minimum distance between the two lines
- * @TODO verify that this works as expected for all cases, and change p2s to direction vectors instead of points
- * @AUTHOR Christoper D. McMurrough
+ * @param[in] line1_p1 the first point on the first line
+ * @param[in] line1_p2 the second point on the first line
+ * @param[in] line2_p1 the first point on the second line
+ * @param[in] line2_p2 the second point on the second line
+ * @param[out] intersection the closest point between the two lines
+ * @return minimum distance between the two lines
+ * @todo verify that this works as expected for all cases, and change p2s to direction vectors instead of points
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::lineIntersection(const Eigen::Vector4f &line1_p1, const Eigen::Vector4f &line1_p2, const Eigen::Vector4f &line2_p1, const Eigen::Vector4f &line2_p2, Eigen::Vector4f &intersection)
 {
@@ -897,18 +897,18 @@ double Utility::lineIntersection(const Eigen::Vector4f &line1_p1, const Eigen::V
 }
 
 /***********************************************************************************************************************
- * @BRIEF compute the intersection point of 3 planes
+ * @brief compute the intersection point of 3 planes
  *
  * Computes the intersection point of 3 non-paralell planes, returning false if a single intersection could not be found
  *
- * @PARAM[in] plane1 the set of coefficients for the first plane in the form Ax+By+Cz+D=0
- * @PARAM[in] plane2 the set of coefficients for the first plane in the form Ax+By+Cz+D=0
- * @PARAM[in] plane3 the set of coefficients for the first plane in the form Ax+By+Cz+D=0
- * @PARAM[out] intersection_point the intersection point between the 3 planes
- * @PARAM[in] determinantTolerance the minimum determinant value of which to consider the planes non-paralell (default:0.001);
- * @RETURN true if the 3 planes intersect at a single point
- * @NOTE this function is a dupicate of pcl::threePlanesIntersection, which is currently in pcl-trunk
- * @AUTHOR Christoper D. McMurrough
+ * @param[in] plane1 the set of coefficients for the first plane in the form Ax+By+Cz+D=0
+ * @param[in] plane2 the set of coefficients for the first plane in the form Ax+By+Cz+D=0
+ * @param[in] plane3 the set of coefficients for the first plane in the form Ax+By+Cz+D=0
+ * @param[out] intersection_point the intersection point between the 3 planes
+ * @param[in] determinantTolerance the minimum determinant value of which to consider the planes non-paralell (default:0.001);
+ * @return true if the 3 planes intersect at a single point
+ * @note this function is a dupicate of pcl::threePlanesIntersection, which is currently in pcl-trunk
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 bool Utility::threePlanesIntersection(const Eigen::Vector4f &plane1, const Eigen::Vector4f &plane2, const Eigen::Vector4f &plane3, Eigen::Vector4f &intersection, double determinantTolerance)
 {
@@ -947,19 +947,19 @@ bool Utility::threePlanesIntersection(const Eigen::Vector4f &plane1, const Eigen
 }
 
 /***********************************************************************************************************************
- * @BRIEF compute the intersection point of a line with a plane
+ * @brief compute the intersection point of a line with a plane
  *
  * Computes the intersection point of a line, defined by a point and direction vector, with a plane.
  *
- * @PARAM[in] linePoint a point on the line
- * @PARAM[in] lineDir the direction vector of the line
- * @PARAM[in] plane the set of coefficients for the plane in the form Ax+By+Cz+D=0
- * @PARAM[out] intersection_point the intersection point between line and plane
- * @PARAM[in] paralellTolerance the minimum value of which to consider the plane and line non-paralell (default:0.001);
- * @RETURN true if the line and plane intersect at a single point
- * @NOTE code derrived from http://geomalgorithms.com/a05-_intersect-1.html
- * @TODO verify that this works in all cases
- * @AUTHOR Christoper D. McMurrough
+ * @param[in] linePoint a point on the line
+ * @param[in] lineDir the direction vector of the line
+ * @param[in] plane the set of coefficients for the plane in the form Ax+By+Cz+D=0
+ * @param[out] intersection_point the intersection point between line and plane
+ * @param[in] paralellTolerance the minimum value of which to consider the plane and line non-paralell (default:0.001);
+ * @return true if the line and plane intersect at a single point
+ * @note code derrived from http://geomalgorithms.com/a05-_intersect-1.html
+ * @todo verify that this works in all cases
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 bool Utility::linePlaneIntersection(const Eigen::Vector4f &linePoint, const Eigen::Vector4f &lineDir, const Eigen::Vector4f &plane, Eigen::Vector4f &intersection, double paralellTolerance)
 {
@@ -991,12 +991,12 @@ bool Utility::linePlaneIntersection(const Eigen::Vector4f &linePoint, const Eige
 }
 
 /***********************************************************************************************************************
- * @BRIEF gets the coefficients of a plane formed by 3 points
- * @PARAM[in] p1 the first point on the plane
- * @PARAM[in] p2 the second point on the plane
- * @PARAM[in] p3 the third point on the plane
- * @PARAM[out] plane the resulting planar coefficients in the form Ax+By+Cz+D=0
- * @AUTHOR Christoper D. McMurrough
+ * @brief gets the coefficients of a plane formed by 3 points
+ * @param[in] p1 the first point on the plane
+ * @param[in] p2 the second point on the plane
+ * @param[in] p3 the third point on the plane
+ * @param[out] plane the resulting planar coefficients in the form Ax+By+Cz+D=0
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 void Utility::pointsToPlane(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2, const Eigen::Vector4f &p3, Eigen::Vector4f &plane)
 {
@@ -1015,11 +1015,11 @@ void Utility::pointsToPlane(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2
 }
 
 /***********************************************************************************************************************
- * @BRIEF gets the coefficients of a plane formed by a normal and a point
- * @PARAM[in] normal the normal vector of the plane
- * @PARAM[in] p a point lying on the plane
- * @PARAM[out] plane the resulting planar coefficients in the form Ax+By+Cz+D=0
- * @AUTHOR Christoper D. McMurrough
+ * @brief gets the coefficients of a plane formed by a normal and a point
+ * @param[in] normal the normal vector of the plane
+ * @param[in] p a point lying on the plane
+ * @param[out] plane the resulting planar coefficients in the form Ax+By+Cz+D=0
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 void Utility::pointNormalToPlane(const Eigen::Vector4f &normal, const Eigen::Vector4f &p, Eigen::Vector4f &plane)
 {
@@ -1030,14 +1030,14 @@ void Utility::pointNormalToPlane(const Eigen::Vector4f &normal, const Eigen::Vec
 }
 
 /***********************************************************************************************************************
- * @BRIEF returns an orthonormal basis constructed using the gram-schmidt process on the input vectors
- * @PARAM[in] u1 the first input vector
- * @PARAM[in] u2 the second input vector
- * @PARAM[in] u3 the third input vector
- * @PARAM[in] v1 the first basis vector
- * @PARAM[in] v2 the second basis vector
- * @PARAM[in] v3 the third basis vector
- * @AUTHOR Christoper D. McMurrough
+ * @brief returns an orthonormal basis constructed using the gram-schmidt process on the input vectors
+ * @param[in] u1 the first input vector
+ * @param[in] u2 the second input vector
+ * @param[in] u3 the third input vector
+ * @param[in] v1 the first basis vector
+ * @param[in] v2 the second basis vector
+ * @param[in] v3 the third basis vector
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 void Utility::orthonormalBasis(const Eigen::Vector4f &u1, const Eigen::Vector4f &u2, const Eigen::Vector4f &u3, Eigen::Vector4f &v1, Eigen::Vector4f &v2, Eigen::Vector4f &v3)
 {
@@ -1051,14 +1051,14 @@ void Utility::orthonormalBasis(const Eigen::Vector4f &u1, const Eigen::Vector4f 
 }
 
 /***********************************************************************************************************************
- * @BRIEF Checks to see if a point is above a plane
+ * @brief Checks to see if a point is above a plane
  *
  * Returns true if the target point lies on the side of the plane on which the normal points
  *
- * @PARAM[in] p the input point
- * @PARAM[in] plane the plane coefficients of the cut plane in the for Ax+By+Cz+D=0
- * @RETURN true if the point lies on the side of the plane in which the normal points
- * @AUTHOR Christopher D. McMurrough
+ * @param[in] p the input point
+ * @param[in] plane the plane coefficients of the cut plane in the for Ax+By+Cz+D=0
+ * @return true if the point lies on the side of the plane in which the normal points
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 bool Utility::isPointAbovePlane(const Eigen::Vector4f &p, const Eigen::Vector4f &plane)
 {
@@ -1076,14 +1076,14 @@ bool Utility::isPointAbovePlane(const Eigen::Vector4f &p, const Eigen::Vector4f 
 }
 
 /***********************************************************************************************************************
- * @BRIEF apply a transformation to a point
+ * @brief apply a transformation to a point
  *
  * Applies a homogenous transformation to a point, returning the transformed point
  *
- * @PARAM[in] p the point to be transformed
- * @PARAM[in] transform the homogenous transformation to apply to the point
- * @RETURN the transformed point
- * @AUTHOR Christoper D. McMurrough
+ * @param[in] p the point to be transformed
+ * @param[in] transform the homogenous transformation to apply to the point
+ * @return the transformed point
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 Eigen::Vector4f Utility::transformPoint(const Eigen::Vector4f &p, const Eigen::Matrix4f &transform)
 {
@@ -1095,14 +1095,14 @@ Eigen::Vector4f Utility::transformPoint(const Eigen::Vector4f &p, const Eigen::M
 }
 
 /***********************************************************************************************************************
- * @BRIEF apply a rotation to a normal vector
+ * @brief apply a rotation to a normal vector
  *
  * Applies a rotation matrix to a normal vector, returning the transformed normal
  *
- * @PARAM[in] v the normal to be transformed
- * @PARAM[in] rotation the rotation matrix to apply to the point
- * @RETURN the transformed normal
- * @AUTHOR Christoper D. McMurrough
+ * @param[in] v the normal to be transformed
+ * @param[in] rotation the rotation matrix to apply to the point
+ * @return the transformed normal
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::rotateNormal(const Eigen::Vector3f &v, const Eigen::Matrix3f &rotation)
 {
@@ -1111,15 +1111,15 @@ Eigen::Vector3f Utility::rotateNormal(const Eigen::Vector3f &v, const Eigen::Mat
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the gaussian value given distribution parameters
- * @PARAM[in] x the value we wish to evaluate using the gaussian
- * @PARAM[in] a height of the curve peak
- * @PARAM[in] b position of the peak center
- * @PARAM[in] c standard deviation (controls the bell width)
- * @PARAM[in] d vertical offset of the curve
- * @RETURN value of the gaussian function f(x)
- * @AUTHOR Christoper D. McMurrough
- * @NOTE function is an implementation of http://en.wikipedia.org/wiki/Gaussian_function
+ * @brief computes the gaussian value given distribution parameters
+ * @param[in] x the value we wish to evaluate using the gaussian
+ * @param[in] a height of the curve peak
+ * @param[in] b position of the peak center
+ * @param[in] c standard deviation (controls the bell width)
+ * @param[in] d vertical offset of the curve
+ * @return value of the gaussian function f(x)
+ * @author Christoper D. McMurrough
+ * @note function is an implementation of http://en.wikipedia.org/wiki/Gaussian_function
  **********************************************************************************************************************/
 double Utility::gaussian(double x, double a, double b, double c, double d)
 {
@@ -1131,16 +1131,16 @@ double Utility::gaussian(double x, double a, double b, double c, double d)
 }
 
 /***********************************************************************************************************************
- * @BRIEF determines the equality of two double values
+ * @brief determines the equality of two double values
  *
  * the machine epsilon has to be scaled to the magnitude of the larger value and multiplied by the desired precision
  * in ULPs (units in the last place)
  *
- * @PARAM[in] a first double value to compare
- * @PARAM[in] b second double value to compare
- * @PARAM[in] ulp precision multiplier (units in the last place)
- * @RETURN true if doubles are equal
- * @AUTHOR Christoper D. McMurrough
+ * @param[in] a first double value to compare
+ * @param[in] b second double value to compare
+ * @param[in] ulp precision multiplier (units in the last place)
+ * @return true if doubles are equal
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 bool Utility::doubleEquality(double a, double b, int ulp)
 {
@@ -1148,12 +1148,12 @@ bool Utility::doubleEquality(double a, double b, int ulp)
 }
 
 /***********************************************************************************************************************
- * @BRIEF check to see if the two doubles are almost equal (if their difference is less than maxDifference
- * @PARAM[in] a first double value to compare
- * @PARAM[in] b second double value to compare
- * @PARAM[in] maxDifference the maximum allowable difference between the two values
- * @RETURN true if doubles are almost equal
- * @AUTHOR Christoper D. McMurrough
+ * @brief check to see if the two doubles are almost equal (if their difference is less than maxDifference
+ * @param[in] a first double value to compare
+ * @param[in] b second double value to compare
+ * @param[in] maxDifference the maximum allowable difference between the two values
+ * @return true if doubles are almost equal
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 bool Utility::doubleAlmostEqual(double a, double b, double maxDifference)
 {
@@ -1161,18 +1161,18 @@ bool Utility::doubleAlmostEqual(double a, double b, double maxDifference)
 }
 
 /***********************************************************************************************************************
- * @BRIEF check to see if the query point lies within the specified bounding box
- * @PARAM[in] x the query point x coordinate
- * @PARAM[in] y the query point y coordinate
- * @PARAM[in] z the query point z coordinate
- * @PARAM[in] minX the minimum x coordinate
- * @PARAM[in] minY the minimum y coordinate
- * @PARAM[in] minZ the minimum z coordinate
- * @PARAM[in] maxX the maximum x coordinate
- * @PARAM[in] maxY the maximum y coordinate
- * @PARAM[in] maxZ the maximum z coordinate
- * @RETURN true if the point lies within the given bounds
- * @AUTHOR Christopher D. McMurrough
+ * @brief check to see if the query point lies within the specified bounding box
+ * @param[in] x the query point x coordinate
+ * @param[in] y the query point y coordinate
+ * @param[in] z the query point z coordinate
+ * @param[in] minX the minimum x coordinate
+ * @param[in] minY the minimum y coordinate
+ * @param[in] minZ the minimum z coordinate
+ * @param[in] maxX the maximum x coordinate
+ * @param[in] maxY the maximum y coordinate
+ * @param[in] maxZ the maximum z coordinate
+ * @return true if the point lies within the given bounds
+ * @author Christopher D. McMurrough
  **********************************************************************************************************************/
 bool Utility::isPointWithinRange(double x, double y, double z, double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
 {
@@ -1198,11 +1198,11 @@ bool Utility::isPointWithinRange(double x, double y, double z, double minX, doub
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the dot product (inner product) of the two vectors
- * @PARAM[in] p1 the first vector
- * @PARAM[in] p2 the second vector
- * @RETURN the dot product of the two vectors
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the dot product (inner product) of the two vectors
+ * @param[in] p1 the first vector
+ * @param[in] p2 the second vector
+ * @return the dot product of the two vectors
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::dotProduct(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2)
 {
@@ -1210,15 +1210,15 @@ double Utility::dotProduct(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2)
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the dot product (inner product) of the two vectors
- * @PARAM[in] p1x x component of the first vector
- * @PARAM[in] p1y y component of the first vector
- * @PARAM[in] p1z z component of the first vector
- * @PARAM[in] p2x x component of the second vector
- * @PARAM[in] p2y y component of the second vector
- * @PARAM[in] p2z z component of the second vector
- * @RETURN the dot product of the two vectors
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the dot product (inner product) of the two vectors
+ * @param[in] p1x x component of the first vector
+ * @param[in] p1y y component of the first vector
+ * @param[in] p1z z component of the first vector
+ * @param[in] p2x x component of the second vector
+ * @param[in] p2y y component of the second vector
+ * @param[in] p2z z component of the second vector
+ * @return the dot product of the two vectors
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::dotProduct(double p1x, double p1y, double p1z, double p2x, double p2y, double p2z)
 {
@@ -1229,12 +1229,12 @@ double Utility::dotProduct(double p1x, double p1y, double p1z, double p2x, doubl
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the cross product of the two vectors
- * @PARAM[in] p1 the first vector
- * @PARAM[in] p2 the second vector
- * @RETURN the cross product of the two vectors
- * @NOTE the product is computed as if the input points were of type Eigen::Vector3f
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the cross product of the two vectors
+ * @param[in] p1 the first vector
+ * @param[in] p2 the second vector
+ * @return the cross product of the two vectors
+ * @note the product is computed as if the input points were of type Eigen::Vector3f
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::crossProduct(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2)
 {
@@ -1244,15 +1244,15 @@ Eigen::Vector3f Utility::crossProduct(const Eigen::Vector4f &p1, const Eigen::Ve
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the cross product of the two vectors
- * @PARAM[in] p1x x component of the first vector
- * @PARAM[in] p1y y component of the first vector
- * @PARAM[in] p1z z component of the first vector
- * @PARAM[in] p2x x component of the second vector
- * @PARAM[in] p2y y component of the second vector
- * @PARAM[in] p2z z component of the second vector
- * @RETURN the cross product of the two vectors
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the cross product of the two vectors
+ * @param[in] p1x x component of the first vector
+ * @param[in] p1y y component of the first vector
+ * @param[in] p1z z component of the first vector
+ * @param[in] p2x x component of the second vector
+ * @param[in] p2y y component of the second vector
+ * @param[in] p2z z component of the second vector
+ * @return the cross product of the two vectors
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::crossProduct(double p1x, double p1y, double p1z, double p2x, double p2y, double p2z)
 {
@@ -1263,10 +1263,10 @@ Eigen::Vector3f Utility::crossProduct(double p1x, double p1y, double p1z, double
 }
 
 /***********************************************************************************************************************
- * @BRIEF computes the square root of a number
- * @PARAM[in] val the number used to compute the square root
- * @RETURN the square root of val
- * @AUTHOR Christoper D. McMurrough
+ * @brief computes the square root of a number
+ * @param[in] val the number used to compute the square root
+ * @return the square root of val
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 double Utility::squareRoot(double val)
 {
@@ -1274,12 +1274,12 @@ double Utility::squareRoot(double val)
 }
 
 /***********************************************************************************************************************
- * @BRIEF performs linear regression of the equation Ax=b, returning the least-squares solution to x
- * @PARAM[in] A the matrix of sample values
- * @PARAM[in] b the matrix of result values
- * @RETURN the least-squares solution of x
- * @AUTHOR Christoper D. McMurrough
- * @NOTE code derived from http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html
+ * @brief performs linear regression of the equation Ax=b, returning the least-squares solution to x
+ * @param[in] A the matrix of sample values
+ * @param[in] b the matrix of result values
+ * @return the least-squares solution of x
+ * @author Christoper D. McMurrough
+ * @note code derived from http://eigen.tuxfamily.org/dox/group__TutorialLinearAlgebra.html
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::linearRegression(Eigen::MatrixXf A, Eigen::VectorXf b)
 {
@@ -1287,12 +1287,12 @@ Eigen::Vector3f Utility::linearRegression(Eigen::MatrixXf A, Eigen::VectorXf b)
 }
 
 /***********************************************************************************************************************
- * @BRIEF performs linear regression of the equation y=mx+b, returning the least-squares slope and intercept
- * @PARAM[in] X the vector of x values
- * @PARAM[in] Y the vector of y values
- * @PARAM[out] slope the least-squares slope
- * @PARAM[out] intercept the least-squares intercept
- * @AUTHOR Christoper D. McMurrough
+ * @brief performs linear regression of the equation y=mx+b, returning the least-squares slope and intercept
+ * @param[in] X the vector of x values
+ * @param[in] Y the vector of y values
+ * @param[out] slope the least-squares slope
+ * @param[out] intercept the least-squares intercept
+ * @author Christoper D. McMurrough
  **********************************************************************************************************************/
 void Utility::linearRegression(const std::vector<float> &X, const std::vector<float> &Y, float &slope, float &intercept)
 {
