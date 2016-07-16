@@ -11,13 +11,16 @@ function handleRequest(request, response)
     console.log('Response sent');
 }
 
+// define a function to handle server launch
+function serverStart()
+{
+	// callback triggered when server is successfully listening
+    console.log("Server listening on: http://localhost:%s", PORT);
+}
+
 // create a server
 var server = http.createServer(handleRequest);
 
 // start the server
-server.listen(PORT, function()
-{
-    // callback triggered when server is successfully listening
-    console.log("Server listening on: http://localhost:%s", PORT);
-}
-);
+server.listen(PORT, serverStart);
+
