@@ -7,7 +7,7 @@ const PORT=8080;
 // define a function to handle requests and send a response
 function handleRequest(request, response)
 {
-    response.end('Request arrived at path: ' + request.url);
+    response.end('Responding to request at path: ' + request.url);
     console.log('Response sent');
 }
 
