@@ -31,32 +31,31 @@ function httpPost(string)
 }
 
 /*******************************************************************************************************************//**
-* Spawn the child process
+* Child process spawning and event handling
 ***********************************************************************************************************************/
-
-// import the child_process module for syscalls
-var spawn = require('child_process').spawn;
-
-// import the crypto module for MAC anonymizing
-var crypto = require('crypto');
 
 // define a function to handle child process stdout events
 function childHandleStdout(data)
 {
-	/*
-	// separate full lines of text
-	var strings = data.toString().split("\n");
-
-	// iteratively handle each received line of text
-	for(var i = 0; i < strings.length; i++)
+	// handle individual lines or full text blocks
+	var separateLines = false;
+	if(separateLines)
 	{
-		httpPost(strings[i]);
-		console.log(strings[i]);
-	}
-	*/
+		// separate full lines of text
+		var strings = data.toString().split("\n");
 
-	// post the data
-	httpPost(data);
+		// iteratively handle each received line of text
+		for(var i = 0; i < strings.length; i++)
+		{
+			// post the data
+			httpPost(strings[i]);
+		}
+	}
+	else
+	{
+		// post the data
+		httpPost(data);
+	}
 }
 
 // define a function to handle child process stderr events
@@ -70,6 +69,9 @@ function childHandleClose(code)
 {
 	console.log('Child process CLOSE: %s \n', code.toString());
 }
+
+// import the child_process module for syscalls
+var spawn = require('child_process').spawn;
 
 // spawn the child process
 var child_command = "ipconfig";
