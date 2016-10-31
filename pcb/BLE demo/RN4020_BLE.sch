@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.4.0">
+<eagle version="7.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -8389,6 +8389,8 @@ Source: www.kingbright.com</description>
 <part name="VOUT" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="+3V7" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
+<part name="R6" library="resistor" deviceset="R-US_" device="R1206" value="4.7k"/>
+<part name="+3V8" library="supply1" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8429,10 +8431,12 @@ Source: www.kingbright.com</description>
 <instance part="+3V6" gate="G$1" x="134.62" y="-22.86" rot="R270"/>
 <instance part="A2D" gate="A" x="154.94" y="-15.24"/>
 <instance part="C4" gate="G$1" x="35.56" y="25.4" rot="R270"/>
-<instance part="GND10" gate="1" x="27.94" y="30.48" rot="R180"/>
+<instance part="GND10" gate="1" x="30.48" y="33.02" rot="R180"/>
 <instance part="VOUT" gate="G$1" x="40.64" y="43.18"/>
 <instance part="+3V7" gate="G$1" x="50.8" y="45.72" rot="R270"/>
 <instance part="GND11" gate="1" x="48.26" y="40.64"/>
+<instance part="R6" gate="G$1" x="25.4" y="25.4" rot="R90"/>
+<instance part="+3V8" gate="G$1" x="25.4" y="33.02"/>
 </instances>
 <busses>
 </busses>
@@ -8440,8 +8444,13 @@ Source: www.kingbright.com</description>
 <net name="MCLR" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="!MCLR!/VPP/RE3"/>
-<wire x1="43.18" y1="17.78" x2="27.94" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="17.78" x2="38.1" y2="17.78" width="0.1524" layer="91"/>
 <label x="27.94" y="17.78" size="1.778" layer="95"/>
+<wire x1="38.1" y1="17.78" x2="27.94" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="17.78" x2="38.1" y2="20.32" width="0.1524" layer="91"/>
+<junction x="38.1" y="17.78"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<wire x1="38.1" y1="20.32" x2="25.4" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="ICSP" gate="A" pin="1"/>
@@ -8632,8 +8641,7 @@ Source: www.kingbright.com</description>
 <segment>
 <pinref part="C4" gate="G$1" pin="2"/>
 <pinref part="GND10" gate="1" pin="GND"/>
-<wire x1="30.48" y1="25.4" x2="27.94" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="25.4" x2="27.94" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="25.4" x2="30.48" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="VOUT" gate="G$1" pin="2"/>
@@ -8692,6 +8700,10 @@ Source: www.kingbright.com</description>
 <pinref part="VOUT" gate="G$1" pin="1"/>
 <wire x1="38.1" y1="45.72" x2="48.26" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="+3V7" gate="G$1" pin="+3V3"/>
+</segment>
+<segment>
+<pinref part="R6" gate="G$1" pin="2"/>
+<pinref part="+3V8" gate="G$1" pin="+3V3"/>
 </segment>
 </net>
 <net name="N$1" class="0">
