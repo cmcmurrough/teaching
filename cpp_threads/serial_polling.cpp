@@ -11,8 +11,8 @@
 #include <thread>
 #include <mutex>
 #include <csignal>
-#include <boost/asio/serial_port.hpp> 
-#include <boost/asio.hpp> 
+#include <boost/asio/serial_port.hpp>
+#include <boost/asio.hpp>
 
 // configuration parameters
 #define NUM_COMNMAND_LINE_ARGUMENTS 2
@@ -53,61 +53,61 @@ int main(int argc, char **argv)
     }
     else
     {
-		port_name = argv[1];
+        port_name = argv[1];
         baud_rate = atoi(argv[2]);
     }
 
-	// active the exit signal handler
-	signal(SIGINT, ExitHandler);
+    // active the exit signal handler
+    signal(SIGINT, ExitHandler);
 
-	// attempt to open the serial port
-	try
-	{
-		SerialPort.open(port_name);
-		SerialPort.set_option(boost::asio::serial_port_base::baud_rate(baud_rate));
-		std::printf("Serial port opened successfully! \n");
-	}
-	catch(std::exception &e)
-	{
-		std::printf("Unable to open serial port, terminating program! \n");
-		exit(EXIT_FAILURE);
-	}
-
-	// start the polling thread
-	std::thread pollingThread(PollingThreadHandler);
-
-    // begin processing loop
-	while(RUNNING)
+    // attempt to open the serial port
+    try
     {
-		// check to see if we have 15 or more characters in the buffer
-		Mutex.lock();
-		if(SerialBuffer.size() >= 15)
-		{
-			// print each character
-			for(int i = 0; i < SerialBuffer.size(); i++)
-			{
-				std::printf("%c", SerialBuffer.at(i));
-			}
-
-			// clear the buffer
-			SerialBuffer.clear();
-		}
-		else if(SerialBuffer.size() > 0)
-		{
-			std::printf("Only %d characters available...\n", SerialBuffer.size());
-		}
-		Mutex.unlock();
-
-		// sleep for the specified amount of time
-		std::this_thread::sleep_for(std::chrono::milliseconds(MAIN_THREAD_SLEEP_MS));
+        SerialPort.open(port_name);
+        SerialPort.set_option(boost::asio::serial_port_base::baud_rate(baud_rate));
+        std::printf("Serial port opened successfully! \n");
+    }
+    catch(std::exception &e)
+    {
+        std::printf("Unable to open serial port, terminating program! \n");
+        exit(EXIT_FAILURE);
     }
 
-	// wait for the polling thread to stop
-	pollingThread.join();
+    // start the polling thread
+    std::thread pollingThread(PollingThreadHandler);
+
+    // begin processing loop
+    while(RUNNING)
+    {
+        // check to see if we have 15 or more characters in the buffer
+        Mutex.lock();
+        if(SerialBuffer.size() >= 15)
+        {
+            // print each character
+            for(int i = 0; i < SerialBuffer.size(); i++)
+            {
+                std::printf("%c", SerialBuffer.at(i));
+            }
+
+            // clear the buffer
+            SerialBuffer.clear();
+        }
+        else if(SerialBuffer.size() > 0)
+        {
+            std::printf("Only %d characters available...\n", SerialBuffer.size());
+        }
+        Mutex.unlock();
+
+        // sleep for the specified amount of time
+        std::this_thread::sleep_for(std::chrono::milliseconds(MAIN_THREAD_SLEEP_MS));
+    }
+
+    // wait for the polling thread to stop
+    pollingThread.join();
 
     // close the serial port
     std::printf("Closing serial port... \n");
-	SerialPort.close();
+    SerialPort.close();
 
     // terminate the program
     std::printf("Terminating program. \n");
@@ -121,16 +121,16 @@ int main(int argc, char **argv)
 void PollingThreadHandler()
 {
     // poll data while processing is active
-	while(RUNNING)
+    while(RUNNING)
     {
-		// read a single character from the serial port
-		char c;
-		boost::asio::read(SerialPort, boost::asio::buffer(&c, 1));
+        // read a single character from the serial port
+        char c;
+        boost::asio::read(SerialPort, boost::asio::buffer(&c, 1));
 
-		// append the character to the shared receive buffer
-		Mutex.lock();
-		SerialBuffer.push_back(c);
-		Mutex.unlock();
+        // append the character to the shared receive buffer
+        Mutex.lock();
+        SerialBuffer.push_back(c);
+        Mutex.unlock();
 
         // sleep for the specified amount of time
         std::this_thread::sleep_for(std::chrono::milliseconds(POLLING_THREAD_SLEEP_MS));

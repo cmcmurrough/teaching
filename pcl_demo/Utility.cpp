@@ -39,8 +39,8 @@
  **********************************************************************************************************************/
 void Utility::redirectIOToConsole(int maxConsoleLines)
 {
-	// this function is windows specific, disable if necessary
-	#if defined _WIN64 || defined _WIN32
+    // this function is windows specific, disable if necessary
+    #if defined _WIN64 || defined _WIN32
 
     int hConHandle;
     long lStdHandle;
@@ -82,7 +82,7 @@ void Utility::redirectIOToConsole(int maxConsoleLines)
     // redirect cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
     std::ios::sync_with_stdio();
 
-	#endif
+    #endif
 }
 
 /***********************************************************************************************************************
@@ -94,108 +94,108 @@ void Utility::redirectIOToConsole(int maxConsoleLines)
  **********************************************************************************************************************/
 void Utility::printColored(char color, const char* msg, ...)
 {
-	// get the printf arguments
-	char buffer[256];
-	va_list args;
-	va_start(args, msg);
-	vsprintf(buffer, msg, args);
-	va_end(args);
+    // get the printf arguments
+    char buffer[256];
+    va_list args;
+    va_start(args, msg);
+    vsprintf(buffer, msg, args);
+    va_end(args);
 
-	// change print color using windows std output handles
-	#if defined _WIN64 || defined _WIN32 
+    // change print color using windows std output handles
+    #if defined _WIN64 || defined _WIN32
 
-	// store the old settings so we can restore when done
-	HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	GetConsoleScreenBufferInfo(hstdout, &csbi);
+    // store the old settings so we can restore when done
+    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(hstdout, &csbi);
 
-	// set the color accordingly
-	switch(color)
-	{
-		case 'b':
-		case 'B':
-			SetConsoleTextAttribute(hstdout, 0x09);
-			break;
-		case 'g':
-		case 'G':
-			SetConsoleTextAttribute(hstdout, 0x0A);
-			break;
-		case 'c':
-		case 'C':
-			SetConsoleTextAttribute(hstdout, 0x0B);
-			break;
-		case 'r':
-		case 'R':
-			SetConsoleTextAttribute(hstdout, 0x0C);
-			break;
-		case 'm':
-		case 'M':
-			SetConsoleTextAttribute(hstdout, 0x0D);
-			break;
-		case 'y':
-		case 'Y':
-			SetConsoleTextAttribute(hstdout, 0x0E);
-			break;
-		case 'w':
-		case 'W':
-			SetConsoleTextAttribute(hstdout, 0x0F);
-			break;
-		default:
-			break;
-	}
+    // set the color accordingly
+    switch(color)
+    {
+        case 'b':
+        case 'B':
+            SetConsoleTextAttribute(hstdout, 0x09);
+            break;
+        case 'g':
+        case 'G':
+            SetConsoleTextAttribute(hstdout, 0x0A);
+            break;
+        case 'c':
+        case 'C':
+            SetConsoleTextAttribute(hstdout, 0x0B);
+            break;
+        case 'r':
+        case 'R':
+            SetConsoleTextAttribute(hstdout, 0x0C);
+            break;
+        case 'm':
+        case 'M':
+            SetConsoleTextAttribute(hstdout, 0x0D);
+            break;
+        case 'y':
+        case 'Y':
+            SetConsoleTextAttribute(hstdout, 0x0E);
+            break;
+        case 'w':
+        case 'W':
+            SetConsoleTextAttribute(hstdout, 0x0F);
+            break;
+        default:
+            break;
+    }
 
-	// print the message
-	printf(buffer);
+    // print the message
+    printf(buffer);
 
     // restore the old settings
-	SetConsoleTextAttribute(hstdout, csbi.wAttributes);
+    SetConsoleTextAttribute(hstdout, csbi.wAttributes);
 
-	// handle OS other than windows
-	#else 
-	
-	#define ANSI_COLOR_RED "\x1b[31m"
-	#define ANSI_COLOR_GREEN "\x1b[32m"
-	#define ANSI_COLOR_YELLOW "\x1b[33m"
-	#define ANSI_COLOR_BLUE "\x1b[34m"
-	#define ANSI_COLOR_MAGENTA "\x1b[35m"
-	#define ANSI_COLOR_CYAN "\x1b[36m"
-	#define ANSI_COLOR_RESET "\x1b[0m"
+    // handle OS other than windows
+    #else
 
-	// set the color accordingly
-	switch(color)
-	{
-		case 'b':
-		case 'B':
-			printf("%s%s%s", ANSI_COLOR_BLUE, buffer, ANSI_COLOR_RESET);
-			break;
-		case 'g':
-		case 'G':
-			printf("%s%s%s", ANSI_COLOR_GREEN, buffer, ANSI_COLOR_RESET);
-			break;
-		case 'c':
-		case 'C':
-			printf("%s%s%s", ANSI_COLOR_CYAN, buffer, ANSI_COLOR_RESET);
-			break;
-		case 'r':
-		case 'R':
-			printf("%s%s%s", ANSI_COLOR_RED, buffer, ANSI_COLOR_RESET);
-			break;
-		case 'm':
-		case 'M':
-			printf("%s%s%s", ANSI_COLOR_MAGENTA, buffer, ANSI_COLOR_RESET);
-			break;
-		case 'y':
-		case 'Y':
-			printf("%s%s%s", ANSI_COLOR_YELLOW, buffer, ANSI_COLOR_RESET);
-			break;
-		default:
-			printf(buffer);
-			break;
-	}
+    #define ANSI_COLOR_RED "\x1b[31m"
+    #define ANSI_COLOR_GREEN "\x1b[32m"
+    #define ANSI_COLOR_YELLOW "\x1b[33m"
+    #define ANSI_COLOR_BLUE "\x1b[34m"
+    #define ANSI_COLOR_MAGENTA "\x1b[35m"
+    #define ANSI_COLOR_CYAN "\x1b[36m"
+    #define ANSI_COLOR_RESET "\x1b[0m"
 
-	return;
+    // set the color accordingly
+    switch(color)
+    {
+        case 'b':
+        case 'B':
+            printf("%s%s%s", ANSI_COLOR_BLUE, buffer, ANSI_COLOR_RESET);
+            break;
+        case 'g':
+        case 'G':
+            printf("%s%s%s", ANSI_COLOR_GREEN, buffer, ANSI_COLOR_RESET);
+            break;
+        case 'c':
+        case 'C':
+            printf("%s%s%s", ANSI_COLOR_CYAN, buffer, ANSI_COLOR_RESET);
+            break;
+        case 'r':
+        case 'R':
+            printf("%s%s%s", ANSI_COLOR_RED, buffer, ANSI_COLOR_RESET);
+            break;
+        case 'm':
+        case 'M':
+            printf("%s%s%s", ANSI_COLOR_MAGENTA, buffer, ANSI_COLOR_RESET);
+            break;
+        case 'y':
+        case 'Y':
+            printf("%s%s%s", ANSI_COLOR_YELLOW, buffer, ANSI_COLOR_RESET);
+            break;
+        default:
+            printf(buffer);
+            break;
+    }
 
-	#endif
+    return;
+
+    #endif
 }
 
 /***********************************************************************************************************************
@@ -207,20 +207,20 @@ void Utility::printColored(char color, const char* msg, ...)
  **********************************************************************************************************************/
 bool Utility::writeFile(const char* fileName, std::stringstream &ss)
 {
-	// attempt to open the output file
-	std::ofstream outFile(fileName);
+    // attempt to open the output file
+    std::ofstream outFile(fileName);
 
-	// write the file
-	if(outFile.is_open())
-	{
-		outFile << ss.rdbuf();
-		outFile.close();
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+    // write the file
+    if(outFile.is_open())
+    {
+        outFile << ss.rdbuf();
+        outFile.close();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /***********************************************************************************************************************
@@ -236,13 +236,13 @@ bool Utility::writeFile(const char* fileName, std::stringstream &ss)
  **********************************************************************************************************************/
 Eigen::Quaternionf Utility::rpy2quat(double roll, double pitch, double yaw)
 {
-	Eigen::Quaternionf q;
-	Eigen::AngleAxisf aaZ(static_cast<float>(yaw), Eigen::Vector3f::UnitZ());
-	Eigen::AngleAxisf aaY(static_cast<float>(pitch), Eigen::Vector3f::UnitY());
-	Eigen::AngleAxisf aaX(static_cast<float>(roll), Eigen::Vector3f::UnitX());
-	q = aaZ * aaY * aaX;
-	
-	return q;
+    Eigen::Quaternionf q;
+    Eigen::AngleAxisf aaZ(static_cast<float>(yaw), Eigen::Vector3f::UnitZ());
+    Eigen::AngleAxisf aaY(static_cast<float>(pitch), Eigen::Vector3f::UnitY());
+    Eigen::AngleAxisf aaX(static_cast<float>(roll), Eigen::Vector3f::UnitX());
+    q = aaZ * aaY * aaX;
+
+    return q;
 }
 
 /***********************************************************************************************************************
@@ -261,11 +261,11 @@ Eigen::Quaternionf Utility::rpy2quat(double roll, double pitch, double yaw)
  **********************************************************************************************************************/
 void Utility::rpy2quat(double roll, double pitch, double yaw, double &qw, double &qx, double &qy, double &qz)
 {
-	Eigen::Quaternionf q = Utility::rpy2quat(roll, pitch, yaw);
-	qw = static_cast<double>(q.w());
-	qx = static_cast<double>(q.x());
-	qy = static_cast<double>(q.y());
-	qz = static_cast<double>(q.z());
+    Eigen::Quaternionf q = Utility::rpy2quat(roll, pitch, yaw);
+    qw = static_cast<double>(q.w());
+    qx = static_cast<double>(q.x());
+    qy = static_cast<double>(q.y());
+    qz = static_cast<double>(q.z());
 }
 
 /***********************************************************************************************************************
@@ -280,10 +280,10 @@ void Utility::rpy2quat(double roll, double pitch, double yaw, double &qw, double
  **********************************************************************************************************************/
 Eigen::Quaternionf Utility::affine2quat(const Eigen::Affine3f &transformation)
 {
-	// extract the quaternion rotation
-	Eigen::Matrix3f rotation = transformation.rotation();
-	Eigen::Quaternionf quat(rotation);
-	return quat;
+    // extract the quaternion rotation
+    Eigen::Matrix3f rotation = transformation.rotation();
+    Eigen::Quaternionf quat(rotation);
+    return quat;
 }
 
 /***********************************************************************************************************************
@@ -295,27 +295,27 @@ Eigen::Quaternionf Utility::affine2quat(const Eigen::Affine3f &transformation)
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::quat2affine(const Eigen::Vector4f &position, const Eigen::Quaternionf &orientation)
 {
-	Eigen::Matrix3f rotation = orientation.normalized().toRotationMatrix();
-	Eigen::Affine3f t;
+    Eigen::Matrix3f rotation = orientation.normalized().toRotationMatrix();
+    Eigen::Affine3f t;
 
-	t(0,0) = rotation(0,0);
-	t(0,1) = rotation(0,1);
-	t(0,2) = rotation(0,2);
-	t(0,3) = position[0];
-	t(1,0) = rotation(1,0);
-	t(1,1) = rotation(1,1);
-	t(1,2) = rotation(1,2);
-	t(1,3) = position[1];
-	t(2,0) = rotation(2,0);
-	t(2,1) = rotation(2,1);
-	t(2,2) = rotation(2,2);
-	t(2,3) = position[2];
-	t(3,0) = 0;
-	t(3,1) = 0;
-	t(3,2) = 0;
-	t(3,3) = 1;
+    t(0,0) = rotation(0,0);
+    t(0,1) = rotation(0,1);
+    t(0,2) = rotation(0,2);
+    t(0,3) = position[0];
+    t(1,0) = rotation(1,0);
+    t(1,1) = rotation(1,1);
+    t(1,2) = rotation(1,2);
+    t(1,3) = position[1];
+    t(2,0) = rotation(2,0);
+    t(2,1) = rotation(2,1);
+    t(2,2) = rotation(2,2);
+    t(2,3) = position[2];
+    t(3,0) = 0;
+    t(3,1) = 0;
+    t(3,2) = 0;
+    t(3,3) = 1;
 
-	return t;
+    return t;
 }
 
 /***********************************************************************************************************************
@@ -348,11 +348,11 @@ Eigen::Matrix3f Utility::rpy2mat(double roll, double pitch, double yaw)
  **********************************************************************************************************************/
 void Utility::mat2rpy(const Eigen::Matrix3f &rotation, double &roll, double &pitch, double &yaw)
 {
-	Eigen::Vector3f angles = rotation.eulerAngles(2, 1, 0);
+    Eigen::Vector3f angles = rotation.eulerAngles(2, 1, 0);
 
-	roll = static_cast<double>(angles[2]);
-	pitch = static_cast<double>(angles[1]);
-	yaw = static_cast<double>(angles[0]);
+    roll = static_cast<double>(angles[2]);
+    pitch = static_cast<double>(angles[1]);
+    yaw = static_cast<double>(angles[0]);
 }
 
 /***********************************************************************************************************************
@@ -366,27 +366,27 @@ void Utility::mat2rpy(const Eigen::Matrix3f &rotation, double &roll, double &pit
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::xyzrpy2affine(const Eigen::Vector4f &position, double roll, double pitch, double yaw)
 {
-	Eigen::Matrix3f rotation = Utility::rpy2mat(roll, pitch, yaw);
-	Eigen::Affine3f t;
+    Eigen::Matrix3f rotation = Utility::rpy2mat(roll, pitch, yaw);
+    Eigen::Affine3f t;
 
-	t(0,0) = rotation(0,0);
-	t(0,1) = rotation(0,1);
-	t(0,2) = rotation(0,2);
-	t(0,3) = position[0];
-	t(1,0) = rotation(1,0);
-	t(1,1) = rotation(1,1);
-	t(1,2) = rotation(1,2);
-	t(1,3) = position[1];
-	t(2,0) = rotation(2,0);
-	t(2,1) = rotation(2,1);
-	t(2,2) = rotation(2,2);
-	t(2,3) = position[2];
-	t(3,0) = 0;
-	t(3,1) = 0;
-	t(3,2) = 0;
-	t(3,3) = 1;
+    t(0,0) = rotation(0,0);
+    t(0,1) = rotation(0,1);
+    t(0,2) = rotation(0,2);
+    t(0,3) = position[0];
+    t(1,0) = rotation(1,0);
+    t(1,1) = rotation(1,1);
+    t(1,2) = rotation(1,2);
+    t(1,3) = position[1];
+    t(2,0) = rotation(2,0);
+    t(2,1) = rotation(2,1);
+    t(2,2) = rotation(2,2);
+    t(2,3) = position[2];
+    t(3,0) = 0;
+    t(3,1) = 0;
+    t(3,2) = 0;
+    t(3,3) = 1;
 
-	return t;
+    return t;
 }
 
 /***********************************************************************************************************************
@@ -402,27 +402,27 @@ Eigen::Affine3f Utility::xyzrpy2affine(const Eigen::Vector4f &position, double r
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::xyzrpy2affine(double x, double y, double z, double roll, double pitch, double yaw)
 {
-	Eigen::Matrix3f rotation = Utility::rpy2mat(roll, pitch, yaw);
-	Eigen::Affine3f t;
+    Eigen::Matrix3f rotation = Utility::rpy2mat(roll, pitch, yaw);
+    Eigen::Affine3f t;
 
-	t(0,0) = rotation(0,0);
-	t(0,1) = rotation(0,1);
-	t(0,2) = rotation(0,2);
-	t(0,3) = static_cast<float>(x);
-	t(1,0) = rotation(1,0);
-	t(1,1) = rotation(1,1);
-	t(1,2) = rotation(1,2);
-	t(1,3) = static_cast<float>(y);
-	t(2,0) = rotation(2,0);
-	t(2,1) = rotation(2,1);
-	t(2,2) = rotation(2,2);
-	t(2,3) = static_cast<float>(z);
-	t(3,0) = 0;
-	t(3,1) = 0;
-	t(3,2) = 0;
-	t(3,3) = 1;
+    t(0,0) = rotation(0,0);
+    t(0,1) = rotation(0,1);
+    t(0,2) = rotation(0,2);
+    t(0,3) = static_cast<float>(x);
+    t(1,0) = rotation(1,0);
+    t(1,1) = rotation(1,1);
+    t(1,2) = rotation(1,2);
+    t(1,3) = static_cast<float>(y);
+    t(2,0) = rotation(2,0);
+    t(2,1) = rotation(2,1);
+    t(2,2) = rotation(2,2);
+    t(2,3) = static_cast<float>(z);
+    t(3,0) = 0;
+    t(3,1) = 0;
+    t(3,2) = 0;
+    t(3,3) = 1;
 
-	return t;
+    return t;
 }
 
 /***********************************************************************************************************************
@@ -437,26 +437,26 @@ Eigen::Affine3f Utility::xyzrpy2affine(double x, double y, double z, double roll
  **********************************************************************************************************************/
 Eigen::Affine3f Utility::basis2affine(const Eigen::Vector4f &position, const Eigen::Vector4f &x, const Eigen::Vector4f &y, const Eigen::Vector4f &z)
 {
-	Eigen::Affine3f t;
+    Eigen::Affine3f t;
 
-	t(0,0) = x(0);
-	t(0,1) = y(0);
-	t(0,2) = z(0);
-	t(0,3) = position(0);
-	t(1,0) = x(1);
-	t(1,1) = y(1);
-	t(1,2) = z(1);
-	t(1,3) = position(1);
-	t(2,0) = x(2);
-	t(2,1) = y(2);
-	t(2,2) = z(2);
-	t(2,3) = position(2);
-	t(3,0) = 0;
-	t(3,1) = 0;
-	t(3,2) = 0;
-	t(3,3) = 1;
+    t(0,0) = x(0);
+    t(0,1) = y(0);
+    t(0,2) = z(0);
+    t(0,3) = position(0);
+    t(1,0) = x(1);
+    t(1,1) = y(1);
+    t(1,2) = z(1);
+    t(1,3) = position(1);
+    t(2,0) = x(2);
+    t(2,1) = y(2);
+    t(2,2) = z(2);
+    t(2,3) = position(2);
+    t(3,0) = 0;
+    t(3,1) = 0;
+    t(3,2) = 0;
+    t(3,3) = 1;
 
-	return t;
+    return t;
 }
 
 
@@ -468,8 +468,8 @@ Eigen::Affine3f Utility::basis2affine(const Eigen::Vector4f &position, const Eig
  **********************************************************************************************************************/
 Eigen::Matrix4f Utility::affine2mat(const Eigen::Affine3f &transformation)
 {
-	Eigen::Matrix4f mat(transformation.matrix());
-	return mat;
+    Eigen::Matrix4f mat(transformation.matrix());
+    return mat;
 }
 
 /***********************************************************************************************************************
@@ -485,8 +485,8 @@ Eigen::Matrix4f Utility::affine2mat(const Eigen::Affine3f &transformation)
 void Utility::cartesian2Spherical(double x, double y, double z, double &radius, double &inclination, double &azimuth)
 {
     radius = sqrt(x*x + y*y + z*z);
-	inclination = std::acos(z / radius);
-	azimuth = std::atan2(y, x);
+    inclination = std::acos(z / radius);
+    azimuth = std::atan2(y, x);
 }
 
 /***********************************************************************************************************************
@@ -497,7 +497,7 @@ void Utility::cartesian2Spherical(double x, double y, double z, double &radius, 
  **********************************************************************************************************************/
 double Utility::deg2rad(double degrees)
 {
-	return (degrees * 0.017453293);
+    return (degrees * 0.017453293);
 }
 
 /***********************************************************************************************************************
@@ -508,7 +508,7 @@ double Utility::deg2rad(double degrees)
  **********************************************************************************************************************/
 double Utility::rad2deg(double radians)
 {
-	return (radians * 57.29578);
+    return (radians * 57.29578);
 }
 
 /***********************************************************************************************************************
@@ -519,7 +519,7 @@ double Utility::rad2deg(double radians)
  **********************************************************************************************************************/
 Eigen::Vector4f Utility::toVec4(Eigen::Vector3f &vec, float lastVal)
 {
-	return Eigen::Vector4f(vec[0], vec[1], vec[2], lastVal);
+    return Eigen::Vector4f(vec[0], vec[1], vec[2], lastVal);
 }
 
 /***********************************************************************************************************************
@@ -557,9 +557,9 @@ double Utility::pointToLineDistance(const Eigen::Vector4f &p, const Eigen::Vecto
  **********************************************************************************************************************/
 double Utility::pointToLineDistance(double px, double py, double pz, double line_p1x, double line_p1y, double line_p1z, double line_p2x, double line_p2y, double line_p2z)
 {
-	Eigen::Vector4f p(static_cast<float>(px), static_cast<float>(py), static_cast<float>(pz), 0);
-	Eigen::Vector4f line_p1(static_cast<float>(line_p1x), static_cast<float>(line_p1y), static_cast<float>(line_p1z), 0);
-	Eigen::Vector4f line_p2(static_cast<float>(line_p2x), static_cast<float>(line_p2y), static_cast<float>(line_p2z), 0);
+    Eigen::Vector4f p(static_cast<float>(px), static_cast<float>(py), static_cast<float>(pz), 0);
+    Eigen::Vector4f line_p1(static_cast<float>(line_p1x), static_cast<float>(line_p1y), static_cast<float>(line_p1z), 0);
+    Eigen::Vector4f line_p2(static_cast<float>(line_p2x), static_cast<float>(line_p2y), static_cast<float>(line_p2z), 0);
 
     // D = ||(P2-P1) x (P1-P0)|| / ||P2-P1|| = norm (cross (p2-p1, p1-p0)) / norm(p2-p1)
     double numerator = (p - line_p1).cross3(p - line_p2).norm();
@@ -580,22 +580,22 @@ double Utility::pointToLineDistance(double px, double py, double pz, double line
  **********************************************************************************************************************/
 double Utility::pointToLineSegmentDistance(const Eigen::Vector4f &p, const Eigen::Vector4f &line_p1, const Eigen::Vector4f &line_p2)
 {
-	Eigen::Vector4f v = line_p2 - line_p1;
-	Eigen::Vector4f w = p - line_p1;
+    Eigen::Vector4f v = line_p2 - line_p1;
+    Eigen::Vector4f w = p - line_p1;
 
-	double c1 = w.dot(v);
-	if(c1 <= 0)
-	{
-		return Utility::euclideanDistance(p, line_p1);
-	}
-	double c2 = v.dot(v);
-	if(c2 <= c1)
-	{
-		return Utility::euclideanDistance(p, line_p2);
-	}
-	float b = static_cast<float>(c1 / c2);
-	Eigen::Vector4f pb = line_p1 + b * v;
-	return Utility::euclideanDistance(p, pb);
+    double c1 = w.dot(v);
+    if(c1 <= 0)
+    {
+        return Utility::euclideanDistance(p, line_p1);
+    }
+    double c2 = v.dot(v);
+    if(c2 <= c1)
+    {
+        return Utility::euclideanDistance(p, line_p2);
+    }
+    float b = static_cast<float>(c1 / c2);
+    Eigen::Vector4f pb = line_p1 + b * v;
+    return Utility::euclideanDistance(p, pb);
 }
 
 /***********************************************************************************************************************
@@ -616,9 +616,9 @@ double Utility::pointToLineSegmentDistance(const Eigen::Vector4f &p, const Eigen
  **********************************************************************************************************************/
 double Utility::pointToLineSegmentDistance(double px, double py, double pz, double line_p1x, double line_p1y, double line_p1z, double line_p2x, double line_p2y, double line_p2z)
 {
-	Eigen::Vector4f p(static_cast<float>(px), static_cast<float>(py), static_cast<float>(pz), 0);
-	Eigen::Vector4f line_p1(static_cast<float>(line_p1x), static_cast<float>(line_p1y), static_cast<float>(line_p1z), 0);
-	Eigen::Vector4f line_p2(static_cast<float>(line_p2x), static_cast<float>(line_p2y), static_cast<float>(line_p2z), 0);
+    Eigen::Vector4f p(static_cast<float>(px), static_cast<float>(py), static_cast<float>(pz), 0);
+    Eigen::Vector4f line_p1(static_cast<float>(line_p1x), static_cast<float>(line_p1y), static_cast<float>(line_p1z), 0);
+    Eigen::Vector4f line_p2(static_cast<float>(line_p2x), static_cast<float>(line_p2y), static_cast<float>(line_p2z), 0);
 
     return Utility::pointToLineSegmentDistance(p, line_p1, line_p2);
 }
@@ -636,18 +636,18 @@ double Utility::pointToLineSegmentDistance(double px, double py, double pz, doub
  **********************************************************************************************************************/
 double Utility::pointToRayDistance(const Eigen::Vector4f &p, const Eigen::Vector4f &origin, const Eigen::Vector4f &dir)
 {
-	Eigen::Vector4f v = dir;
-	Eigen::Vector4f w = p - origin;
+    Eigen::Vector4f v = dir;
+    Eigen::Vector4f w = p - origin;
 
-	double c1 = w.dot(v);
-	if(c1 <= 0)
-	{
-		return Utility::euclideanDistance(p, origin);
-	}
-	double c2 = v.dot(v);
-	float b = static_cast<float>(c1 / c2);
-	Eigen::Vector4f pb = origin + b * v;
-	return Utility::euclideanDistance(p, pb);
+    double c1 = w.dot(v);
+    if(c1 <= 0)
+    {
+        return Utility::euclideanDistance(p, origin);
+    }
+    double c2 = v.dot(v);
+    float b = static_cast<float>(c1 / c2);
+    Eigen::Vector4f pb = origin + b * v;
+    return Utility::euclideanDistance(p, pb);
 }
 
 /***********************************************************************************************************************
@@ -668,9 +668,9 @@ double Utility::pointToRayDistance(const Eigen::Vector4f &p, const Eigen::Vector
  **********************************************************************************************************************/
 double Utility::pointToRayDistance(double px, double py, double pz, double origin_x, double origin_y, double origin_z, double dir_x, double dir_y, double dir_z)
 {
-	Eigen::Vector4f p(static_cast<float>(px), static_cast<float>(py), static_cast<float>(pz), 0);
-	Eigen::Vector4f origin(static_cast<float>(origin_x), static_cast<float>(origin_y), static_cast<float>(origin_z), 0);
-	Eigen::Vector4f dir(static_cast<float>(dir_x), static_cast<float>(dir_y), static_cast<float>(dir_z), 0);
+    Eigen::Vector4f p(static_cast<float>(px), static_cast<float>(py), static_cast<float>(pz), 0);
+    Eigen::Vector4f origin(static_cast<float>(origin_x), static_cast<float>(origin_y), static_cast<float>(origin_z), 0);
+    Eigen::Vector4f dir(static_cast<float>(dir_x), static_cast<float>(dir_y), static_cast<float>(dir_z), 0);
 
     return Utility::pointToLineSegmentDistance(p, origin, dir);
 }
@@ -684,11 +684,11 @@ double Utility::pointToRayDistance(double px, double py, double pz, double origi
  **********************************************************************************************************************/
 double Utility::pointToPlaneDistance(const Eigen::Vector4f &p, const Eigen::Vector4f &plane)
 {
-	Eigen::Vector3f x(p[0], p[1], p[2]);
-	Eigen::Vector3f v(plane[0], plane[1], plane[2]);
+    Eigen::Vector3f x(p[0], p[1], p[2]);
+    Eigen::Vector3f v(plane[0], plane[1], plane[2]);
 
-	// compute the point to plane distance
-	return v.normalized().dot(x) + (plane[3] / v.norm());
+    // compute the point to plane distance
+    return v.normalized().dot(x) + (plane[3] / v.norm());
 }
 
 /***********************************************************************************************************************
@@ -705,8 +705,8 @@ double Utility::pointToPlaneDistance(const Eigen::Vector4f &p, const Eigen::Vect
  **********************************************************************************************************************/
 double Utility::pointToPlaneDistance(double px, double py, double pz, double a, double b, double c, double d)
 {
-	double numerator = fabs(a*px + b*py + c*pz + d);
-	double denominator = sqrt(a*a + b*b + c*c);
+    double numerator = fabs(a*px + b*py + c*pz + d);
+    double denominator = sqrt(a*a + b*b + c*c);
     return numerator / denominator;
 }
 
@@ -720,11 +720,11 @@ double Utility::pointToPlaneDistance(double px, double py, double pz, double a, 
  **********************************************************************************************************************/
 double Utility::rayToPlaneDistance(const Eigen::Vector4f &origin, const Eigen::Vector4f &direction, const Eigen::Vector4f &plane)
 {
-	Eigen::Vector4f rayDir(direction[0], direction[1], direction[2], 0);
-	Eigen::Vector4f planeNormal(plane[0], plane[1], plane[2], 0);
-	Eigen::Vector4f planePoint = Eigen::Vector4f(0, 0, 0, 0) + static_cast<float>(plane[3])*((-planeNormal).normalized());
+    Eigen::Vector4f rayDir(direction[0], direction[1], direction[2], 0);
+    Eigen::Vector4f planeNormal(plane[0], plane[1], plane[2], 0);
+    Eigen::Vector4f planePoint = Eigen::Vector4f(0, 0, 0, 0) + static_cast<float>(plane[3])*((-planeNormal).normalized());
 
-	return planeNormal.dot(planeNormal - direction) / (planeNormal.dot(rayDir));
+    return planeNormal.dot(planeNormal - direction) / (planeNormal.dot(rayDir));
 }
 
 /***********************************************************************************************************************
@@ -738,8 +738,8 @@ double Utility::rayToPlaneDistance(const Eigen::Vector4f &origin, const Eigen::V
 double Utility::euclideanDistance(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2)
 {
     // D = ||(P2-P1)||
-	//return ((p2 - p1).norm());
-	return ((Eigen::Vector4f(p2[0], p2[1], p2[2], 0) - Eigen::Vector4f(p1[0], p1[1], p1[2], 0)).norm());
+    //return ((p2 - p1).norm());
+    return ((Eigen::Vector4f(p2[0], p2[1], p2[2], 0) - Eigen::Vector4f(p1[0], p1[1], p1[2], 0)).norm());
 }
 
 /***********************************************************************************************************************
@@ -756,7 +756,7 @@ double Utility::euclideanDistance(const Eigen::Vector4f &p1, const Eigen::Vector
 double Utility::euclideanDistance(double p1x, double p1y, double p1z, double p2x, double p2y, double p2z)
 {
     // D = ||(P2-P1) x (P1-P0)|| / ||P2-P1|| = norm (cross (p2-p1, p1-p0)) / norm(p2-p1)
-	return sqrt((p1x - p2x)*(p1x - p2x) + (p1y - p2y)*(p1y - p2y) + (p1z - p2z)*(p1z - p2z));
+    return sqrt((p1x - p2x)*(p1x - p2x) + (p1y - p2y)*(p1y - p2y) + (p1z - p2z)*(p1z - p2z));
 }
 
 /***********************************************************************************************************************
@@ -804,14 +804,14 @@ void Utility::pointAlongRay(const Eigen::Vector4f &origin, const Eigen::Vector4f
  **********************************************************************************************************************/
 void Utility::pointAlongLine(double line_p1x, double line_p1y, double line_p1z, double line_p2x, double line_p2y, double line_p2z, double d, double &px, double &py, double &pz)
 {
-	Eigen::Vector4f p;
-	Eigen::Vector4f line_p1(static_cast<float>(line_p1x), static_cast<float>(line_p1y), static_cast<float>(line_p1z), 0);
-	Eigen::Vector4f line_p2(static_cast<float>(line_p2x), static_cast<float>(line_p2y), static_cast<float>(line_p2z), 0);
+    Eigen::Vector4f p;
+    Eigen::Vector4f line_p1(static_cast<float>(line_p1x), static_cast<float>(line_p1y), static_cast<float>(line_p1z), 0);
+    Eigen::Vector4f line_p2(static_cast<float>(line_p2x), static_cast<float>(line_p2y), static_cast<float>(line_p2z), 0);
 
-	pointAlongLine(line_p1, line_p2, d, p);
-	px = p[0];
-	py = p[1];
-	pz = p[2];
+    pointAlongLine(line_p1, line_p2, d, p);
+    px = p[0];
+    py = p[1];
+    pz = p[2];
 }
 
 /***********************************************************************************************************************
@@ -856,44 +856,44 @@ double Utility::distanceToTetragon(const Eigen::Vector4f &p, const Eigen::Vector
  **********************************************************************************************************************/
 double Utility::lineIntersection(const Eigen::Vector4f &line1_p1, const Eigen::Vector4f &line1_p2, const Eigen::Vector4f &line2_p1, const Eigen::Vector4f &line2_p2, Eigen::Vector4f &intersection)
 {
-	const double SMALL_NUM = 0.00000001;
+    const double SMALL_NUM = 0.00000001;
 
-	Eigen::Vector4f u = line1_p2 - line1_p1;
-	Eigen::Vector4f v = line2_p2 - line2_p1;
-	Eigen::Vector4f w = line1_p1 - line2_p1;
+    Eigen::Vector4f u = line1_p2 - line1_p1;
+    Eigen::Vector4f v = line2_p2 - line2_p1;
+    Eigen::Vector4f w = line1_p1 - line2_p1;
 
-	double a = Utility::dotProduct(u, u);
-	double b = Utility::dotProduct(u, v);
-	double c = Utility::dotProduct(v, v);
-	double d = Utility::dotProduct(u, w);
-	double e = Utility::dotProduct(v, w);
+    double a = Utility::dotProduct(u, u);
+    double b = Utility::dotProduct(u, v);
+    double c = Utility::dotProduct(v, v);
+    double d = Utility::dotProduct(u, w);
+    double e = Utility::dotProduct(v, w);
 
-	double D = a*c - b*b;
-	double sc, tc;
+    double D = a*c - b*b;
+    double sc, tc;
 
     // compute the line parameters of the two closest points
     if (D < SMALL_NUM)
-	{
-		// the lines are almost parallel, use the largest denominator
+    {
+        // the lines are almost parallel, use the largest denominator
         sc = 0.0;
         tc = (b>c ? d/b : e/c);
     }
     else
-	{
+    {
         sc = (b*e - c*d) / D;
         tc = (a*e - b*d) / D;
     }
 
-	// get the closest point on each line to the other line
-	Eigen::Vector4f line1_intersection = line1_p1 + (static_cast<float>(sc) * u);
-	Eigen::Vector4f line2_intersection = line2_p1 + (static_cast<float>(tc) * v);
+    // get the closest point on each line to the other line
+    Eigen::Vector4f line1_intersection = line1_p1 + (static_cast<float>(sc) * u);
+    Eigen::Vector4f line2_intersection = line2_p1 + (static_cast<float>(tc) * v);
 
-	// compute the midpoint
-	intersection = (line1_intersection + line2_intersection) * 0.5;
-	intersection[3] = 0;
+    // compute the midpoint
+    intersection = (line1_intersection + line2_intersection) * 0.5;
+    intersection[3] = 0;
 
     // return the distance between the two points
-	return Utility::euclideanDistance(line1_intersection, line2_intersection);
+    return Utility::euclideanDistance(line1_intersection, line2_intersection);
 }
 
 /***********************************************************************************************************************
@@ -912,38 +912,38 @@ double Utility::lineIntersection(const Eigen::Vector4f &line1_p1, const Eigen::V
  **********************************************************************************************************************/
 bool Utility::threePlanesIntersection(const Eigen::Vector4f &plane1, const Eigen::Vector4f &plane2, const Eigen::Vector4f &plane3, Eigen::Vector4f &intersection, double determinantTolerance)
 {
-	// check for parallel planes
-	Eigen::Matrix3f normals_in_lines;
-	for (int i = 0; i < 3; i++)
-	{
-		normals_in_lines (i, 0) = plane1[i];
-		normals_in_lines (i, 1) = plane2[i];
-		normals_in_lines (i, 2) = plane3[i];
-	}
+    // check for parallel planes
+    Eigen::Matrix3f normals_in_lines;
+    for (int i = 0; i < 3; i++)
+    {
+        normals_in_lines (i, 0) = plane1[i];
+        normals_in_lines (i, 1) = plane2[i];
+        normals_in_lines (i, 2) = plane3[i];
+    }
 
-	// return false if the determinant is close to zero
-	double determinant = normals_in_lines.determinant();
-	if (fabs (determinant) < determinantTolerance)
-	{
-		return false;
-	}
+    // return false if the determinant is close to zero
+    double determinant = normals_in_lines.determinant();
+    if (fabs (determinant) < determinantTolerance)
+    {
+        return false;
+    }
 
-	// setup up the left side of the 3 equations
-	Eigen::Matrix3f left_member;
-	for (int i = 0; i < 3; i++)
-	{
-		left_member (0, i) = plane1[i];
-		left_member (1, i) = plane2[i];
-		left_member (2, i) = plane3[i];
-	}
+    // setup up the left side of the 3 equations
+    Eigen::Matrix3f left_member;
+    for (int i = 0; i < 3; i++)
+    {
+        left_member (0, i) = plane1[i];
+        left_member (1, i) = plane2[i];
+        left_member (2, i) = plane3[i];
+    }
 
-	// setup up the right side of the 3 equations
-	Eigen::Vector3f right_member;
-	right_member << -plane1[3], -plane2[3], -plane3[3];
+    // setup up the right side of the 3 equations
+    Eigen::Vector3f right_member;
+    right_member << -plane1[3], -plane2[3], -plane3[3];
 
-	// solve the system of equations
-	intersection = left_member.fullPivLu ().solve (right_member);
-	return (true);
+    // solve the system of equations
+    intersection = left_member.fullPivLu ().solve (right_member);
+    return (true);
 }
 
 /***********************************************************************************************************************
@@ -963,31 +963,31 @@ bool Utility::threePlanesIntersection(const Eigen::Vector4f &plane1, const Eigen
  **********************************************************************************************************************/
 bool Utility::linePlaneIntersection(const Eigen::Vector4f &linePoint, const Eigen::Vector4f &lineDir, const Eigen::Vector4f &plane, Eigen::Vector4f &intersection, double paralellTolerance)
 {
-	Eigen::Vector4f u = lineDir;
-	Eigen::Vector4f pn = Eigen::Vector4f(plane[0], plane[1], plane[2], 0);
-	Eigen::Vector4f p0 = -pn * plane[3];
-	Eigen::Vector4f w = linePoint - p0;
+    Eigen::Vector4f u = lineDir;
+    Eigen::Vector4f pn = Eigen::Vector4f(plane[0], plane[1], plane[2], 0);
+    Eigen::Vector4f p0 = -pn * plane[3];
+    Eigen::Vector4f w = linePoint - p0;
 
-	float D = pn.dot(u);
-	float N = -pn.dot(w);
+    float D = pn.dot(u);
+    float N = -pn.dot(w);
 
-	// check to see if the line and plane are paralell or coplanar
-	if(std::fabs(D) < paralellTolerance)
-	{
-		return false;
-	}
+    // check to see if the line and plane are paralell or coplanar
+    if(std::fabs(D) < paralellTolerance)
+    {
+        return false;
+    }
 
-	// the line and plane are not paralell, compute the intersection
-	float sI = N / D;
+    // the line and plane are not paralell, compute the intersection
+    float sI = N / D;
 
-	// make sure there is an intersection
-	if(sI < 0 || sI > 1)
-	{
-		return false;
-	}
+    // make sure there is an intersection
+    if(sI < 0 || sI > 1)
+    {
+        return false;
+    }
 
-	intersection = linePoint + sI * u;
-	return true;
+    intersection = linePoint + sI * u;
+    return true;
 }
 
 /***********************************************************************************************************************
@@ -1000,18 +1000,18 @@ bool Utility::linePlaneIntersection(const Eigen::Vector4f &linePoint, const Eige
  **********************************************************************************************************************/
 void Utility::pointsToPlane(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2, const Eigen::Vector4f &p3, Eigen::Vector4f &plane)
 {
-	//Eigen::Vector4f planeNormal = ((p2 - p1).cross(p3 - p1)).normalized();
-	//plane[0] = planeNormal[0];
-	//plane[1] = planeNormal[1];
-	//plane[2] = planeNormal[2];
-	//plane[3] = -planeNormal.dot(p1);
+    //Eigen::Vector4f planeNormal = ((p2 - p1).cross(p3 - p1)).normalized();
+    //plane[0] = planeNormal[0];
+    //plane[1] = planeNormal[1];
+    //plane[2] = planeNormal[2];
+    //plane[3] = -planeNormal.dot(p1);
 
-	Eigen::Vector3f n = Eigen::Vector3f(p2[0] - p1[0], p2[1]- p1[1], p2[2]- p1[2]).cross(Eigen::Vector3f(p3[0] - p1[0], p3[1]- p1[1], p3[2]- p1[2]));
-	n.normalize();
-	plane[0] = n[0];
-	plane[1] = n[1];
-	plane[2] = n[2];
-	plane[3] = -n.dot(Eigen::Vector3f(p1[0], p1[1], p1[2]));
+    Eigen::Vector3f n = Eigen::Vector3f(p2[0] - p1[0], p2[1]- p1[1], p2[2]- p1[2]).cross(Eigen::Vector3f(p3[0] - p1[0], p3[1]- p1[1], p3[2]- p1[2]));
+    n.normalize();
+    plane[0] = n[0];
+    plane[1] = n[1];
+    plane[2] = n[2];
+    plane[3] = -n.dot(Eigen::Vector3f(p1[0], p1[1], p1[2]));
 }
 
 /***********************************************************************************************************************
@@ -1023,10 +1023,10 @@ void Utility::pointsToPlane(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2
  **********************************************************************************************************************/
 void Utility::pointNormalToPlane(const Eigen::Vector4f &normal, const Eigen::Vector4f &p, Eigen::Vector4f &plane)
 {
-	plane = normal;
-	plane[3] = 0;
-	plane.normalize();
-	plane[3] = - (plane[0] * p[0]) - (plane[1] * p[1]) - (plane[2] * p[2]);
+    plane = normal;
+    plane[3] = 0;
+    plane.normalize();
+    plane[3] = - (plane[0] * p[0]) - (plane[1] * p[1]) - (plane[2] * p[2]);
 }
 
 /***********************************************************************************************************************
@@ -1041,13 +1041,13 @@ void Utility::pointNormalToPlane(const Eigen::Vector4f &normal, const Eigen::Vec
  **********************************************************************************************************************/
 void Utility::orthonormalBasis(const Eigen::Vector4f &u1, const Eigen::Vector4f &u2, const Eigen::Vector4f &u3, Eigen::Vector4f &v1, Eigen::Vector4f &v2, Eigen::Vector4f &v3)
 {
-	v1 = u1;
-	v2 = u2 - (u2.dot(v1) / v1.squaredNorm()) * v1;
-	v3 = u3 - (u3.dot(v1) / v1.squaredNorm()) * v1 - (u3.dot(v2) / v2.squaredNorm()) * v2;
+    v1 = u1;
+    v2 = u2 - (u2.dot(v1) / v1.squaredNorm()) * v1;
+    v3 = u3 - (u3.dot(v1) / v1.squaredNorm()) * v1 - (u3.dot(v2) / v2.squaredNorm()) * v2;
 
-	v1.normalize();
-	v2.normalize();
-	v3.normalize();
+    v1.normalize();
+    v2.normalize();
+    v3.normalize();
 }
 
 /***********************************************************************************************************************
@@ -1062,17 +1062,17 @@ void Utility::orthonormalBasis(const Eigen::Vector4f &u1, const Eigen::Vector4f 
  **********************************************************************************************************************/
 bool Utility::isPointAbovePlane(const Eigen::Vector4f &p, const Eigen::Vector4f &plane)
 {
-	float temp = 0;
+    float temp = 0;
 
-	temp = plane[0] * p[0] + plane[1] * p[1] + plane[2] * p[2] + plane[3];
-	if(temp < 0)
-	{
-		return false;
-	}
-	else
-	{
-		return false;
-	}
+    temp = plane[0] * p[0] + plane[1] * p[1] + plane[2] * p[2] + plane[3];
+    if(temp < 0)
+    {
+        return false;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /***********************************************************************************************************************
@@ -1087,11 +1087,11 @@ bool Utility::isPointAbovePlane(const Eigen::Vector4f &p, const Eigen::Vector4f 
  **********************************************************************************************************************/
 Eigen::Vector4f Utility::transformPoint(const Eigen::Vector4f &p, const Eigen::Matrix4f &transform)
 {
-	float x = static_cast<float> (transform (0, 0) * p(0) + transform (0, 1) * p(1) + transform (0, 2) * p(2) + transform (0, 3));
-	float y = static_cast<float> (transform (1, 0) * p(0) + transform (1, 1) * p(1) + transform (1, 2) * p(2) + transform (1, 3));
-	float z = static_cast<float> (transform (2, 0) * p(0) + transform (2, 1) * p(1) + transform (2, 2) * p(2) + transform (2, 3));
+    float x = static_cast<float> (transform (0, 0) * p(0) + transform (0, 1) * p(1) + transform (0, 2) * p(2) + transform (0, 3));
+    float y = static_cast<float> (transform (1, 0) * p(0) + transform (1, 1) * p(1) + transform (1, 2) * p(2) + transform (1, 3));
+    float z = static_cast<float> (transform (2, 0) * p(0) + transform (2, 1) * p(1) + transform (2, 2) * p(2) + transform (2, 3));
 
-	return Eigen::Vector4f(x, y, z, 0);
+    return Eigen::Vector4f(x, y, z, 0);
 }
 
 /***********************************************************************************************************************
@@ -1106,8 +1106,8 @@ Eigen::Vector4f Utility::transformPoint(const Eigen::Vector4f &p, const Eigen::M
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::rotateNormal(const Eigen::Vector3f &v, const Eigen::Matrix3f &rotation)
 {
-	Eigen::Vector3f result = (rotation * v.normalized()).normalized();
-	return result;
+    Eigen::Vector3f result = (rotation * v.normalized()).normalized();
+    return result;
 }
 
 /***********************************************************************************************************************
@@ -1176,25 +1176,25 @@ bool Utility::doubleAlmostEqual(double a, double b, double maxDifference)
  **********************************************************************************************************************/
 bool Utility::isPointWithinRange(double x, double y, double z, double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
 {
-	// check the x coordinates
-	if(x < minX || x > maxX)
-	{
-		return false;
-	}
+    // check the x coordinates
+    if(x < minX || x > maxX)
+    {
+        return false;
+    }
 
-	// check the y coordinates
-	if(y < minY || y > maxY)
-	{
-		return false;
-	}
+    // check the y coordinates
+    if(y < minY || y > maxY)
+    {
+        return false;
+    }
 
-	// check the z coordinates
-	if(z < minZ || z > maxZ)
-	{
-		return false;
-	}
+    // check the z coordinates
+    if(z < minZ || z > maxZ)
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 /***********************************************************************************************************************
@@ -1222,10 +1222,10 @@ double Utility::dotProduct(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2)
  **********************************************************************************************************************/
 double Utility::dotProduct(double p1x, double p1y, double p1z, double p2x, double p2y, double p2z)
 {
-	Eigen::Vector4f p1(static_cast<float>(p1x), static_cast<float>(p1y), static_cast<float>(p1z), 0);
-	Eigen::Vector4f p2(static_cast<float>(p2x), static_cast<float>(p2y), static_cast<float>(p2z), 0);
+    Eigen::Vector4f p1(static_cast<float>(p1x), static_cast<float>(p1y), static_cast<float>(p1z), 0);
+    Eigen::Vector4f p2(static_cast<float>(p2x), static_cast<float>(p2y), static_cast<float>(p2z), 0);
 
-	return dotProduct(p1, p2);
+    return dotProduct(p1, p2);
 }
 
 /***********************************************************************************************************************
@@ -1238,8 +1238,8 @@ double Utility::dotProduct(double p1x, double p1y, double p1z, double p2x, doubl
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::crossProduct(const Eigen::Vector4f &p1, const Eigen::Vector4f &p2)
 {
-	Eigen::Vector3f temp1(p1[0], p1[1], p1[2]);
-	Eigen::Vector3f temp2(p2[0], p2[1], p2[2]);
+    Eigen::Vector3f temp1(p1[0], p1[1], p1[2]);
+    Eigen::Vector3f temp2(p2[0], p2[1], p2[2]);
     return temp1.cross(temp2);
 }
 
@@ -1256,10 +1256,10 @@ Eigen::Vector3f Utility::crossProduct(const Eigen::Vector4f &p1, const Eigen::Ve
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::crossProduct(double p1x, double p1y, double p1z, double p2x, double p2y, double p2z)
 {
-	Eigen::Vector4f p1(static_cast<float>(p1x), static_cast<float>(p1y), static_cast<float>(p1z), 0);
-	Eigen::Vector4f p2(static_cast<float>(p2x), static_cast<float>(p2y), static_cast<float>(p2z), 0);
+    Eigen::Vector4f p1(static_cast<float>(p1x), static_cast<float>(p1y), static_cast<float>(p1z), 0);
+    Eigen::Vector4f p2(static_cast<float>(p2x), static_cast<float>(p2y), static_cast<float>(p2z), 0);
 
-	return Utility::crossProduct(p1, p2);
+    return Utility::crossProduct(p1, p2);
 }
 
 /***********************************************************************************************************************
@@ -1270,7 +1270,7 @@ Eigen::Vector3f Utility::crossProduct(double p1x, double p1y, double p1z, double
  **********************************************************************************************************************/
 double Utility::squareRoot(double val)
 {
-	return sqrt(val);
+    return sqrt(val);
 }
 
 /***********************************************************************************************************************
@@ -1283,7 +1283,7 @@ double Utility::squareRoot(double val)
  **********************************************************************************************************************/
 Eigen::Vector3f Utility::linearRegression(Eigen::MatrixXf A, Eigen::VectorXf b)
 {
-	return A.colPivHouseholderQr().solve(b);
+    return A.colPivHouseholderQr().solve(b);
 }
 
 /***********************************************************************************************************************
@@ -1296,35 +1296,34 @@ Eigen::Vector3f Utility::linearRegression(Eigen::MatrixXf A, Eigen::VectorXf b)
  **********************************************************************************************************************/
 void Utility::linearRegression(const std::vector<float> &X, const std::vector<float> &Y, float &slope, float &intercept)
 {
-	// formulate the problem as the linear system Ax=b
-	Eigen::MatrixXf A;
-	Eigen::VectorXf b;
-	Eigen::VectorXf result;
-	int numSamples;
+    // formulate the problem as the linear system Ax=b
+    Eigen::MatrixXf A;
+    Eigen::VectorXf b;
+    Eigen::VectorXf result;
+    int numSamples;
 
-	// check the operands for proper size
-	if(Y.size() > 0 && X.size() > 0 && Y.size() == X.size())
-	{
-		// assemble the eigen structures
-		numSamples = static_cast<int>(Y.size());
-		A.resize(numSamples, 2);
-		b.resize(numSamples);
-		for(int i = 0; i < numSamples; i++)
-		{
-			A(i, 0) = 1;
-			A(i, 1) = X.at(i);
-			b(i) = Y.at(i);
-		}
+    // check the operands for proper size
+    if(Y.size() > 0 && X.size() > 0 && Y.size() == X.size())
+    {
+        // assemble the eigen structures
+        numSamples = static_cast<int>(Y.size());
+        A.resize(numSamples, 2);
+        b.resize(numSamples);
+        for(int i = 0; i < numSamples; i++)
+        {
+            A(i, 0) = 1;
+            A(i, 1) = X.at(i);
+            b(i) = Y.at(i);
+        }
 
-		// solve the linear system
-		result = Utility::linearRegression(A, b);
-		intercept = result(0);
-		slope = result(1);
-	}
-	else
-	{
-		intercept = 0;
-		slope = 0;
-	}
+        // solve the linear system
+        result = Utility::linearRegression(A, b);
+        intercept = result(0);
+        slope = result(1);
+    }
+    else
+    {
+        intercept = 0;
+        slope = 0;
+    }
 }
-

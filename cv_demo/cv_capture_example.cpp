@@ -110,7 +110,7 @@ int main(int argc, char **argv)
         if(captureSuccess)
         {
             // process the image frame
-	    processFrame(captureFrame, processedFrame);
+        processFrame(captureFrame, processedFrame);
 
             // increment the frame counter
             frameCount++;

@@ -93,7 +93,7 @@ bool openCloud(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloudOut, const char* fi
     // handle various file types
     std::string fileExtension = fileNameStr.substr(fileNameStr.find_last_of(".") + 1);
     if(fileExtension.compare("pcd") == 0)
-    {	
+    {
         // attempt to open the file
         if(pcl::io::loadPCDFile<pcl::PointXYZRGBA>(fileNameStr, *cloudOut) == -1)
         {
