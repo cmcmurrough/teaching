@@ -59,8 +59,8 @@ int main(int argc, char **argv)
     zmq::socket_t socket(context, ZMQ_REQ);
 
     // connect to the image server
-	std::printf("Connecting to server... \n");
-	socket.connect ("tcp://localhost:5555");
+    std::printf("Connecting to server... \n");
+    socket.connect ("tcp://localhost:5555");
 
     // create a request object
     zmq::message_t request(5);
@@ -71,14 +71,14 @@ int main(int argc, char **argv)
     while(requestFrames)
     {
         // send the request
-		std::printf("Sending request... \n");
+        std::printf("Sending request... \n");
         socket.send(request);
 
         // get the reply
         zmq::message_t reply;
         socket.recv(&reply);
         std::vector<uchar> buffer;
-		std::printf("Received reply: %d bytes \n", static_cast<int>(reply.size()));
+        std::printf("Received reply: %d bytes \n", static_cast<int>(reply.size()));
 
         // store the reply data into an image structure
         cv::Mat image(480, 640, CV_8UC3, reply.data());

@@ -99,7 +99,7 @@ int main(int argc, char **argv)
     {
         cv::namedWindow(DISPLAY_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
     }
-    
+
     // process data until program termination
     bool doCapture = true;
     int frameCount = 0;
@@ -137,12 +137,12 @@ int main(int argc, char **argv)
             }
         }
 
-		// create the message container
-		zmq::message_t request;
+        // create the message container
+        zmq::message_t request;
 
-		// poll to see if a message has arrived
-		if (socket.recv(&request, ZMQ_DONTWAIT))
-		{
+        // poll to see if a message has arrived
+        if (socket.recv(&request, ZMQ_DONTWAIT))
+        {
             // process the request message
             std::printf("Received request... \n");
 
@@ -150,7 +150,7 @@ int main(int argc, char **argv)
             if(captureSuccess)
             {
                 size_t frameSize = captureFrame.step[0] * captureFrame.rows;
-				socket.send((void*) captureFrame.data, frameSize);
+                socket.send((void*) captureFrame.data, frameSize);
             }
         }
 
