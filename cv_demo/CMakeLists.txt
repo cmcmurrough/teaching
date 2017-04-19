@@ -19,6 +19,10 @@ IF(WIN32)
     message("Found OpenCV libs...")
     message(${OpenCV_LIBS})
 ELSE(WIN32)
+    # workaround for -lopencv_dep_cudart linker error when using CUDA
+    # NOTE: if linker error above occurs, run cmake again with existing cache before build
+    set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+    
     set(OpenCV_DIR "/usr/local/share/OpenCV")
     find_package(OpenCV REQUIRED)
 ENDIF(WIN32)
