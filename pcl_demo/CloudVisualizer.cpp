@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
  * @file CloudVisualizer.h
- * @brief Implementation of the CloudVisualizer class
+ * @brief Implementation of the CloudVisualizer wrapper class
  *
  * This class provides a wrapper for PCL visualization functions
  *
@@ -12,7 +12,6 @@
 #include <pcl/visualization/pcl_visualizer.h>
 #include <pcl/octree/octree.h>
 #include <Eigen/Core>
-#include "Utility.h"
 
 using namespace std;
 
@@ -131,11 +130,29 @@ void CloudVisualizer::updateCloud(const pcl::PointCloud<pcl::PointXYZRGBA>::Cons
  **********************************************************************************************************************/
 void CloudVisualizer::addCoordinateFrame(const Eigen::Vector4f &position, const Eigen::Quaternionf &orientation, double scale, const string &id, int viewPort)
 {
-    // convert the roll, pitch, yaw angles to an affine transformation
-    Eigen::Affine3f transformation = Utility::quat2affine(position, orientation);
+    // convert the quaternion to an affine transformation
+    Eigen::Matrix3f rotation = orientation.normalized().toRotationMatrix();
+    Eigen::Affine3f t;
+    t(0,0) = rotation(0,0);
+    t(0,1) = rotation(0,1);
+    t(0,2) = rotation(0,2);
+    t(0,3) = position[0];
+    t(1,0) = rotation(1,0);
+    t(1,1) = rotation(1,1);
+    t(1,2) = rotation(1,2);
+    t(1,3) = position[1];
+    t(2,0) = rotation(2,0);
+    t(2,1) = rotation(2,1);
+    t(2,2) = rotation(2,2);
+    t(2,3) = position[2];
+    t(3,0) = 0;
+    t(3,1) = 0;
+    t(3,2) = 0;
+    t(3,3) = 1;
+
 
     // add the coordinate frame to the display
-    myViewer->addCoordinateSystem(scale, transformation, id, viewPort);
+    myViewer->addCoordinateSystem(scale, t, id, viewPort);
 }
 
 /***********************************************************************************************************************
@@ -212,7 +229,7 @@ void CloudVisualizer::addLine(double x1, double y1, double z1, double x2, double
 void CloudVisualizer::addPolygon(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr &vertices, double r, double g, double b, double opacity, double lineWidth, bool drawSolid, const string &id, int viewPort)
 {
     myViewer->addPolygon<pcl::PointXYZRGBA>(vertices, r, g, b, id, viewPort);
-    
+
     // render the polygon as a solid or wireframe
     if(drawSolid)
     {
@@ -258,8 +275,11 @@ void CloudVisualizer::addBox(double x, double y, double z, double roll, double p
 
     // obtain a quaternion representation of the rotation
     double qw, qx, qy, qz;
-    Utility::rpy2quat(roll, pitch, yaw, qw, qx, qy, qz);
-    Eigen::Quaternionf rotation(qw, qx, qy, qz);
+    Eigen::Quaternionf rotation;
+    Eigen::AngleAxisf aaZ(static_cast<float>(yaw), Eigen::Vector3f::UnitZ());
+    Eigen::AngleAxisf aaY(static_cast<float>(pitch), Eigen::Vector3f::UnitY());
+    Eigen::AngleAxisf aaX(static_cast<float>(roll), Eigen::Vector3f::UnitX());
+    rotation = aaZ * aaY * aaX;
 
     // add a cube to the display
     myViewer->addCube(translation, rotation, width, height, depth, id, viewPort);
@@ -509,7 +529,7 @@ void CloudVisualizer::addOccupancyGrid(const pcl::octree::OctreePointCloud<pcl::
 }
 
 /***********************************************************************************************************************
- * @brief Add an occupancy grid to the viewer, represented by centroid spheres 
+ * @brief Add an occupancy grid to the viewer, represented by centroid spheres
  *
  * Adds an occupancy grid represented by the input octree structure
  *
@@ -649,25 +669,25 @@ void CloudVisualizer::getColor(int index, int &r, int &g, int &b)
     // generate the color
     switch(index)
     {
-        case 0: 
+        case 0:
             r = 255; g = 0; b = 0;
             break;
-        case 1: 
+        case 1:
             r = 0; g = 255; b = 0;
             break;
-        case 2: 
+        case 2:
             r = 0; g = 0; b = 255;
             break;
         case 3:
             r = 255; g = 255; b = 0;
             break;
-        case 4: 
+        case 4:
             r = 0; g = 255; b = 255;
             break;
-        case 5: 
+        case 5:
             r = 255; g = 0; b = 255;
             break;
-        case 6: 
+        case 6:
             r = 255; g = 255; b = 255;
             break;
         default:

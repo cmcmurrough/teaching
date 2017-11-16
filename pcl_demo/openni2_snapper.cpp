@@ -2,7 +2,7 @@
  * @file openni2_snapper.cpp
  * @brief Template for acquiring PCL point clouds from an OpenNI2 device
  *
- * Template for acquiring PCL point clouds from an OpenNI2 device. Incoming data streams from an OpenNI2 compliant 
+ * Template for acquiring PCL point clouds from an OpenNI2 device. Incoming data streams from an OpenNI2 compliant
  * device are acquired and converted to PCL point clouds, which are then visualized in real time.
  *
  * @author Christopher D. McMurrough
@@ -10,7 +10,8 @@
 
 #include <iostream>
 #include <iomanip>
-#include <time.h>
+#include <thread>
+#include <chrono>
 
 #include <pcl/io/openni2_grabber.h>
 #include <pcl/visualization/cloud_viewer.h>
@@ -19,7 +20,6 @@
 #include <pcl/common/common.h>
 #include <pcl/common/time.h>
 #include <pcl/io/pcd_io.h>
-#include <pcl/io/ply_io.h>
 
 #define NUM_COMMAND_ARGS 2
 
@@ -90,7 +90,8 @@ public:
         // wait until user quits program
         while (!m_viewer.wasStopped())
         {
-            Sleep(1);
+            //m_viewer.spinOnce();
+            std::this_thread::sleep_for (std::chrono::milliseconds(100));
         }
 
         // stop the grabber
@@ -108,7 +109,7 @@ public:
         double elapsedTime = m_stopWatch.getTimeSeconds();
         m_stopWatch.reset();
         std::printf("Seconds elapsed since last cloud callback: %f \n", elapsedTime);
-        
+
         // store the cloud save count
         static int saveCount = 0;
 

@@ -13,6 +13,7 @@
 #include <pcl/point_types.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/io/ply_io.h>
+#include <pcl/common/time.h>
 
 #define NUM_COMMAND_ARGS 1
 
@@ -145,7 +146,7 @@ int main(int argc, char** argv)
     char* fileName = argv[1];
 
     // create a stop watch for measuring time
-    Chronograph watch;
+    pcl::StopWatch watch;
 
     // initialize the cloud viewer
     CloudVisualizer CV("Rendering Window");

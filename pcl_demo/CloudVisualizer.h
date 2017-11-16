@@ -1,6 +1,6 @@
 /*******************************************************************************************************************//**
  * @file CloudVisualizer.h
- * @brief Header file for the CloudVisualizer class
+ * @brief Header file for the CloudVisualizer wrapper class
  *
  * This class provides a wrapper for PCL visualization functions
  *
@@ -13,7 +13,6 @@
 #include <pcl/visualization/pcl_visualizer.h>
 #include <pcl/octree/octree.h>
 #include <Eigen/Core>
-#include "Utility.h"
 
 using namespace std;
 
