@@ -14,7 +14,7 @@ link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 add_executable (load_pcd load_pcd.cpp CloudVisualizer.cpp)
-target_link_libraries (load_pcd ${PCL_LIBRARIES} ${OpenCV_LIBS})
+target_link_libraries (load_pcd ${PCL_LIBRARIES})
 
 add_executable (openni2_snapper openni2_snapper.cpp)
 target_link_libraries (openni2_snapper ${PCL_LIBRARIES})
