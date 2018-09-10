@@ -4,7 +4,7 @@
 %%% Feel free to distribute this template, but please keep to referal to http://www.howtotex.com/ here.
 %%% February 2011
 %%%
-%%% Modified October 2015 by CDM
+%%% Last updated September 2018 by CDM
 
 %%%  Preamble
 \documentclass[11pt,letterpaper]{article}
@@ -29,7 +29,7 @@
 \newcommand{\teamname}{Team Name}
 \newcommand{\productname}{Product Name}
 \newcommand{\coursename}{CSE 4316: Senior Design I}
-\newcommand{\semester}{Fall 2015}
+\newcommand{\semester}{Fall 2018}
 \newcommand{\docname}{Project Charter}
 \newcommand{\department}{Department of Computer Science \& Engineering}
 \newcommand{\university}{The University of Texas at Arlington}
@@ -84,11 +84,11 @@
 
 %%% Revision History
 \begin{versionhistory}
-  	\vhEntry{0.1}{10.01.2015}{GH}{document creation}
-  	\vhEntry{0.2}{10.05.2015}{AT|GH}{complete draft}
-  	\vhEntry{0.3}{10.12.2015}{AT|GH}{release candidate 1}
-  	\vhEntry{1.0}{10.20.2015}{AT|GH|CB}{official release}
-  	\vhEntry{1.1}{10.31.2015}{AL}{added customer change requests}
+  	\vhEntry{0.1}{10.01.2018}{GH}{document creation}
+  	\vhEntry{0.2}{10.05.2018}{AT|GH}{complete draft}
+  	\vhEntry{0.3}{10.12.2018}{AT|GH}{release candidate 1}
+  	\vhEntry{1.0}{10.20.2018}{AT|GH|CB}{official release}
+  	\vhEntry{1.1}{10.31.2018}{AL}{added customer change requests}
 \end{versionhistory}
 \newpage
 
@@ -100,6 +100,7 @@
 \listoffigures
 %\listoftables
 \newpage
+\setcounter{table}{0}
 
 %%% Agile project charter sections
 \section{Vision}
@@ -119,10 +120,16 @@
 \input{tex/system_overview}
 \section{Roles \& Responsibilities}
 \input{tex/roles_responsibilities}
-\section{Facilities \& Equipment}
-\input{tex/facilities_equipment}
 \section{Cost Proposal}
 \input{tex/cost_proposal}
+\section{Facilities \& Equipment}
+\input{tex/facilities_equipment}
+\section{Assumptions}
+\input{tex/assumptions}
+\section{Constraints}
+\input{tex/constraints}
+\section{Risks}
+\input{tex/risks}
 \section{Documentation \& Reporting}
 \input{tex/documentation_reporting}
 \newpage

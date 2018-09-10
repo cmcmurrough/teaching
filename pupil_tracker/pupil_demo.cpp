@@ -85,6 +85,7 @@ int main(int argc, char** argv)
     }
 
     // set video capture parameters
+    /*
     occulography.set(CV_CAP_PROP_FRAME_WIDTH, CAMERA_FRAME_WIDTH);
     occulography.set(CV_CAP_PROP_FRAME_HEIGHT, CAMERA_FRAME_HEIGHT);
     occulography.set(CV_CAP_PROP_FORMAT, CAMERA_FORMAT);
@@ -96,6 +97,7 @@ int main(int argc, char** argv)
     occulography.set(CV_CAP_PROP_GAIN, CAMERA_GAIN);
     occulography.set(CV_CAP_PROP_EXPOSURE, CAMERA_EXPOSURE);
     occulography.set(CV_CAP_PROP_CONVERT_RGB, CAMERA_CONVERT_RGB);
+    */
 
     // intialize the display window if necessary
     if(displayMode)
